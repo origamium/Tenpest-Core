@@ -8,8 +8,9 @@
 /flow-typed
 
 # production
-/build
-/release
+/dist
+src/**/*.js
+src/**/*.js.map
 
 # misc
 .DS_Store
