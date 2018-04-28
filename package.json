@@ -11,9 +11,12 @@
   },
   "author": "ONOUE Origami",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "query-string": "^6.0.0"
+  },
   "devDependencies": {
     "@types/jest": "^22.2.3",
+    "@types/query-string": "^5.1.0",
     "jest": "^22.4.3",
     "ts-jest": "^22.4.4",
     "ts-loader": "^4.2.0",
