@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode=development",
     "build": "webpack --mode=production",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll"
   },
   "author": "ONOUE Origami",
   "license": "MIT",
