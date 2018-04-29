@@ -1,6 +1,5 @@
 import {ApiData} from "./ApiData";
 import qs =  require('query-string');
-import {ApiParameterType} from "./ApiParameter";
 
 export interface ApiTemplateValue {
     [key: string]: string //  : parameter data.
