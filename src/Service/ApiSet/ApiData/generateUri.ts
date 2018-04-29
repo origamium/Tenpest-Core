@@ -6,36 +6,24 @@ export interface ApiTemplateValue {
     [key: string]: string //  : parameter data.
 }
 
-export default (apiurl: string, data: ApiData): Function => {
-    const parameterKeys = Object.keys(data.parameter);
-    const requiredParameterKeys = parameterKeys.filter((key: string) => (data.parameter[key].required));
+const queryStringify = (queryParameterKeys: Array<string>, value: ApiTemplateValue): string => (
+    queryParameterKeys.length ? ('?' + qs.stringify(value)) : ''
+);
 
-    const sandWitchedParameterKeys = parameterKeys.filter((key: string) => (data.parameter[key].type === ApiParameterType.SandWitch));
-    let sandWitchedParameterKey: string | null = null;
-    if(sandWitchedParameterKeys.length > 1){
-        throw new Error('Multiple SandWitched parameter is not allowed.');
-    }else if(sandWitchedParameterKeys.length == 1){
-        sandWitchedParameterKey = sandWitchedParameterKeys[0];
-    }
-
-    return (value: ApiTemplateValue = {}): string => {
-        const valueKeys = Object.keys(value);
-        if(requiredParameterKeys.filter((key: string) => valueKeys.includes(key)).length !== requiredParameterKeys.length) {
-            throw new Error('Required parameter not found.');
-        }
-
-        if(valueKeys.map((item) => parameterKeys.includes(item)).includes(false)){
-            throw new Error('Contains not defined parameters.')
-        }
-
+export default (
+    apiurl: string,
+    data: ApiData,
+    value: ApiTemplateValue,
+    sandWitchedParameterKey: string | null = null,
+    queryParameterKeys: Array<string> = []): string =>
+    {
         let r = apiurl + data.path;
-        if(!sandWitchedParameterKey){
-            return r + ((valueKeys.length > 0) ? ('?' + qs.stringify(value)) : '');
-        }else{
-            r += '/' + sandWitchedParameterKey + '/' + value[sandWitchedParameterKey];
-            valueKeys.splice(valueKeys.indexOf(sandWitchedParameterKey), 1);
+        if(sandWitchedParameterKey) {
+            r += '/' + sandWitchedParameterKey + '/' + value[sandWitchedParameterKey]
             delete value[sandWitchedParameterKey];
-            return r + ((valueKeys.length > 0) ? ('?' + qs.stringify(value)) : '');
+            r += queryStringify(queryParameterKeys, value)
+        }else{
+            r += queryStringify(queryParameterKeys, value)
         }
+        return r;
     }
-}
