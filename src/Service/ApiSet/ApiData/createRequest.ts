@@ -1,6 +1,6 @@
 import {ApiData} from "./ApiData";
 import qs =  require('query-string');
-import {ApiPayloadType} from "./ApiParameter";
+import {ApiParameterType} from "./ApiParameter";
 
 export interface ApiTemplateValue {
     [key: string]: string //  : parameter data.
@@ -11,7 +11,7 @@ export default (apiurl: string, auth: Object, data: ApiData): Function => {
     const parameterKeys = Object.keys(data.parameter);
     const requiredParameterKeys = parameterKeys.filter((key: string) => (data.parameter[key].required));
 
-    const sandWitchedParameterKeys = parameterKeys.filter((key: string) => (data.parameter[key].type === ApiPayloadType.SandWitch));
+    const sandWitchedParameterKeys = parameterKeys.filter((key: string) => (data.parameter[key].type === ApiParameterType.SandWitch));
     let sandWitchedParameterKey: string | null = null;
     if(sandWitchedParameterKeys.length > 1){
         throw new Error('Multiple SandWitched parameter is not allowed.');

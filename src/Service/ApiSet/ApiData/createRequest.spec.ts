@@ -1,5 +1,5 @@
-import createRequestUri from './createRequestUri';
-import {ApiPayloadType} from "./ApiParameter";
+import createRequest from './createRequest';
+import {ApiParameterType} from "./ApiParameter";
 
 const targetUrl = 'https://example.com';
 
@@ -10,12 +10,12 @@ const blank = {
 };
 
 test('parameter not defined and no parameter, its be basic url.', () => {
-    expect(createRequestUri(targetUrl,{}, blank)()).toBe(targetUrl+blank.path);
-    expect(createRequestUri(targetUrl,{}, blank)({})).toBe(targetUrl+blank.path);
+    expect(createRequest(targetUrl,{}, blank)()).toBe(targetUrl+blank.path);
+    expect(createRequest(targetUrl,{}, blank)({})).toBe(targetUrl+blank.path);
 });
 
 test('parameter not defined and parameter exists must be throw exception', () => {
-    expect(() => createRequestUri(targetUrl, {}, blank)({oh: 'no'})).toThrow('Contains not defined parameters.');
+    expect(() => createRequest(targetUrl, {}, blank)({oh: 'no'})).toThrow('Contains not defined parameters.');
 });
 
 
@@ -24,20 +24,20 @@ const req = {
     parameter: {
         'superdry': {
             required: true,
-            type: ApiPayloadType.Query,
+            type: ApiParameterType.Query,
         }
     },
     return: ''
 };
 
 test('required parameter defined and correctly providing parameter', () => {
-    expect(createRequestUri(targetUrl, {}, req)({superdry: 'sinasai'})).toBe(targetUrl+'/path/to?superdry=sinasai');
-    expect(createRequestUri(targetUrl, {}, req)({'superdry': 'しなさい'})).toBe(targetUrl+'/path/to?superdry=%E3%81%97%E3%81%AA%E3%81%95%E3%81%84');
+    expect(createRequest(targetUrl, {}, req)({superdry: 'sinasai'})).toBe(targetUrl+'/path/to?superdry=sinasai');
+    expect(createRequest(targetUrl, {}, req)({'superdry': 'しなさい'})).toBe(targetUrl+'/path/to?superdry=%E3%81%97%E3%81%AA%E3%81%95%E3%81%84');
 });
 
 test('required parameter defined and not providing parameter must be throw exception', () => {
-    expect(() => createRequestUri(targetUrl, {}, req)()).toThrow('Required parameter not found.');
-    expect(() => createRequestUri(targetUrl, {}, req)({})).toThrow('Required parameter not found.');
+    expect(() => createRequest(targetUrl, {}, req)()).toThrow('Required parameter not found.');
+    expect(() => createRequest(targetUrl, {}, req)({})).toThrow('Required parameter not found.');
 });
 
 
@@ -46,14 +46,14 @@ const sandWitch = {
     parameter: {
         'oomuro': {
             required: true,
-            type: ApiPayloadType.SandWitch,
+            type: ApiParameterType.SandWitch,
         }
     },
     return: ''
 };
 
 test('Requied SandWitch parameter defined and correctly providing parameter', () => {
-    expect(createRequestUri(targetUrl, {}, sandWitch)({oomuro: 'sakurako'})).toBe(targetUrl+'/path/to/oomuro/sakurako')
+    expect(createRequest(targetUrl, {}, sandWitch)({oomuro: 'sakurako'})).toBe(targetUrl+'/path/to/oomuro/sakurako')
 });
 
 const sandWitch_multiparam = {
@@ -61,19 +61,19 @@ const sandWitch_multiparam = {
     parameter: {
         'oomuro': {
             required: true,
-            type: ApiPayloadType.SandWitch,
+            type: ApiParameterType.SandWitch,
         },
         'yuru': {
             required: false,
-            type: ApiPayloadType.Query,
+            type: ApiParameterType.Query,
         }
     },
     return: ''
 };
 
 test('Requied SandWitch and Query parameter defined and correctly providing parameter', () => {
-    expect(createRequestUri(targetUrl, {}, sandWitch_multiparam)({oomuro: 'sakurako'})).toBe(targetUrl+'/path/to/oomuro/sakurako');
-    expect(createRequestUri(targetUrl, {}, sandWitch_multiparam)({oomuro: 'sakurako', yuru: 'yuri'})).toBe(targetUrl+'/path/to/oomuro/sakurako?yuru=yuri');
+    expect(createRequest(targetUrl, {}, sandWitch_multiparam)({oomuro: 'sakurako'})).toBe(targetUrl+'/path/to/oomuro/sakurako');
+    expect(createRequest(targetUrl, {}, sandWitch_multiparam)({oomuro: 'sakurako', yuru: 'yuri'})).toBe(targetUrl+'/path/to/oomuro/sakurako?yuru=yuri');
 });
 
 const multiparam = {
@@ -81,29 +81,29 @@ const multiparam = {
     parameter: {
         'oomuro': {
             required: false,
-            type: ApiPayloadType.Query,
+            type: ApiParameterType.Query,
         },
         'yuru': {
             required: false,
-            type: ApiPayloadType.Query,
+            type: ApiParameterType.Query,
         },
         'seikatu': {
             required: false,
-            type: ApiPayloadType.Query,
+            type: ApiParameterType.Query,
         },
     },
     return: ''
 };
 
 test('multiple not required parameter', () => {
-    expect(createRequestUri(targetUrl, {}, multiparam)({
+    expect(createRequest(targetUrl, {}, multiparam)({
         oomuro: 'sakurako'
     })).toBe(targetUrl+'/path/to?oomuro=sakurako');
-    expect(createRequestUri(targetUrl, {}, multiparam)({
+    expect(createRequest(targetUrl, {}, multiparam)({
         oomuro: 'sakurako',
         yuru: 'yuri'
     })).toBe(targetUrl+'/path/to?oomuro=sakurako&yuru=yuri');
-    expect(createRequestUri(targetUrl, {}, multiparam)({
+    expect(createRequest(targetUrl, {}, multiparam)({
         yuru: 'yuri',
         'seikatu': 'hogo',
         oomuro: 'sakurako',
@@ -115,16 +115,16 @@ const multisandwitch_err = {
     parameter: {
         'oomuro': {
             required: true,
-            type: ApiPayloadType.SandWitch,
+            type: ApiParameterType.SandWitch,
         },
         'yuru': {
             required: false,
-            type: ApiPayloadType.SandWitch,
+            type: ApiParameterType.SandWitch,
         }
     },
     return: ''
 };
 
 test('Multiple SandWitch parameter not allowed', () => {
-    expect(() => createRequestUri(targetUrl, {}, multisandwitch_err)).toThrow('Multiple SandWitched parameter is not allowed.');
+    expect(() => createRequest(targetUrl, {}, multisandwitch_err)).toThrow('Multiple SandWitched parameter is not allowed.');
 });
