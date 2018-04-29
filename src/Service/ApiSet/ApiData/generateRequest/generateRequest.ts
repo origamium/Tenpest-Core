@@ -1,6 +1,7 @@
-import generateUri, {ApiTemplateValue} from './generateUri/generateUri';
-import {ApiData} from "./ApiData";
-import {ApiParameterType} from "./ApiParameter";
+import generateUri, {ApiTemplateValue} from '../generateUri/generateUri';
+import {ApiData} from "../ApiData";
+import {ApiParameterType} from "../ApiParameter";
+import * as Exceptions from '../Exceptions';
 
 export default (apiUrl: string, data: ApiData) => {
     const parameterKeys = Object.keys(data.parameter);
@@ -11,7 +12,7 @@ export default (apiUrl: string, data: ApiData) => {
 
     let sandWitchedParameterKey: string | null = null;
     if(sandWitchedParameterKeys.length > 1){
-        throw new Error('Multiple SandWitched parameter is not allowed.');
+        throw Exceptions.MultipleSandWitchParameterNotAllowed;
     }else if(sandWitchedParameterKeys.length === 1){
         sandWitchedParameterKey = sandWitchedParameterKeys[0];
     }
@@ -19,11 +20,11 @@ export default (apiUrl: string, data: ApiData) => {
     return (value: ApiTemplateValue = {}): Request => {
         const valueKeys = Object.keys(value);
         if(requiredParameterKeys.filter((key: string) => valueKeys.includes(key)).length !== requiredParameterKeys.length) {
-            throw new Error('Required parameter not found.');
+            throw Exceptions.RequiredParameterNotFound;
         }
 
         if(valueKeys.map((item) => parameterKeys.includes(item)).includes(false)){
-            throw new Error('Contains not defined parameters.')
+            throw Exceptions.NotDefinedParameterFound;
         }
 
         let Header = new Headers();
