@@ -6,8 +6,7 @@ export interface ApiTemplateValue {
     [key: string]: string //  : parameter data.
 }
 
-//TODO: Define Auth Object
-export default (apiurl: string, auth: Object, data: ApiData): Function => {
+export default (apiurl: string, data: ApiData): Function => {
     const parameterKeys = Object.keys(data.parameter);
     const requiredParameterKeys = parameterKeys.filter((key: string) => (data.parameter[key].required));
 
