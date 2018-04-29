@@ -1,6 +1,6 @@
 import generateUri from './generateUri';
-import {ApiParameterType} from "./ApiParameter";
-import {HttpMethods} from "./HttpMethods";
+import {ApiParameterType} from "../ApiParameter";
+import {HttpMethods} from "../HttpMethods";
 
 const targetUrl = 'https://example.com';
 

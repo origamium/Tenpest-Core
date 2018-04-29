@@ -1,4 +1,4 @@
-import {ApiData} from "./ApiData";
+import {ApiData} from "../ApiData";
 import qs =  require('query-string');
 
 export interface ApiTemplateValue {
