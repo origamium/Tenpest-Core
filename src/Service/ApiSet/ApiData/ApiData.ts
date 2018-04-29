@@ -1,8 +1,9 @@
 import {ApiParameter} from "./ApiParameter";
+import {HttpMethods} from "./HttpMethods";
 
 export interface ApiData {
     path: string;
     parameter: ApiParameter;
-    method: "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" |"PATCH";
+    method: HttpMethods;
     return: string;
 }
