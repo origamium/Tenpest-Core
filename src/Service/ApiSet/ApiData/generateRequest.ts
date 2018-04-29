@@ -1,6 +1,6 @@
-import generateUri, {ApiTemplateValue} from '../generateUri/generateUri';
-import {ApiData} from "../ApiData";
-import {ApiParameterType} from "../ApiParameter";
+import generateUri, {ApiTemplateValue} from './generateUri/generateUri';
+import {ApiData} from "./ApiData";
+import {ApiParameterType} from "./ApiParameter";
 
 export default (apiUrl: string, data: ApiData) => {
     const parameterKeys = Object.keys(data.parameter);
@@ -26,6 +26,18 @@ export default (apiUrl: string, data: ApiData) => {
             throw new Error('Contains not defined parameters.')
         }
 
-        return new Request(generateUri(apiUrl, data, value, sandWitchedParameterKey, queryParameterKeys));
+        let Header = new Headers();
+        headerParameterKeys
+            .filter((key: string) => valueKeys.includes(key))
+            .forEach((key: string) => {
+                Header.append(key, value[key]);
+                delete value[key];
+            });
+
+        const Init = {
+            method: data.method,
+            headers: Header
+        };
+        return new Request(generateUri(apiUrl, data, value, sandWitchedParameterKey, queryParameterKeys), Init);
     }
 }
