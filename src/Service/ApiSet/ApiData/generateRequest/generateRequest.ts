@@ -1,6 +1,5 @@
 import generateUri, {ApiTemplateValue} from '../generateUri/generateUri';
 import {ApiData} from "../ApiData";
-import {ApiParameterType} from "../ApiParameter";
 import * as Exceptions from '../Exceptions';
 import getParameterKey, {parameterKeysObject} from "./getParameterKeys";
 
