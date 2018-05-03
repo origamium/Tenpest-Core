@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "lib": ["dom", "webworker", "es2017"],
+    "lib": ["webworker"],
     "sourceMap": true,
     "strict": true
   }
