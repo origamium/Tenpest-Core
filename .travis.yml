@@ -7,7 +7,9 @@ cache:
         - node_modules
 install:
     - yarn
-    - npm install -g codecov
+    - npm i -g codecov typescript
+before_script:
+    - tsc
 script:
     - yarn test
 after_script:
