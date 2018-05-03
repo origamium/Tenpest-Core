@@ -10,13 +10,13 @@ const queryStringify = (queryParameterKeys: Array<string>, value: ApiTemplateVal
 );
 
 export default (
-    apiurl: string,
+    apiUrl: string,
     data: ApiData,
     value: ApiTemplateValue,
     sandWitchedParameterKey: string | null = null,
     queryParameterKeys: Array<string> = []): string =>
     {
-        let r = apiurl + data.path;
+        let r = apiUrl + data.path;
         if(sandWitchedParameterKey) {
             r += '/' + sandWitchedParameterKey + '/' + value[sandWitchedParameterKey]
             delete value[sandWitchedParameterKey];
