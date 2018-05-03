@@ -3,7 +3,7 @@ import {ApiData} from "../ApiData";
 import * as Exceptions from '../Exceptions';
 import getParameterKey, {parameterKeysObject} from "./getParameterKeys";
 
-export default (apiUrl: string, data: ApiData) => {
+export default (apiUrl: string, data: ApiData): Function => {
     const parameterKeys: parameterKeysObject = getParameterKey(data);
     return (value: ApiTemplateValue = {}): Request => {
         const valueKeys = Object.keys(value);

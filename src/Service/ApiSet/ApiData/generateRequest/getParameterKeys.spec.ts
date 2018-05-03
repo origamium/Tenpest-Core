@@ -1,5 +1,4 @@
 import getParameterKeys from './getParameterKeys';
-import {ApiData} from "../ApiData";
 import {ApiParameterType, ApiParameter} from "../ApiParameter";
 import {HttpMethods} from "../HttpMethods";
 import {MultipleSandWitchParameterNotAllowed} from "../Exceptions";
