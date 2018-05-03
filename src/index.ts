@@ -10,3 +10,6 @@ const newWorker = function(relativePath: string): Worker {
 const worker: Worker = newWorker('worker.js');
 
 worker.postMessage(["who", "a!"]);
+worker.onmessage = (e) => {
+    console.log(e);
+}
