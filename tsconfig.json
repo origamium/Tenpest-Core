@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
-    "lib": ["webworker"],
+    "lib": ["es7", "dom", "webworker"],
     "sourceMap": true,
     "strict": true
   }
