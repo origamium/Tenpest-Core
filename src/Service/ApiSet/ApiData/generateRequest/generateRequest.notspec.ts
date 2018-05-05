@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import * as puppeteer from 'puppeteer'
+import * as puppeteer from 'puppeteer';
 import generateRequest from './generateRequest';
 import {ApiData} from "../ApiData";
 import {HttpMethods} from "../HttpMethods";
@@ -26,7 +26,7 @@ describe('generateRequest', () => {
     }, timeout);
 
     afterAll(async () => {
-        await page.close()
+        await page.close();
     });
 
     it('test test', async () => {
