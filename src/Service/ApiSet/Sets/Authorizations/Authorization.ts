@@ -1,12 +1,12 @@
-import {ApiData} from "../ApiData/ApiData";
+import {ApiData} from "../../ApiData/ApiData";
 
-export interface pinBasedOAuth{
+export interface IPinBasedOAuth {
     request_token: ApiData;
     authorize: ApiData;
     access_token: ApiData;
 }
 
-export interface callbackBasedOauth{
+export interface ICallbackBasedOauth {
     authorize: ApiData;
     request_access: ApiData;
 }
