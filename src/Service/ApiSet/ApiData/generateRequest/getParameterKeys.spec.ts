@@ -1,21 +1,21 @@
+import {MultipleSandWitchParameterNotAllowed} from '../Exceptions';
+import {HttpMethods} from '../HttpMethods';
+import {ApiParameterType, IApiParameter} from '../IApiParameter';
 import getParameterKeys from './getParameterKeys';
-import {ApiParameterType, IApiParameter} from "../IApiParameter";
-import {HttpMethods} from "../HttpMethods";
-import {MultipleSandWitchParameterNotAllowed} from "../Exceptions";
 
 const blank = {
     path: '/path/to',
     parameter: {
     },
     method: HttpMethods.GET,
-    return: ''
+    return: null,
 };
 
 const sandwitch_param: IApiParameter = {
     yuru: {
         required: true,
         type: ApiParameterType.SandWitch,
-    }
+    },
 };
 
 const sandwitch_err: IApiParameter = {
@@ -25,35 +25,35 @@ const sandwitch_err: IApiParameter = {
     },
     yuri: {
         required: false,
-        type: ApiParameterType.SandWitch
-    }
+        type: ApiParameterType.SandWitch,
+    },
 };
 
 const sample1: IApiParameter = {
     yuru: {
         required: true,
-        type: ApiParameterType.SandWitch
+        type: ApiParameterType.SandWitch,
     },
     yuri: {
         required: true,
-        type: ApiParameterType.Header
+        type: ApiParameterType.Header,
     },
     oomuro: {
         required: false,
-        type: ApiParameterType.Query
+        type: ApiParameterType.Query,
     },
     sakurako: {
         required: false,
-        type: ApiParameterType.Query
+        type: ApiParameterType.Query,
     },
     yoshikawa: {
         required: true,
-        type: ApiParameterType.Query
+        type: ApiParameterType.Query,
     },
     chinatsu: {
         required: false,
-        type: ApiParameterType.Header
-    }
+        type: ApiParameterType.Header,
+    },
 };
 
 test('getParameterKeys method ', () => {
@@ -71,7 +71,7 @@ test('getParameterKeys method ', () => {
             required: ['yuru'],
             header: [],
             sandwitch: 'yuru',
-            query: []
+            query: [],
         });
     expect(() => getParameterKeys(Object.assign({}, blank, {parameter: sandwitch_err})))
         .toThrow(MultipleSandWitchParameterNotAllowed.message);
@@ -81,7 +81,7 @@ test('getParameterKeys method ', () => {
             required: ['yuru', 'yuri', 'yoshikawa'],
             header: ['yuri', 'chinatsu'],
             sandwitch: 'yuru',
-            query: ['oomuro', 'sakurako', 'yoshikawa']
+            query: ['oomuro', 'sakurako', 'yoshikawa'],
         });
 
 });

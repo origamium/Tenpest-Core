@@ -1,9 +1,9 @@
 import * as puppeteer from 'puppeteer';
-import generateRequest from './generateRequest';
-import {IApiData} from '../IApiData';
-import {HttpMethods} from '../HttpMethods';
 import * as Exceptions from '../Exceptions';
 import generateUri from '../generateUri/generateUri';
+import {HttpMethods} from '../HttpMethods';
+import {IApiData} from '../IApiData';
+import generateRequest from './generateRequest';
 
 declare const global: { __BROWSER__: puppeteer.Browser };
 
@@ -12,7 +12,7 @@ const blank: IApiData = {
     parameter: {
     },
     method: HttpMethods.GET,
-    return: ''
+    return: null,
 };
 
 const timeout = 5000;
@@ -21,7 +21,7 @@ describe('generateRequest', () => {
     let page: puppeteer.Page;
     beforeAll(async () => {
         page = await global.__BROWSER__.newPage();
-        await page.goto('https://google.com');
+        await page.goto('./generateRequestSpec.html');
     }, timeout);
 
     afterAll(async () => {
@@ -29,18 +29,10 @@ describe('generateRequest', () => {
     });
 
     it('test test', async () => {
-        let text = await page.evaluate((args) => {
-            const generateUri_1 = {
-                default: new Function(args.innerFunc)
-            };
-            const test = new Function(args.testFunc);
-            const result = test(args.url, args.data);
-            return result instanceof Function;
+        const text = await page.evaluate((args) => {
+            return 0;
         }, {
-            testFunc: generateRequest.toString(),
-            innerFunc: generateUri.toString(),
-            url: 'https://example.com',
-            data: blank
+            data: blank,
         });
         console.log(text);
         expect(1).toBe(1);

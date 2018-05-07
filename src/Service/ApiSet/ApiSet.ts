@@ -1,4 +1,4 @@
 
-export default interface ApiSet {
-    
+export default interface IApiSet {
+
 }

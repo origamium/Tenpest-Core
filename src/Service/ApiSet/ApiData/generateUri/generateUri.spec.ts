@@ -1,6 +1,6 @@
+import {HttpMethods} from '../HttpMethods';
+import {ApiParameterType} from '../IApiParameter';
 import generateUri from './generateUri';
-import {ApiParameterType} from "../IApiParameter";
-import {HttpMethods} from "../HttpMethods";
 
 const targetUrl = 'https://example.com';
 
@@ -8,23 +8,23 @@ const blank = {
     path: '/path/to',
     parameter: {},
     method: HttpMethods.GET,
-    return: ''
+    return: null,
 };
 
 test('Generate basic url', () => {
-    expect(generateUri(targetUrl, blank, {})).toBe(targetUrl+blank.path);
+    expect(generateUri(targetUrl, blank, {})).toBe(targetUrl + blank.path);
 });
 
 const req = {
     path: '/path/to',
     parameter: {
-        'superdry': {
+        superdry: {
             required: true,
             type: ApiParameterType.Query,
-        }
+        },
     },
     method: HttpMethods.GET,
-    return: ''
+    return: null,
 };
 
 test('Define required parameter', () => {
@@ -35,13 +35,13 @@ test('Define required parameter', () => {
 const sandWitch = {
     path: '/path/to',
     parameter: {
-        'oomuro': {
+        oomuro: {
             required: true,
             type: ApiParameterType.SandWitch,
-        }
+        },
     },
     method: HttpMethods.GET,
-    return: ''
+    return: null,
 };
 
 test('Define sandwitch parameter', () => {
@@ -52,45 +52,45 @@ test('Define sandwitch parameter', () => {
 const sandWitch_multiparam = {
     path: '/path/to',
     parameter: {
-        'oomuro': {
+        oomuro: {
             required: true,
             type: ApiParameterType.SandWitch,
         },
-        'yuru': {
+        yuru: {
             required: false,
             type: ApiParameterType.Query,
-        }
+        },
     },
     method: HttpMethods.GET,
-    return: ''
+    return: null,
 };
 
 test('Defined requied SandWitch and Query parameter', () => {
     expect(generateUri(targetUrl, sandWitch_multiparam, {oomuro: 'sakurako', yuru: 'yuri'}, 'oomuro', ['yuru']))
-        .toBe(targetUrl + '/path/to/oomuro/sakurako?yuru=yuri')
+        .toBe(targetUrl + '/path/to/oomuro/sakurako?yuru=yuri');
 });
 
 const multiparam = {
     path: '/path/to',
     parameter: {
-        'oomuro': {
+        oomuro: {
             required: false,
             type: ApiParameterType.Query,
         },
-        'yuru': {
+        yuru: {
             required: false,
             type: ApiParameterType.Query,
         },
-        'seikatu': {
+        seikatu: {
             required: false,
             type: ApiParameterType.Query,
         },
     },
     method: HttpMethods.GET,
-    return: ''
+    return: null,
 };
 
 test('multiple not required parameter', () => {
-    expect(generateUri(targetUrl, multiparam, {oomuro: 'sakurako', yuru: 'yuri', 'seikatu': 'hogo'}, null, ['yuru', 'oomuro', 'seikatu']))
-        .toBe(targetUrl+'/path/to?oomuro=sakurako&seikatu=hogo&yuru=yuri');
+    expect(generateUri(targetUrl, multiparam, {oomuro: 'sakurako', yuru: 'yuri', seikatu: 'hogo'}, null, ['yuru', 'oomuro', 'seikatu']))
+        .toBe(targetUrl + '/path/to?oomuro=sakurako&seikatu=hogo&yuru=yuri');
 });

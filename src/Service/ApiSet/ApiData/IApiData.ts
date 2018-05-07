@@ -1,5 +1,5 @@
-import {IApiParameter} from './IApiParameter';
 import {HttpMethods} from './HttpMethods';
+import {IApiParameter} from './IApiParameter';
 import {IReturnedDatumInfo} from './returnedDatum';
 
 export interface IApiData {

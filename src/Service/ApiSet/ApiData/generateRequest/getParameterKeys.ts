@@ -1,23 +1,23 @@
-import {IApiData} from "../IApiData";
-import {ApiParameterType} from "../IApiParameter";
-import * as Exceptions from "../Exceptions";
+import * as Exceptions from '../Exceptions';
+import {IApiData} from '../IApiData';
+import {ApiParameterType} from '../IApiParameter';
 
 export interface parameterKeysObject {
-    key: Array<string>;
-    required: Array<string>;
-    header: Array<string>;
+    key: string[];
+    required: string[];
+    header: string[];
     sandwitch: string | null;
-    query: Array<string>;
+    query: string[];
 }
 
 export default (data: IApiData): parameterKeysObject => {
-    const parameters = Object.keys(data.parameter);let sandWitchedParameterKey: string | null = null;
-    const sandwitches = parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.SandWitch)
+    const parameters = Object.keys(data.parameter); const sandWitchedParameterKey: string | null = null;
+    const sandwitches = parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.SandWitch);
 
     let sandwitch: string | null = null;
-    if(sandwitches.length > 1){
+    if (sandwitches.length > 1) {
         throw Exceptions.MultipleSandWitchParameterNotAllowed;
-    }else if(sandwitches.length === 1){
+    } else if (sandwitches.length === 1) {
         sandwitch = sandwitches[0];
     }
 
@@ -26,6 +26,6 @@ export default (data: IApiData): parameterKeysObject => {
         required: parameters.filter((key: string) => data.parameter[key].required),
         header: parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.Header),
         sandwitch,
-        query: parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.Query)
-    }
-}
+        query: parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.Query),
+    };
+};
