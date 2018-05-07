@@ -8,7 +8,7 @@ export enum AuthMethod {
     Callback = 'Callback',
 }
 
-export interface AuthorizatioData {
+export interface IAuthorizationData {
     type: AuthType.OAuth | AuthType.OAuth2;
     method: AuthMethod.PIN | AuthMethod.Callback;
 }

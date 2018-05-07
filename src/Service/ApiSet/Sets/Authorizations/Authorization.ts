@@ -1,12 +1,12 @@
-import {ApiData} from "../../ApiData/ApiData";
+import {IApiData} from "../../ApiData/IApiData";
 
 export interface IPinBasedOAuth {
-    request_token: ApiData;
-    authorize: ApiData;
-    access_token: ApiData;
+    request_token: IApiData;
+    authorize: IApiData;
+    access_token: IApiData;
 }
 
 export interface ICallbackBasedOauth {
-    authorize: ApiData;
-    request_access: ApiData;
+    authorize: IApiData;
+    request_access: IApiData;
 }

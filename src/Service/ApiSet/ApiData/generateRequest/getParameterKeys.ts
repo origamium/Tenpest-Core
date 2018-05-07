@@ -1,5 +1,5 @@
-import {ApiData} from "../ApiData";
-import {ApiParameterType} from "../ApiParameter";
+import {IApiData} from "../IApiData";
+import {ApiParameterType} from "../IApiParameter";
 import * as Exceptions from "../Exceptions";
 
 export interface parameterKeysObject {
@@ -10,7 +10,7 @@ export interface parameterKeysObject {
     query: Array<string>;
 }
 
-export default (data: ApiData): parameterKeysObject => {
+export default (data: IApiData): parameterKeysObject => {
     const parameters = Object.keys(data.parameter);let sandWitchedParameterKey: string | null = null;
     const sandwitches = parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.SandWitch)
 

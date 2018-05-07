@@ -1,4 +1,4 @@
-export interface ReturnedDatumInfo {
+export interface IReturnedDatumInfo {
     /*
      *  default: null. In this state, checking HTTP Status Code.
      *  e.g. Slack is always return 200 OK, error checking must be see "ok" parameter.

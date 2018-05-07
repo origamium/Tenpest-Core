@@ -1,4 +1,4 @@
-import {ApiData} from "../ApiData";
+import {IApiData} from "../IApiData";
 import qs =  require('query-string');
 
 export interface ApiTemplateValue {
@@ -11,7 +11,7 @@ const queryStringify = (queryParameterKeys: Array<string>, value: ApiTemplateVal
 
 export default (
     apiUrl: string,
-    data: ApiData,
+    data: IApiData,
     value: ApiTemplateValue,
     sandWitchedParameterKey: string | null = null,
     queryParameterKeys: Array<string> = []): string =>

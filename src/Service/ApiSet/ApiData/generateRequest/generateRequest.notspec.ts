@@ -1,14 +1,13 @@
-import 'whatwg-fetch';
 import * as puppeteer from 'puppeteer';
 import generateRequest from './generateRequest';
-import {ApiData} from "../ApiData";
-import {HttpMethods} from "../HttpMethods";
+import {IApiData} from '../IApiData';
+import {HttpMethods} from '../HttpMethods';
 import * as Exceptions from '../Exceptions';
-import generateUri from "../generateUri/generateUri";
+import generateUri from '../generateUri/generateUri';
 
 declare const global: { __BROWSER__: puppeteer.Browser };
 
-const blank = {
+const blank: IApiData = {
     path: '/path/to',
     parameter: {
     },

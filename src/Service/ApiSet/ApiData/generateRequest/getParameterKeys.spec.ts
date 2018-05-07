@@ -1,5 +1,5 @@
 import getParameterKeys from './getParameterKeys';
-import {ApiParameterType, ApiParameter} from "../ApiParameter";
+import {ApiParameterType, IApiParameter} from "../IApiParameter";
 import {HttpMethods} from "../HttpMethods";
 import {MultipleSandWitchParameterNotAllowed} from "../Exceptions";
 
@@ -11,14 +11,14 @@ const blank = {
     return: ''
 };
 
-const sandwitch_param: ApiParameter = {
+const sandwitch_param: IApiParameter = {
     yuru: {
         required: true,
         type: ApiParameterType.SandWitch,
     }
 };
 
-const sandwitch_err: ApiParameter = {
+const sandwitch_err: IApiParameter = {
     yuru: {
         required: true,
         type: ApiParameterType.SandWitch,
@@ -29,7 +29,7 @@ const sandwitch_err: ApiParameter = {
     }
 };
 
-const sample1: ApiParameter = {
+const sample1: IApiParameter = {
     yuru: {
         required: true,
         type: ApiParameterType.SandWitch
