@@ -20,7 +20,7 @@ export default (
         consumerSecretKey,
         tokenSecret
     ));
-    const OAuthHeaderObject: Object = {...parameter, oauth_signature: oauth_signature};
+    const OAuthHeaderObject: any = {...parameter, oauth_signature: oauth_signature}; // oh any...
     return 'OAuth ' + Object.keys(OAuthHeaderObject)
         .map((key: string) => (key + '="' + OAuthHeaderObject[key] + '"'))
         .join(',');
