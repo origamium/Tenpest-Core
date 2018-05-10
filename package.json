@@ -23,6 +23,7 @@
     "jest": "^22.4.3",
     "puppeteer": "^1.3.0",
     "rimraf": "^2.6.2",
+    "ts-jest": "^22.4.5",
     "ts-loader": "^4.2.0",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3",
