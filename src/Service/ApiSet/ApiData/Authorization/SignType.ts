@@ -2,5 +2,5 @@
 export enum SignType {
     rsa = 'RSA-SHA1',
     hmac = 'HMAC-SHA1',
-    plain = 'PLAINTEXT'
+    plain = 'PLAINTEXT',
 };
