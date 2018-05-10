@@ -1,9 +1,9 @@
-import * as Exceptions from '../Exceptions';
-import generateUri, {ApiTemplateValue} from '../generateUri/generateUri';
-import {IApiData} from '../IApiData';
+import * as Exceptions from '../../../../Request/Exceptions/Exceptions';
+import generateUri, {ApiTemplateValue} from '../../../../Request/URI/generateUri';
+import {IApiData} from '../../../../Request/Types/Interfaces/IApiData';
 import getParameterKey, {parameterKeysObject} from './getParameterKeys';
 
-export default (apiUrl: string, data: IApiData): Function => {
+export default (apiUrl: string, data: IApiData) => {
     const parameterKeys: parameterKeysObject = getParameterKey(data);
     return (value: ApiTemplateValue = {}): Request => {
         const valueKeys = Object.keys(value);

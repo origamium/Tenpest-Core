@@ -1,4 +1,4 @@
-import {IApiData} from '../../ApiData/IApiData';
+import {IApiData} from '../../../../Request/Types/Interfaces/IApiData';
 
 export interface IPinBasedOAuth {
     request_token: IApiData;

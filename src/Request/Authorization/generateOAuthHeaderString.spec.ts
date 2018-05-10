@@ -1,12 +1,12 @@
 import * as authSign from 'oauth-sign';
 import generateOAuthHeaderString from './generateOAuthHeaderString';
-import {SignType} from './SignType';
-import {HttpMethods} from '../HttpMethods';
-import {ISignatureParameter} from './ISignatureParameter';
+import {OAuthSignType} from '../Types/Enums/OAuthSignType';
+import {HttpMethods} from '../Types/Enums/HttpMethods';
+import {ISignatureParameter} from '../Types/Interfaces/ISignatureParameter';
 
 const parameter1: ISignatureParameter = {
     oauth_consumer_key: '123456789abcde',
-    oauth_signature_method: SignType.hmac,
+    oauth_signature_method: OAuthSignType.hmac,
     oauth_timestamp: Math.floor(Date.now() / 1000),
     oauth_nonce: 'qwertyuiop',
     oauth_version: '1.0',

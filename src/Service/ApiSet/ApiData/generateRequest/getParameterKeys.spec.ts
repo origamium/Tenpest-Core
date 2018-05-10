@@ -1,7 +1,8 @@
-import {MultipleSandWitchParameterNotAllowed} from '../Exceptions';
-import {HttpMethods} from '../HttpMethods';
-import {ApiParameterType, IApiParameter} from '../IApiParameter';
+import {MultipleSandWitchParameterNotAllowed} from '../../../../Request/Exceptions/Exceptions';
+import {HttpMethods} from '../../../../Request/Types/Enums/HttpMethods';
+import {IApiParameter} from '../../../../Request/Types/Interfaces/IApiParameter';
 import getParameterKeys from './getParameterKeys';
+import {ApiParameterType} from '../../../../Request/Types/Enums/ApiParameterType';
 
 const blank = {
     path: '/path/to',

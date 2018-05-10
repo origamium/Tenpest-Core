@@ -1,5 +1,5 @@
 import qs =  require('query-string');
-import {IApiData} from '../IApiData';
+import {IApiData} from '../Types/Interfaces/IApiData';
 
 export interface ApiTemplateValue {
     [key: string]: string; //  : parameter data.

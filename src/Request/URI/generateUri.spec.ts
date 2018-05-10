@@ -1,6 +1,6 @@
-import {HttpMethods} from '../HttpMethods';
-import {ApiParameterType} from '../IApiParameter';
+import {HttpMethods} from '../Types/Enums/HttpMethods';
 import generateUri from './generateUri';
+import {ApiParameterType} from '../Types/Enums/ApiParameterType';
 
 const targetUrl = 'https://example.com';
 
