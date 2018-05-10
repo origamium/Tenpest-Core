@@ -1,10 +1,8 @@
 import * as authSign from 'oauth-sign';
-import {SignType} from './SignType';
 import {HttpMethods} from '../HttpMethods';
 import {ISignatureParameter} from './ISignatureParameter';
 
 export default (
-    signMethod: SignType,
     httpMethod: HttpMethods,
     baseUrl: string,
     parameter: ISignatureParameter,
@@ -13,7 +11,7 @@ export default (
     tokenSecret: string = '',
 ): string => {
     const OAuthSignature = encodeURIComponent(authSign.sign(
-        signMethod,
+        parameter.oauth_signature_method,
         httpMethod,
         baseUrl,
         {...parameter, ...queryParameter},
