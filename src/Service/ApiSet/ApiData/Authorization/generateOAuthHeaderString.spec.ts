@@ -37,6 +37,12 @@ test('generateOAuthHeaderString method', () => {
         consumerSecretKey,
         tokenSecret,
     )).toContain('oauth_signature');
+
+    expect(
+        generateOAuthHeaderString(httpMethod, baseUrl, parameter1, queryParameter1, consumerSecretKey, ''))
+        .toEqual(
+        generateOAuthHeaderString(httpMethod, baseUrl, parameter1, queryParameter1, consumerSecretKey));
+
     expect(generateOAuthHeaderString(
         httpMethod,
         baseUrl,
