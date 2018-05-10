@@ -4,6 +4,7 @@
     "module": "commonjs",
     "lib": ["es7", "dom", "webworker"],
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "noImplicitAny": false
   }
 }
