@@ -1,4 +1,4 @@
-import {SignType} from "./SignType";
+import {SignType} from "../Types/SignType";
 
 export interface ISignatureParameter {
     oauth_consumer_key: string;

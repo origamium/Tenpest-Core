@@ -1,6 +1,6 @@
-import {MultipleSandWitchParameterNotAllowed} from '../Exceptions';
-import {HttpMethods} from '../HttpMethods';
-import {ApiParameterType, IApiParameter} from '../IApiParameter';
+import {MultipleSandWitchParameterNotAllowed} from '../../../../Exception/Exceptions';
+import {HttpMethods} from '../../Types/HttpMethods';
+import {ApiParameterType, IApiParameter} from '../../Interfaces/IApiParameter';
 import getParameterKeys from './getParameterKeys';
 
 const blank = {

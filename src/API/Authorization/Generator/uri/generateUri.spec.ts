@@ -1,5 +1,5 @@
-import {HttpMethods} from '../HttpMethods';
-import {ApiParameterType} from '../IApiParameter';
+import {HttpMethods} from '../../Types/HttpMethods';
+import {ApiParameterType} from '../../Interfaces/IApiParameter';
 import generateUri from './generateUri';
 
 const targetUrl = 'https://example.com';

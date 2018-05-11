@@ -1,6 +1,6 @@
-import * as Exceptions from '../Exceptions';
-import {IApiData} from '../IApiData';
-import {ApiParameterType} from '../IApiParameter';
+import * as Exceptions from '../../../../Exception/Exceptions';
+import {IApiData} from '../../Interfaces/IApiData';
+import {ApiParameterType} from '../../Interfaces/IApiParameter';
 
 export interface parameterKeysObject {
     key: string[];
