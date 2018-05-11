@@ -1,8 +1,8 @@
 import * as authSign from 'oauth-sign';
 import generateOAuthHeaderString from './generateOAuthHeaderString';
-import {SignType} from '../../Types/SignType';
-import {HttpMethods} from '../../Types/HttpMethods';
-import {ISignatureParameter} from '../../Interfaces/ISignatureParameter';
+import {SignType} from '../../../Types/SignType';
+import {HttpMethods} from '../../../Types/HttpMethods';
+import {ISignatureParameter} from '../../../Interfaces/ISignatureParameter';
 
 const parameter1: ISignatureParameter = {
     oauth_consumer_key: '123456789abcde',

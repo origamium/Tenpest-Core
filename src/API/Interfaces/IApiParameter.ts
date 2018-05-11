@@ -9,6 +9,6 @@ export enum ApiParameterType {
 export interface IApiParameter {
     [key: string]: {
         required: boolean,
-        type: ApiParameterType.Header | ApiParameterType.Query | ApiParameterType.SandWitch,
+        type: ApiParameterType,
     };
 }

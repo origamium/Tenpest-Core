@@ -1,4 +1,4 @@
-import * as Exceptions from '../../../../Exception/Exceptions';
+import * as Exceptions from '../../../Exception/Exceptions';
 import {IApiData} from '../../Interfaces/IApiData';
 import {ApiParameterType} from '../../Interfaces/IApiParameter';
 

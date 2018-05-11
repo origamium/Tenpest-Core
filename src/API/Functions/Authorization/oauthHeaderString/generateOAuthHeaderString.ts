@@ -1,6 +1,6 @@
 import * as authSign from 'oauth-sign';
-import {HttpMethods} from '../../Types/HttpMethods';
-import {ISignatureParameter} from '../../Interfaces/ISignatureParameter';
+import {HttpMethods} from '../../../Types/HttpMethods';
+import {ISignatureParameter} from '../../../Interfaces/ISignatureParameter';
 
 export default (
     httpMethod: HttpMethods,
