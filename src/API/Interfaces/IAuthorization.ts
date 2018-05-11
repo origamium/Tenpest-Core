@@ -1,7 +1,8 @@
 import {OAuthVersion} from "../Enums/OAuthVersion";
-import {AuthMethods} from "../Enums/AuthMethods";
+import {IAPIKey, IToken} from "./IKeys";
 
 export interface IAuthorization {
     oauthVersion: OAuthVersion;
-    oauthMethod: AuthMethods;
+    key: IAPIKey;
+    token: IToken | null;
 }
