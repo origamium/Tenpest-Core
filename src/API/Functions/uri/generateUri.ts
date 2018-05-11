@@ -1,18 +1,15 @@
 import qs =  require('query-string');
 import {IApiData} from '../../Interfaces/IApiData';
+import {IApiValueTemplate} from "../../Interfaces/IApiValueTemplate";
 
-export interface ApiTemplateValue {
-    [key: string]: string; //  : parameter data.
-}
-
-const queryStringify = (queryParameterKeys: string[], value: ApiTemplateValue): string => (
+const queryStringify = (queryParameterKeys: string[], value: IApiValueTemplate): string => (
     queryParameterKeys.length ? ('?' + qs.stringify(value)) : ''
 );
 
 export default (
     apiUrl: string,
     data: IApiData,
-    value: ApiTemplateValue,
+    value: IApiValueTemplate,
     sandWitchedParameterKey: string | null = null,
     queryParameterKeys: string[] = []): string => {
         let r = apiUrl + data.path;
