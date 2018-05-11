@@ -1,4 +1,4 @@
-import {HttpMethods} from '../Types/HttpMethods';
+import {HttpMethods} from '../Enums/HttpMethods';
 import {IApiParameter} from './IApiParameter';
 import {IReturnedDatumInfo} from '../../Service/ApiSet/ApiData/IReturnedDatumInfo';
 

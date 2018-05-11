@@ -1,5 +1,5 @@
 import {MultipleSandWitchParameterNotAllowed} from '../../../Exception/Exceptions';
-import {HttpMethods} from '../../Types/HttpMethods';
+import {HttpMethods} from '../../Enums/HttpMethods';
 import {ApiParameterType, IApiParameter} from '../../Interfaces/IApiParameter';
 import getParameterKeys from './getParameterKeys';
 

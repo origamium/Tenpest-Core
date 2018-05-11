@@ -1,7 +1,7 @@
 import * as authSign from 'oauth-sign';
 import generateOAuthHeaderString from './generateOAuthHeaderString';
-import {SignType} from '../../../Types/SignType';
-import {HttpMethods} from '../../../Types/HttpMethods';
+import {SignType} from '../../../Enums/SignType';
+import {HttpMethods} from '../../../Enums/HttpMethods';
 import {ISignatureParameter} from '../../../Interfaces/ISignatureParameter';
 
 const parameter1: ISignatureParameter = {

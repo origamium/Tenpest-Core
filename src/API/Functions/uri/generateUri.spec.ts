@@ -1,4 +1,4 @@
-import {HttpMethods} from '../../Types/HttpMethods';
+import {HttpMethods} from '../../Enums/HttpMethods';
 import {ApiParameterType} from '../../Interfaces/IApiParameter';
 import generateUri from './generateUri';
 
