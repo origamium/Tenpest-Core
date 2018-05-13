@@ -1,8 +1,10 @@
 import * as authSign from 'oauth-sign';
 import {HttpMethods} from '../../../Enums/HttpMethods';
 import {ISignatureParameter} from '../../../Interfaces/ISignatureParameter';
+import {OAuthVersion} from "../../../Enums/OAuthVersion";
 
 export default (
+    authMethod: OAuthVersion,
     httpMethod: HttpMethods,
     baseUrl: string,
     parameter: ISignatureParameter,
@@ -18,8 +20,9 @@ export default (
         consumerSecretKey,
         tokenSecret,
     ));
-    const OAuthHeaderObject: any = {...parameter, oauth_signature: OAuthSignature}; // oh any...
-    return 'OAuth ' + Object.keys(OAuthHeaderObject)
+    const TokenName = authMethod === OAuthVersion.OAuth1 ? 'OAuth ' : 'Bearer ';
+    const OAuthHeaderObject = {...parameter, oauth_signature: OAuthSignature}; // oh any...
+    return TokenName + Object.keys(OAuthHeaderObject)
         .map((key: string) => (key + '=\'' + OAuthHeaderObject[key] + '\''))
         .join(',');
 };

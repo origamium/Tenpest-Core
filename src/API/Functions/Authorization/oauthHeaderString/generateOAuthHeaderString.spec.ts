@@ -3,6 +3,7 @@ import generateOAuthHeaderString from './generateOAuthHeaderString';
 import {SignType} from '../../../Enums/SignType';
 import {HttpMethods} from '../../../Enums/HttpMethods';
 import {ISignatureParameter} from '../../../Interfaces/ISignatureParameter';
+import {OAuthVersion} from "../../../Enums/OAuthVersion";
 
 const parameter1: ISignatureParameter = {
     oauth_consumer_key: '123456789abcde',
@@ -30,6 +31,7 @@ const httpMethod = HttpMethods.GET,
 
 test('generateOAuthHeaderString method', () => {
     expect(generateOAuthHeaderString(
+        OAuthVersion.OAuth1,
         httpMethod,
         baseUrl,
         parameter1,
@@ -39,11 +41,12 @@ test('generateOAuthHeaderString method', () => {
     )).toContain('oauth_signature');
 
     expect(
-        generateOAuthHeaderString(httpMethod, baseUrl, parameter1, queryParameter1, consumerSecretKey, ''))
+        generateOAuthHeaderString(OAuthVersion.OAuth1, httpMethod, baseUrl, parameter1, queryParameter1, consumerSecretKey, ''))
         .toEqual(
-        generateOAuthHeaderString(httpMethod, baseUrl, parameter1, queryParameter1, consumerSecretKey));
+        generateOAuthHeaderString(OAuthVersion.OAuth1, httpMethod, baseUrl, parameter1, queryParameter1, consumerSecretKey));
 
     expect(generateOAuthHeaderString(
+        OAuthVersion.OAuth1,
         httpMethod,
         baseUrl,
         parameter1,
@@ -52,6 +55,7 @@ test('generateOAuthHeaderString method', () => {
         tokenSecret))
         .not.toEqual(
             generateOAuthHeaderString(
+            OAuthVersion.OAuth1,
             httpMethod,
             baseUrl,
             parameter1,
