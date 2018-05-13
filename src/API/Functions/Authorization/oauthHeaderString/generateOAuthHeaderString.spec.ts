@@ -2,10 +2,10 @@ import * as authSign from 'oauth-sign';
 import generateOAuthHeaderString from './generateOAuthHeaderString';
 import {SignType} from '../../../Enums/SignType';
 import {HttpMethods} from '../../../Enums/HttpMethods';
-import {ISignatureParameter} from '../../../Interfaces/ISignatureParameter';
+import {IOAuth1Parameters} from '../../../Interfaces/IOAuth1Parameters';
 import {OAuthVersion} from "../../../Enums/OAuthVersion";
 
-const parameter1: ISignatureParameter = {
+const parameter1: IOAuth1Parameters = {
     oauth_consumer_key: '123456789abcde',
     oauth_signature_method: SignType.hmac,
     oauth_timestamp: Math.floor(Date.now() / 1000),

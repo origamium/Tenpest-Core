@@ -5,7 +5,7 @@ import {OAuthSignatureSpace} from "../Enums/OAuthSignatureSpace";
 
 export interface IAuthorization {
     oauthVersion: OAuthVersion;
-    oauthSignatureLine: OAuthSignatureSpace;
+    oauthSignatureSpace: OAuthSignatureSpace;
     signMethod: SignType;
     key: IAPIKey;
     token: IToken | null;
