@@ -1,8 +1,8 @@
 import * as authSign from 'oauth-sign';
 import generateOAuthHeaderString from './generateOAuthHeaderString';
 import {OAuthSignType} from '../Types/Enums/OAuthSignType';
-import {HttpMethods} from '../Types/Enums/HttpMethods';
 import {ISignatureParameter} from '../Types/Interfaces/ISignatureParameter';
+import {HttpMethods} from '../../API/Enums/HttpMethods';
 
 const parameter1: ISignatureParameter = {
     oauth_consumer_key: '123456789abcde',
