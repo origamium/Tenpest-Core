@@ -2,7 +2,7 @@ import * as authSign from 'oauth-sign';
 import {HttpMethods} from '../../../Enums/HttpMethods';
 import {IOAuth1Parameters} from '../../../Interfaces/IOAuth1Parameters';
 import {OAuthVersion} from "../../../Enums/OAuthVersion";
-import {UnknownOAuthVersion} from "../../../../Exception/Exceptions";
+import {UnknownAuthorizationMethod} from "../../../../Exception/Exceptions";
 
 export default (
     authMethod: OAuthVersion,
@@ -30,6 +30,6 @@ export default (
         case OAuthVersion.OAuth2:
             return 'Bearer ' + tokenSecret;
         default:
-            throw UnknownOAuthVersion;
+            throw UnknownAuthorizationMethod;
     }
 };
