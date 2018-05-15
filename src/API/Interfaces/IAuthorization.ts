@@ -4,9 +4,9 @@ import {SignType} from "../Enums/SignType";
 import {OAuthSignatureSpace} from "../Enums/OAuthSignatureSpace";
 
 export interface IAuthorization {
-    oauthVersion: OAuthVersion;
-    oauthSignatureSpace: OAuthSignatureSpace;
-    signMethod: SignType;
-    key: IAPIKey;
+    readonly oauthVersion: OAuthVersion;
+    readonly oauthSignatureSpace: OAuthSignatureSpace;
+    readonly signMethod: SignType;
+    readonly key: IAPIKey;
     token: IToken | null;
 }

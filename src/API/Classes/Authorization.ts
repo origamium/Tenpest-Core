@@ -1,15 +1,15 @@
-import {IAuthorization} from "../Interfaces/IAuthorization";
-import {OAuthVersion} from "../Enums/OAuthVersion";
-import {OAuthSignatureSpace} from "../Enums/OAuthSignatureSpace";
-import {SignType} from "../Enums/SignType";
-import {IAPIKey, IToken} from "../Interfaces/IKeys";
+import {IAuthorization} from '../Interfaces/IAuthorization';
+import {OAuthVersion} from '../Enums/OAuthVersion';
+import {OAuthSignatureSpace} from '../Enums/OAuthSignatureSpace';
+import {SignType} from '../Enums/SignType';
+import {IAPIKey, IToken} from '../Interfaces/IKeys';
 
-export default class Authorization implements IAuthorization{
-    readonly oauthVersion: OAuthVersion;
-    readonly oauthSignatureSpace: OAuthSignatureSpace;
-    readonly signMethod: SignType;
-    readonly key: IAPIKey;
-    token: IToken | null;
+export default class Authorization implements IAuthorization {
+    protected readonly oauthVersion: OAuthVersion;
+    protected readonly oauthSignatureSpace: OAuthSignatureSpace;
+    protected readonly signMethod: SignType;
+    protected readonly key: IAPIKey;
+    protected token: IToken | null;
 
     constructor(version, signatureSpace, signMethod, key, token = null){
         this.oauthVersion = version;
