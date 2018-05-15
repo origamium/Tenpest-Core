@@ -4,5 +4,5 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/tsuruclient/core?branch=master)](https://bettercodehub.com/)
 [![Known Vulnerabilities](https://snyk.io/test/github/tsuruclient/core/badge.svg?targetFile=package.json)](https://snyk.io/test/github/tsuruclient/core?targetFile=package.json)
 
-# Tsuru Core
-やっています
+# tsuruclient/core
+tsuruclient/coreのデータ通信・データストア保持部分を切り離して開発しなおしています。    
