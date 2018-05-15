@@ -1,6 +1,6 @@
 import {IAuthorization} from '../Interfaces/IAuthorization';
 import {OAuthVersion} from '../Enums/OAuthVersion';
-import {OAuthSignatureSpace} from '../Enums/OAuthSignatureSpace';
+import {SignSpace} from '../Enums/SignSpace';
 import {SignType} from '../Enums/SignType';
 import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import OAuth1 from "./OAuth1";
@@ -12,7 +12,7 @@ import {IApiValue} from '../Interfaces/IApiValue';
 export default class Authorization implements IAuthorization {
     readonly oauth: OAuth1 | OAuth2;
     readonly oauthVersion: OAuthVersion;
-    readonly oauthSignatureSpace: OAuthSignatureSpace;
+    readonly oauthSignatureSpace: SignSpace;
     readonly signMethod: SignType;
     readonly key: IAPIKey;
     token: IToken | null;
@@ -37,6 +37,6 @@ export default class Authorization implements IAuthorization {
     }
 
     public getAuthorizationData(): [IApiParameter, IApiValue] {
-        return this.oauth.getAuthorizationData();
+        return this.oauth.getAuthorizationData(this.oauthSignatureSpace, this.key, this.token);
     }
 }

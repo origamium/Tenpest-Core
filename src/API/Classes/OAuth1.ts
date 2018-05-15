@@ -5,6 +5,8 @@ import {AuthMethods} from "../Enums/AuthMethods";
 import {IOAuth1Parameters} from "../Interfaces/IOAuth1Parameters";
 import {IApiParameter} from '../Interfaces/IApiParameter';
 import {IApiValue} from '../Interfaces/IApiValue';
+import {IAPIKey, IToken} from '../Interfaces/IKeys';
+import {SignSpace} from '../Enums/SignSpace';
 
 export default class OAuth1 extends OAuth {
     private static _now(): number {
@@ -40,8 +42,8 @@ export default class OAuth1 extends OAuth {
 
     }
 
-    public getAuthorizationData(): [IApiParameter, IApiValue] {
-        return {};
+    public getAuthorizationData(signatureSpace: SignSpace, key: IAPIKey, token: IToken, complement: object): [IApiParameter, IApiValue] {
+        return [];
     }
 
     export(): object {
