@@ -6,6 +6,7 @@ import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import OAuth1 from "./OAuth1";
 import OAuth2 from "./OAuth2";
 import {UnknownAuthorizationMethod} from "../../Exception/Exceptions";
+import {IApiParameter} from "../Interfaces/IApiParameter";
 
 export default class Authorization implements IAuthorization {
     readonly oauth: OAuth1 | OAuth2;
@@ -34,5 +35,6 @@ export default class Authorization implements IAuthorization {
         }
     }
 
-
+    getAuthorizationData(): IApiParameter {
+    }
 }

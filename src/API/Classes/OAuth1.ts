@@ -39,10 +39,10 @@ export default class OAuth1 extends OAuth {
     }
 
     getAuthorizationData(): object {
-
+        return {};
     }
 
     export(): object {
-
+        return {};
     }
 }
