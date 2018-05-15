@@ -1,6 +1,6 @@
 import * as Exceptions from '../../../Exception/Exceptions';
 import {IApiData} from '../../Interfaces/IApiData';
-import {ApiParameterType} from '../../Interfaces/IApiParameter';
+import {ApiParameterMethods} from "../../Enums/ApiParameterMethods";
 
 export interface parameterKeysObject {
     key: string[];
@@ -12,7 +12,7 @@ export interface parameterKeysObject {
 
 export default (data: IApiData): parameterKeysObject => {
     const parameters = Object.keys(data.parameter); const sandWitchedParameterKey: string | null = null;
-    const sandwitches = parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.SandWitch);
+    const sandwitches = parameters.filter((key: string) => data.parameter[key].type === ApiParameterMethods.SandWitch);
 
     let sandwitch: string | null = null;
     if (sandwitches.length > 1) {
@@ -24,8 +24,8 @@ export default (data: IApiData): parameterKeysObject => {
     return {
         key: parameters,
         required: parameters.filter((key: string) => data.parameter[key].required),
-        header: parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.Header),
+        header: parameters.filter((key: string) => data.parameter[key].type === ApiParameterMethods.Header),
         sandwitch,
-        query: parameters.filter((key: string) => data.parameter[key].type === ApiParameterType.Query),
+        query: parameters.filter((key: string) => data.parameter[key].type === ApiParameterMethods.Query),
     };
 };
