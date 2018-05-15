@@ -7,6 +7,7 @@ import OAuth1 from "./OAuth1";
 import OAuth2 from "./OAuth2";
 import {UnknownAuthorizationMethod} from "../../Exception/Exceptions";
 import {IApiParameter} from "../Interfaces/IApiParameter";
+import {IApiValue} from '../Interfaces/IApiValue';
 
 export default class Authorization implements IAuthorization {
     readonly oauth: OAuth1 | OAuth2;
@@ -16,14 +17,14 @@ export default class Authorization implements IAuthorization {
     readonly key: IAPIKey;
     token: IToken | null;
 
-    constructor(version, signatureSpace, signMethod, key, token = null){
+    constructor(version, signatureSpace, signMethod, key, token = null) {
         this.oauthVersion = version;
         this.oauthSignatureSpace = signatureSpace;
         this.signMethod = signMethod;
         this.key = key;
         this.token = token;
 
-        switch (this.oauthVersion){
+        switch (this.oauthVersion) {
             case OAuthVersion.OAuth1:
                 this.oauth = new OAuth1();
                 break;
@@ -35,6 +36,7 @@ export default class Authorization implements IAuthorization {
         }
     }
 
-    getAuthorizationData(): IApiParameter {
+    public getAuthorizationData(): [IApiParameter, IApiValue] {
+        return this.oauth.getAuthorizationData();
     }
 }

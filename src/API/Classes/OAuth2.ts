@@ -1,5 +1,7 @@
 import OAuth from "./OAuth";
 import {AuthMethods} from "../Enums/AuthMethods";
+import {IApiParameter} from '../Interfaces/IApiParameter';
+import {IApiValue} from '../Interfaces/IApiValue';
 
 export default class OAuth2 extends OAuth {
     constructor() {
@@ -7,19 +9,19 @@ export default class OAuth2 extends OAuth {
 
     }
 
-    pinAuthorization(method: AuthMethods): void {
+    public authorization(method: AuthMethods): void {
 
     }
 
-    requestToken(tempToken: string | object): void {
+    public requestToken(tempToken: string | object): void {
 
     }
 
-    getAuthorizationData(): object {
-
+    public getAuthorizationData(): [IApiParameter, IApiValue] {
+        return {};
     }
 
-    export(): object {
-
+    public export(): object {
+        return {};
     }
 }

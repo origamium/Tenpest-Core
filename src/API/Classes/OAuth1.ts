@@ -3,23 +3,21 @@ import OAuth from "./OAuth";
 import {HttpMethods} from "../Enums/HttpMethods";
 import {AuthMethods} from "../Enums/AuthMethods";
 import {IOAuth1Parameters} from "../Interfaces/IOAuth1Parameters";
+import {IApiParameter} from '../Interfaces/IApiParameter';
+import {IApiValue} from '../Interfaces/IApiValue';
 
 export default class OAuth1 extends OAuth {
-    constructor() {
-        super();
+    private static _now(): number {
+        return Math.round(+new Date() / 1000);
     }
 
-    static _now(): number {
-        return Math.round(+new Date()/1000);
-    }
-
-    static _signature(
+    private static _signature(
         httpMethod: HttpMethods,
         baseUrl: string,
         parameter: IOAuth1Parameters,
         queryParameter: object,
         consumerSecretKey: string,
-        tokenSecret: string = '',) : string {
+        tokenSecret: string = ''): string {
         return encodeURIComponent(authSign.sign(
             parameter.oauth_signature_method,
             httpMethod,
@@ -30,15 +28,19 @@ export default class OAuth1 extends OAuth {
         ));
     }
 
-    pinAuthorization(method: AuthMethods): void {
+    constructor() {
+        super();
+    }
+
+    public authorization(method: AuthMethods): void {
 
     }
 
-    requestToken(tempToken: string | object): void {
+    public requestToken(tempToken: string | object): void {
 
     }
 
-    getAuthorizationData(): object {
+    public getAuthorizationData(): [IApiParameter, IApiValue] {
         return {};
     }
 
