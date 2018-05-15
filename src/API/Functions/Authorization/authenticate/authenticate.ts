@@ -1,7 +1,7 @@
 import {IAuthorization} from "../../../Interfaces/IAuthorization";
 import {IApiValue} from "../../../Interfaces/IApiValue";
 import {OAuthVersion} from "../../../Enums/OAuthVersion";
-import {OAuthSignatureSpace} from "../../../Enums/OAuthSignatureSpace";
+import {SignSpace} from "../../../Enums/SignSpace";
 import {UnknownOAuthSignatureSpace, UnknownAuthorizationMethod} from "../../../../Exception/Exceptions";
 import generateOAuthHeaderString from '../oauthHeaderString/generateOAuthHeaderString';
 
@@ -15,9 +15,9 @@ export default (
     let result = {};
 
     switch (authenticate.oauthSignatureSpace){
-        case OAuthSignatureSpace.URI:
+        case SignSpace.Query:
             break;
-        case OAuthSignatureSpace.Header:
+        case SignSpace.Header:
 
             break;
         default:
