@@ -2,11 +2,11 @@ import * as Exceptions from '../../../Exception/Exceptions';
 import generateUri from '../uri/generateUri';
 import {IApiData} from '../../Interfaces/IApiData';
 import getParameterKey, {parameterKeysObject} from '../parameterKeys/getParameterKeys';
-import {IApiValueTemplate} from "../../Interfaces/IApiValueTemplate";
+import {IApiValue} from "../../Interfaces/IApiValue";
 
 export default (apiUrl: string, data: IApiData): Function => {
     const parameterKeys: parameterKeysObject = getParameterKey(data);
-    return (value: IApiValueTemplate = {}): Request => {
+    return (value: IApiValue = {}): Request => {
         const valueKeys = Object.keys(value);
         if (parameterKeys.required.filter((key: string) => valueKeys.includes(key)).length !== parameterKeys.required.length) {
             throw Exceptions.RequiredParameterNotFound;
