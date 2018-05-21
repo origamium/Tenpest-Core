@@ -1,4 +1,3 @@
-import {IAuthorization} from '../Interfaces/IAuthorization';
 import {OAuthVersion} from '../Enums/OAuthVersion';
 import {SignSpace} from '../Enums/SignSpace';
 import {SignType} from '../Enums/SignType';
@@ -9,7 +8,7 @@ import {UnknownAuthorizationMethod} from "../../Exception/Exceptions";
 import {IApiParameter} from "../Interfaces/IApiParameter";
 import {IApiValue} from '../Interfaces/IApiValue';
 
-export default class Authorization implements IAuthorization {
+export default class Authorization {
     readonly oauth: OAuth1 | OAuth2;
     readonly oauthVersion: OAuthVersion;
     readonly oauthSignatureSpace: SignSpace;
