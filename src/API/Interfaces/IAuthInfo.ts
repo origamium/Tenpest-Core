@@ -5,8 +5,8 @@ import {OAuthVersion} from "../Enums/OAuthVersion";
 
 export interface IAuthInfo {
     apiKey: IAPIKey;
-    token: IToken;
+    oauthVersion: OAuthVersion;
+    token: IToken | null;
     signMethod: SignType | null;
     signSpace: SignSpace;
-    oauthVersion: OAuthVersion;
 }
