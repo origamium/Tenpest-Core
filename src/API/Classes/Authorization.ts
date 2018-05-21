@@ -8,6 +8,7 @@ import {UnknownAuthorizationMethod} from "../../Exception/Exceptions";
 import {IApiParameterDefinition} from "../Interfaces/IApiParameterDefinition";
 import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IAuthInfo} from "../Interfaces/IAuthInfo";
+import {IApiData} from "../Interfaces/IApiData";
 
 export default class Authorization {
     private oauth: OAuth1 | OAuth2;
@@ -38,7 +39,7 @@ export default class Authorization {
         this.info.token = token;
     }
 
-    public getAuthorizationData(paramDefinition: IApiParameterDefinition, payload: IApiPayload): [IApiParameterDefinition, IApiPayload] {
-        return this.oauth.getAuthorizationData(this.info, paramDefinition, payload);
+    public getAuthorizationData(apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
+        return this.oauth.getAuthorizationData(this.info, apiData, payload);
     }
 }

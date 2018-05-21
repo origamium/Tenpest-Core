@@ -41,7 +41,7 @@ export default class OAuth1 extends OAuth {
 
     }
 
-    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiPayload, IApiData] {
+    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
         return [];
     }
 
