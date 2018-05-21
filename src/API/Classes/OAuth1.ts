@@ -2,11 +2,10 @@ import * as authSign from 'oauth-sign';
 import OAuth from "./OAuth";
 import {HttpMethods} from "../Enums/HttpMethods";
 import {AuthMethods} from "../Enums/AuthMethods";
-import {IOAuth1Parameters} from "../Interfaces/IOAuth1Parameters";
-import {IApiParameter} from '../Interfaces/IApiParameter';
-import {IApiValue} from '../Interfaces/IApiValue';
-import {IAPIKey, IToken} from '../Interfaces/IKeys';
-import {SignSpace} from '../Enums/SignSpace';
+import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
+import {IApiPayload} from '../Interfaces/IApiPayload';
+import {IApiData} from "../Interfaces/IApiData";
+import {IAuthInfo} from "../Interfaces/IAuthInfo";
 
 export default class OAuth1 extends OAuth {
     private static _now(): number {
@@ -42,7 +41,7 @@ export default class OAuth1 extends OAuth {
 
     }
 
-    public getAuthorizationData(signatureSpace: SignSpace, key: IAPIKey, token: IToken, complement: object): [IApiParameter, IApiValue] {
+    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiPayload, IApiData] {
         return [];
     }
 
