@@ -1,6 +1,6 @@
 import {MultipleSandWitchParameterNotAllowed} from '../../../Exception/Exceptions';
 import {HttpMethods} from '../../Enums/HttpMethods';
-import {IApiParameter} from '../../Interfaces/IApiParameter';
+import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import getParameterKeys from './getParameterKeys';
 import {ApiParameterType} from "../../../Request/Types/Enums/ApiParameterType";
 
@@ -12,14 +12,14 @@ const blank = {
     return: null,
 };
 
-const sandwitch_param: IApiParameter = {
+const sandwitch_param: IApiParameterDefinition = {
     yuru: {
         required: true,
         type: ApiParameterType.SandWitch,
     },
 };
 
-const sandwitch_err: IApiParameter = {
+const sandwitch_err: IApiParameterDefinition = {
     yuru: {
         required: true,
         type: ApiParameterType.SandWitch,
@@ -30,7 +30,7 @@ const sandwitch_err: IApiParameter = {
     },
 };
 
-const sample1: IApiParameter = {
+const sample1: IApiParameterDefinition = {
     yuru: {
         required: true,
         type: ApiParameterType.SandWitch,

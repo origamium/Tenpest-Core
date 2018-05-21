@@ -1,3 +1,3 @@
-export interface IApiValue {
+export interface IApiPayload {
     [key: string]: string; //  : parameter data.
 }

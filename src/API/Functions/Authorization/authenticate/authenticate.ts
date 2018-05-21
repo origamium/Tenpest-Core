@@ -1,5 +1,5 @@
 import {IAuthorization} from "../../../Interfaces/IAuthorization";
-import {IApiValue} from "../../../Interfaces/IApiValue";
+import {IApiPayload} from "../../../Interfaces/IApiPayload";
 import {OAuthVersion} from "../../../Enums/OAuthVersion";
 import {SignSpace} from "../../../Enums/SignSpace";
 import {UnknownOAuthSignatureSpace, UnknownAuthorizationMethod} from "../../../../Exception/Exceptions";
@@ -10,7 +10,7 @@ import generateOAuthHeaderString from '../oauthHeaderString/generateOAuthHeaderS
 
 export default (
     authenticate: IAuthorization,
-    payload: IApiValue
+    payload: IApiPayload
 ): any => {
     let result = {};
 
