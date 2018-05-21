@@ -6,6 +6,7 @@ import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import {SignSpace} from '../Enums/SignSpace';
 import {IApiData} from "../Interfaces/IApiData";
 import {IAuthInfo} from "../Interfaces/IAuthInfo";
+import {ApiParameterMethods} from "../Enums/ApiParameterMethods";
 
 export default class OAuth2 extends OAuth {
     constructor() {
@@ -21,22 +22,32 @@ export default class OAuth2 extends OAuth {
 
     }
 
-    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiPayload, IApiData] {
-        let value: IApiPayload;
+    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
+        let template: IApiParameterDefinition = apiData.parameter;
+        let value: IApiPayload = payload;
+        let key: string | null = null;
         if(authInfo.token) {
             switch (authInfo.signSpace){
                 case SignSpace.Header:
-                    value = { Authorization: 'Bearer ' + authInfo.token.Token };
+                    key = 'Authorization';
+                    template = Object.assign({}, template,
+                        { [key]: {required: true, type: ApiParameterMethods.Header} });
+                    value = Object.assign({}, payload,
+                        { [key]: 'Bearer ' + authInfo.token.Token });
                     break;
                 case SignSpace.Query:
-                    value = { access_token : authInfo.token.Token };
+                    key = 'access_token';
+                    template = Object.assign({}, template,
+                        { [key] : {required: true, type: ApiParameterMethods.Query} });
+                    value = Object.assign({}, payload,
+                        { [key] : authInfo.token.Token });
                     break;
                 default:
                     throw new Error('wooo');
             }
         }
 
-        return [];
+        return [Object.assign({}, apiData, {parameter : template}), value];
     }
 
     public export(): object {
