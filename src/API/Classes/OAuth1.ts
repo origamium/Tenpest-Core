@@ -14,20 +14,22 @@ export default class OAuth1 extends OAuth {
     }
 
     // TODO
-    private static _signature(
-        httpMethod: HttpMethods,
-        baseUrl: string,
-        parameter: IOAuth1Parameters,
-        queryParameter: object,
-        consumerSecretKey: string,
-        tokenSecret: string = ''): string {
+    private static _signature(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): string {
+        const signParameter = {
+            oauth_consumer_key: authInfo.apiKey.ApiKey,
+            oauth_token: authInfo.token ? authInfo.token.Token : '',
+            oauth_signature_method: authInfo.signMethod,
+            oauth_timestamp: this._now(),
+            oauth_nonce: 'superdrysinasai2018',
+            oauth_version: authInfo.oauthVersion,
+        };
         return encodeURIComponent(authSign.sign(
-            parameter.oauth_signature_method,
-            httpMethod,
-            baseUrl,
-            {...parameter, ...queryParameter},
-            consumerSecretKey,
-            tokenSecret,
+            authInfo.signMethod,
+            apiData.method,
+            apiData.baseUri + apiData.path,
+            {...signParameter, ...payload},
+            authInfo.apiKey.ApiSecretKey,
+            authInfo.token ? authInfo.token.TokenSecret : '',
         ));
     }
 
