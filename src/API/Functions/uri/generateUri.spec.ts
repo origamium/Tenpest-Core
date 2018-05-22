@@ -1,3 +1,4 @@
+/* tslint:disable */
 import {HttpMethods} from '../../Enums/HttpMethods';
 import generateUri from './generateUri';
 import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';

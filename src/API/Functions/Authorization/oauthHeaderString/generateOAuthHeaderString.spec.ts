@@ -1,11 +1,10 @@
-import * as authSign from 'oauth-sign';
+/* tslint:disable */
 import generateOAuthHeaderString from './generateOAuthHeaderString';
 import {SignType} from '../../../Enums/SignType';
 import {HttpMethods} from '../../../Enums/HttpMethods';
-import {IOAuth1Parameters} from '../../../Interfaces/IOAuth1Parameters';
 import {OAuthVersion} from "../../../Enums/OAuthVersion";
 
-const parameter1: IOAuth1Parameters = {
+const parameter1 = {
     oauth_consumer_key: '123456789abcde',
     oauth_signature_method: SignType.hmac,
     oauth_timestamp: Math.floor(Date.now() / 1000),

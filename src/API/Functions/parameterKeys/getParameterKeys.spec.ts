@@ -1,3 +1,4 @@
+/* tslint:disable */
 import {MultipleSandWitchParameterNotAllowed} from '../../../Exception/Exceptions';
 import {HttpMethods} from '../../Enums/HttpMethods';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
