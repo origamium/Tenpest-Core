@@ -2,7 +2,7 @@ import {MultipleSandWitchParameterNotAllowed} from '../../../Exception/Exception
 import {HttpMethods} from '../../Enums/HttpMethods';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import getParameterKeys from './getParameterKeys';
-import {ApiParameterType} from "../../../Request/Types/Enums/ApiParameterType";
+import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
 
 const blank = {
     path: '/path/to',
@@ -15,45 +15,45 @@ const blank = {
 const sandwitch_param: IApiParameterDefinition = {
     yuru: {
         required: true,
-        type: ApiParameterType.SandWitch,
+        type: ApiParameterMethods.SandWitch,
     },
 };
 
 const sandwitch_err: IApiParameterDefinition = {
     yuru: {
         required: true,
-        type: ApiParameterType.SandWitch,
+        type: ApiParameterMethods.SandWitch,
     },
     yuri: {
         required: false,
-        type: ApiParameterType.SandWitch,
+        type: ApiParameterMethods.SandWitch,
     },
 };
 
 const sample1: IApiParameterDefinition = {
     yuru: {
         required: true,
-        type: ApiParameterType.SandWitch,
+        type: ApiParameterMethods.SandWitch,
     },
     yuri: {
         required: true,
-        type: ApiParameterType.Header,
+        type: ApiParameterMethods.Header,
     },
     oomuro: {
         required: false,
-        type: ApiParameterType.Query,
+        type: ApiParameterMethods.Query,
     },
     sakurako: {
         required: false,
-        type: ApiParameterType.Query,
+        type: ApiParameterMethods.Query,
     },
     yoshikawa: {
         required: true,
-        type: ApiParameterType.Query,
+        type: ApiParameterMethods.Query,
     },
     chinatsu: {
         required: false,
-        type: ApiParameterType.Header,
+        type: ApiParameterMethods.Header,
     },
 };
 

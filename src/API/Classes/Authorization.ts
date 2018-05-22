@@ -5,7 +5,6 @@ import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import OAuth1 from "./OAuth1";
 import OAuth2 from "./OAuth2";
 import {UnknownAuthorizationMethod} from "../../Exception/Exceptions";
-import {IApiParameterDefinition} from "../Interfaces/IApiParameterDefinition";
 import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IAuthInfo} from "../Interfaces/IAuthInfo";
 import {IApiData} from "../Interfaces/IApiData";

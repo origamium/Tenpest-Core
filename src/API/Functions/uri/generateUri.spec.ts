@@ -1,7 +1,6 @@
 import {HttpMethods} from '../../Enums/HttpMethods';
 import generateUri from './generateUri';
-import {ApiParameterType} from '../../../Request/Types/Enums/ApiParameterType';
-
+import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
 const targetUrl = 'https://example.com';
 
 const blank = {
@@ -20,7 +19,7 @@ const req = {
     parameter: {
         superdry: {
             required: true,
-            type: ApiParameterType.Query,
+            type: ApiParameterMethods.Query,
         },
     },
     method: HttpMethods.GET,
@@ -37,7 +36,7 @@ const sandWitch = {
     parameter: {
         oomuro: {
             required: true,
-            type: ApiParameterType.SandWitch,
+            type: ApiParameterMethods.SandWitch,
         },
     },
     method: HttpMethods.GET,
@@ -54,11 +53,11 @@ const sandWitch_multiparam = {
     parameter: {
         oomuro: {
             required: true,
-            type: ApiParameterType.SandWitch,
+            type: ApiParameterMethods.SandWitch,
         },
         yuru: {
             required: false,
-            type: ApiParameterType.Query,
+            type: ApiParameterMethods.Query,
         },
     },
     method: HttpMethods.GET,
@@ -75,15 +74,15 @@ const multiparam = {
     parameter: {
         oomuro: {
             required: false,
-            type: ApiParameterType.Query,
+            type: ApiParameterMethods.Query,
         },
         yuru: {
             required: false,
-            type: ApiParameterType.Query,
+            type: ApiParameterMethods.Query,
         },
         seikatu: {
             required: false,
-            type: ApiParameterType.Query,
+            type: ApiParameterMethods.Query,
         },
     },
     method: HttpMethods.GET,
