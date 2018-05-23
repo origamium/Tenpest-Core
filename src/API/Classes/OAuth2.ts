@@ -26,8 +26,8 @@ export default class OAuth2 extends OAuth {
         let template: IApiParameterDefinition = apiData.parameter;
         let value: IApiPayload = payload;
         let key: string | null = null;
-        if(authInfo.token) {
-            switch (authInfo.signSpace){
+        if (authInfo.token) {
+            switch (authInfo.signSpace) {
                 case SignSpace.Header:
                     key = 'Authorization';
                     template = Object.assign({}, template,

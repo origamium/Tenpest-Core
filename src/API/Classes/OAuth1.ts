@@ -1,19 +1,17 @@
 import * as authSign from 'oauth-sign';
-import OAuth from "./OAuth";
-import {HttpMethods} from "../Enums/HttpMethods";
-import {AuthMethods} from "../Enums/AuthMethods";
+import OAuth from './OAuth';
+import {AuthMethods} from '../Enums/AuthMethods';
 import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../Interfaces/IApiPayload';
-import {IApiData} from "../Interfaces/IApiData";
-import {IAuthInfo} from "../Interfaces/IAuthInfo";
-import {SignSpace} from "../Enums/SignSpace";
+import {IApiData} from '../Interfaces/IApiData';
+import {IAuthInfo} from '../Interfaces/IAuthInfo';
+import {SignSpace} from '../Enums/SignSpace';
 
 export default class OAuth1 extends OAuth {
     private static _now(): number {
         return Math.round(+new Date() / 1000);
     }
 
-    // TODO
     private static _signature(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): string {
         const signParameter = {
             oauth_consumer_key: authInfo.apiKey.ApiKey,
@@ -65,7 +63,7 @@ export default class OAuth1 extends OAuth {
         return [Object.assign({}, apiData, {parameter: template}), value];
     }
 
-    export(): object {
+    public export(): object {
         return {};
     }
 }

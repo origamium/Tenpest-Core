@@ -1,13 +1,11 @@
 import {OAuthVersion} from '../Enums/OAuthVersion';
-import {SignSpace} from '../Enums/SignSpace';
-import {SignType} from '../Enums/SignType';
-import {IAPIKey, IToken} from '../Interfaces/IKeys';
-import OAuth1 from "./OAuth1";
-import OAuth2 from "./OAuth2";
-import {UnknownAuthorizationMethod} from "../../Exception/Exceptions";
+import {IToken} from '../Interfaces/IKeys';
+import OAuth1 from './OAuth1';
+import OAuth2 from './OAuth2';
+import {UnknownAuthorizationMethod} from '../../Exception/Exceptions';
 import {IApiPayload} from '../Interfaces/IApiPayload';
-import {IAuthInfo} from "../Interfaces/IAuthInfo";
-import {IApiData} from "../Interfaces/IApiData";
+import {IAuthInfo} from '../Interfaces/IAuthInfo';
+import {IApiData} from '../Interfaces/IApiData';
 
 export default class Authorization {
     private oauth: OAuth1 | OAuth2;
