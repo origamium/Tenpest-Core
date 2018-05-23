@@ -1,6 +1,6 @@
-import {ApiParameterType} from '../../Request/Types/Enums/ApiParameterType';
+import {ApiParameterMethods} from './ApiParameterMethods';
 
 export enum SignSpace {
-    Header = ApiParameterType.Header,
-    Query = ApiParameterType.Query,
+    Header = ApiParameterMethods.Header,
+    Query = ApiParameterMethods.Query,
 }
