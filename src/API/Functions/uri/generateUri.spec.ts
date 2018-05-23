@@ -2,9 +2,11 @@
 import {HttpMethods} from '../../Enums/HttpMethods';
 import generateUri from './generateUri';
 import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
+import {IApiData} from '../../Interfaces/IApiData';
 const targetUrl = 'https://example.com';
 
-const blank = {
+const blank: IApiData = {
+    baseUri: 'https://example.com',
     path: '/path/to',
     parameter: {},
     method: HttpMethods.GET,
@@ -15,7 +17,8 @@ test('Generate basic url', () => {
     expect(generateUri(targetUrl, blank, {})).toBe(targetUrl + blank.path);
 });
 
-const req = {
+const req: IApiData = {
+    baseUri: 'https://example.com',
     path: '/path/to',
     parameter: {
         superdry: {
@@ -32,7 +35,8 @@ test('Define required parameter', () => {
         .toBe(targetUrl + '/path/to?superdry=kyokudokansou');
 });
 
-const sandWitch = {
+const sandWitch: IApiData = {
+    baseUri: 'https://example.com',
     path: '/path/to',
     parameter: {
         oomuro: {
@@ -49,7 +53,8 @@ test('Define sandwitch parameter', () => {
         .toBe(targetUrl + '/path/to/oomuro/sakurako');
 });
 
-const sandWitch_multiparam = {
+const sandWitch_multiparam: IApiData = {
+    baseUri: 'https://example.com',
     path: '/path/to',
     parameter: {
         oomuro: {
@@ -70,7 +75,8 @@ test('Defined requied SandWitch and Query parameter', () => {
         .toBe(targetUrl + '/path/to/oomuro/sakurako?yuru=yuri');
 });
 
-const multiparam = {
+const multiparam: IApiData = {
+    baseUri: 'https://example.com',
     path: '/path/to',
     parameter: {
         oomuro: {

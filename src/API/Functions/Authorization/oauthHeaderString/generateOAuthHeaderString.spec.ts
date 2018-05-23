@@ -1,12 +1,12 @@
 /* tslint:disable */
 import generateOAuthHeaderString from './generateOAuthHeaderString';
-import {SignType} from '../../../Enums/SignType';
+import {SignMethod} from '../../../Enums/SignMethod';
 import {HttpMethods} from '../../../Enums/HttpMethods';
 import {OAuthVersion} from "../../../Enums/OAuthVersion";
 
 const parameter1 = {
     oauth_consumer_key: '123456789abcde',
-    oauth_signature_method: SignType.hmac,
+    oauth_signature_method: SignMethod.hmac,
     oauth_timestamp: Math.floor(Date.now() / 1000),
     oauth_nonce: 'qwertyuiop',
     oauth_version: '1.0',
