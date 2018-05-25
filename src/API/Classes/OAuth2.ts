@@ -23,24 +23,21 @@ export default class OAuth2 extends OAuth {
     }
 
     public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
-        let template: IApiParameterDefinition = apiData.parameter;
-        let value: IApiPayload = payload;
-        let key: string | null = null;
+        let template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
+        let value: IApiPayload = Object.assign({}, payload);
+        let key: string = '';
         if (authInfo.token) {
             switch (authInfo.signSpace) {
                 case SignSpace.Header:
                     key = 'Authorization';
-                    template = Object.assign({}, template,
-                        { [key]: {required: true, type: ApiParameterMethods.Header} });
+                    template[key] = {required: true, type: ApiParameterMethods.Header};
                     value = Object.assign({}, payload,
                         { [key]: 'Bearer ' + authInfo.token.Token });
                     break;
                 case SignSpace.Query:
                     key = 'access_token';
-                    template = Object.assign({}, template,
-                        { [key] : {required: true, type: ApiParameterMethods.Query} });
-                    value = Object.assign({}, payload,
-                        { [key] : authInfo.token.Token });
+                    template[key] = {required: true, type: ApiParameterMethods.Query};
+                    value[key] = authInfo.token.Token;
                     break;
                 default:
                     throw new Error('wooo');

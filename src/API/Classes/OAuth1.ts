@@ -6,6 +6,7 @@ import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IApiData} from '../Interfaces/IApiData';
 import {IAuthInfo} from '../Interfaces/IAuthInfo';
 import {SignSpace} from '../Enums/SignSpace';
+import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
 
 export default class OAuth1 extends OAuth {
     private static _now(): number {
@@ -44,9 +45,10 @@ export default class OAuth1 extends OAuth {
     }
 
     public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
-        let template: IApiParameterDefinition = apiData.parameter;
-        let value: IApiPayload = payload;
-        let key: string | null = null;
+        let template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
+        let value: IApiPayload = Object.assign({}, payload);
+
+        const signature = OAuth1._signature(authInfo, apiData, payload);
 
         // TODO
         if(authInfo.token){
