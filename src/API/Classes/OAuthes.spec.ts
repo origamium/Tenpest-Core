@@ -7,6 +7,16 @@ import {SignSpace} from '../Enums/SignSpace';
 import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import {IApiData} from '../Interfaces/IApiData';
 import {HttpMethods} from '../Enums/HttpMethods';
+import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
+import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
+
+const blank: IApiData = {
+    baseUri: 'https://example.com',
+    path: '/path/to',
+    parameter: {},
+    method: HttpMethods.GET,
+    return: null,
+};
 
 const DummyApiKey: IAPIKey = {
     ApiKey: 'qwerty',
@@ -45,15 +55,17 @@ const OAuth2Instances = {
     },
 };
 
-const blank: IApiData = {
-    baseUri: 'https://example.com',
-    path: '/path/to',
-    parameter: {},
-    method: HttpMethods.GET,
-    return: null,
-};
+test('OAuth2 getOAuthorization method test', () => {
+    // OAuth
+    const test1_blank_param: IApiParameterDefinition = { Authorization: {required: true, type: ApiParameterMethods.Header} };
+    expect(OAuth2Instances.header.hasToken.getAuthorizationData(blank, {}))
+        .toEqual([Object.assign({}, blank, {parameter: {...test1_blank_param}}), {Authorization: 'Bearer ' + DummyToken.Token}]);
+    expect(OAuth2Instances.header.hasntToken.getAuthorizationData(blank, {}))
+        .toEqual([blank, {}]);
 
-
-test('OAuth getOAuthorization method test', () => {
-    expect(OAuth2Instances.header.hasToken.getAuthorizationData(blank, {})[1]).toEqual({Authorization: 'Bearer ' + DummyToken.Token});
+    const test2_blank_param: IApiParameterDefinition = { access_token: {required: true, type: ApiParameterMethods.Query} };
+    expect(OAuth2Instances.query.hasToken.getAuthorizationData(blank, {}))
+        .toEqual([Object.assign({}, blank, {parameter: {...test2_blank_param}}),{access_token: DummyToken.Token}]);
+    expect(OAuth2Instances.query.hasntToken.getAuthorizationData(blank, {}))
+        .toEqual([blank, {}]);
 });
