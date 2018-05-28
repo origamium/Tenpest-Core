@@ -33,6 +33,10 @@ export default class OAuth1 extends OAuth {
         ));
     }
 
+    private static _headerstring(key: string, value: string): string {
+        return key + '="' + value + '"';
+    }
+
     constructor() {
         super();
     }
