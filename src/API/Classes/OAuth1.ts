@@ -52,15 +52,47 @@ export default class OAuth1 extends OAuth {
     public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
         let template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
         let value: IApiPayload = Object.assign({}, payload);
-
-        const signature = OAuth1._signature(authInfo, apiData, payload);
-
+        const timestamp = OAuth1._now();
+        const signature = OAuth1._signature(authInfo, apiData, payload, timestamp);
+        const nonce = 'fusianasan';
         // TODO
-        if(authInfo.token){
+        if (authInfo.token) {
+            const authProps = {
+                oauth_consumer_key: 'oauth_consumer_key',
+                oauth_token: 'oauth_token',
+                oauth_signature_method: 'oauth_signature_method',
+                oauth_timestamp: 'oauth_timestamp',
+                oauth_nonce: 'oauth_nonce',
+                oauth_version: 'oauth_version',
+                oauth_signature: 'oauth_signature',
+            };
+
             switch (authInfo.signSpace) {
                 case SignSpace.Header:
+                    const key = 'Authorization';
+                    template[key] = { required: true, type: ApiParameterMethods.Header };
+                    value[key] = 'OAuth ' +
+                        OAuth1._headerstring(authProps.oauth_consumer_key, authInfo.apiKey.ApiKey) + ',' +
+                        OAuth1._headerstring(authProps.oauth_token, authInfo.token.Token) + ',' +
+                        OAuth1._headerstring(authProps.oauth_signature_method, authInfo.signMethod) + ',' +
+                        OAuth1._headerstring(authProps.oauth_timestamp, timestamp) + ',' +
+                        OAuth1._headerstring(authProps.oauth_nonce, nonce) + ',' +
+                        OAuth1._headerstring(authProps.oauth_version, authInfo.oauthVersion) + ',' +
+                        OAuth1._headerstring(authProps.oauth_signature, signature);
+                    ;
                     break;
                 case SignSpace.Query:
+                    const authParamDefault = {required: true, type: ApiParameterMethods.Query};
+                    Object.keys(authProps).forEach((v) => {
+                        template[v] = {...authParamDefault};
+                    });
+                    value[authProps.oauth_consumer_key] = authInfo.apiKey.ApiKey;
+                    value[authProps.oauth_token] = authInfo.token.Token;
+                    value[authProps.oauth_signature_method] = authInfo.signMethod;
+                    value[authProps.oauth_timestamp] = timestamp;
+                    value[authProps.oauth_nonce] = nonce;
+                    value[authProps.oauth_version] = authInfo.oauthVersion;
+                    value[authProps.oauth_signature] = signature;
                     break;
                 default:
                     throw UnknownOAuthSignatureSpace;
