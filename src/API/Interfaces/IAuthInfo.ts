@@ -7,6 +7,6 @@ export interface IAuthInfo {
     apiKey: IAPIKey;
     oauthVersion: OAuthVersion;
     token: IToken | null;
-    signMethod: SignMethod | null;
+    signMethod: SignMethod;
     signSpace: SignSpace;
 }
