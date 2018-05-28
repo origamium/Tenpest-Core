@@ -14,12 +14,12 @@ export default class OAuth1 extends OAuth {
         return Math.round(+new Date() / 1000).toString();
     }
 
-    private static _signature(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): string {
+    private static _signature(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload, timestamp: string): string {
         const signParameter = {
             oauth_consumer_key: authInfo.apiKey.ApiKey,
             oauth_token: authInfo.token ? authInfo.token.Token : '',
             oauth_signature_method: authInfo.signMethod,
-            oauth_timestamp: this._now(),
+            oauth_timestamp: timestamp,
             oauth_nonce: 'superdrysinasai2018',
             oauth_version: authInfo.oauthVersion,
         };
