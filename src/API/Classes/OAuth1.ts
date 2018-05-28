@@ -10,8 +10,8 @@ import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
 import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
 
 export default class OAuth1 extends OAuth {
-    private static _now(): number {
-        return Math.round(+new Date() / 1000);
+    private static _now(): string {
+        return Math.round(+new Date() / 1000).toString();
     }
 
     private static _signature(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): string {
