@@ -7,6 +7,7 @@ import {IApiData} from '../Interfaces/IApiData';
 import {IAuthInfo} from '../Interfaces/IAuthInfo';
 import {SignSpace} from '../Enums/SignSpace';
 import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
+import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
 
 export default class OAuth1 extends OAuth {
     private static _now(): number {
@@ -58,7 +59,7 @@ export default class OAuth1 extends OAuth {
                 case SignSpace.Query:
                     break;
                 default:
-                    throw new Error('wooo');
+                    throw UnknownOAuthSignatureSpace;
             }
         }
 

@@ -7,6 +7,7 @@ import {SignSpace} from '../Enums/SignSpace';
 import {IApiData} from "../Interfaces/IApiData";
 import {IAuthInfo} from "../Interfaces/IAuthInfo";
 import {ApiParameterMethods} from "../Enums/ApiParameterMethods";
+import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
 
 export default class OAuth2 extends OAuth {
     constructor() {
@@ -39,7 +40,7 @@ export default class OAuth2 extends OAuth {
                     value[key] = authInfo.token.Token;
                     break;
                 default:
-                    throw new Error('wooo');
+                    throw UnknownOAuthSignatureSpace;
             }
         }
 
