@@ -1,7 +1,7 @@
-import {SignMethod} from "../Enums/SignMethod";
-import {IAPIKey, IToken} from "./IKeys";
-import {SignSpace} from "../Enums/SignSpace";
-import {OAuthVersion} from "../Enums/OAuthVersion";
+import {OAuthVersion} from '../Enums/OAuthVersion';
+import {SignMethod} from '../Enums/SignMethod';
+import {SignSpace} from '../Enums/SignSpace';
+import {IAPIKey, IToken} from './IKeys';
 
 export interface IAuthInfo {
     apiKey: IAPIKey;

@@ -1,13 +1,13 @@
-import OAuth from "./OAuth";
-import {AuthMethods} from "../Enums/AuthMethods";
+import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
+import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
+import {AuthMethods} from '../Enums/AuthMethods';
+import {SignSpace} from '../Enums/SignSpace';
+import {IApiData} from '../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../Interfaces/IApiPayload';
+import {IAuthInfo} from '../Interfaces/IAuthInfo';
 import {IAPIKey, IToken} from '../Interfaces/IKeys';
-import {SignSpace} from '../Enums/SignSpace';
-import {IApiData} from "../Interfaces/IApiData";
-import {IAuthInfo} from "../Interfaces/IAuthInfo";
-import {ApiParameterMethods} from "../Enums/ApiParameterMethods";
-import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
+import OAuth from './OAuth';
 
 export default class OAuth2 extends OAuth {
     constructor() {

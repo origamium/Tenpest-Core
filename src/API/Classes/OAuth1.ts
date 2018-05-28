@@ -1,13 +1,13 @@
 import * as authSign from 'oauth-sign';
-import OAuth from './OAuth';
+import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
+import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
 import {AuthMethods} from '../Enums/AuthMethods';
+import {SignSpace} from '../Enums/SignSpace';
+import {IApiData} from '../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../Interfaces/IApiPayload';
-import {IApiData} from '../Interfaces/IApiData';
 import {IAuthInfo} from '../Interfaces/IAuthInfo';
-import {SignSpace} from '../Enums/SignSpace';
-import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
-import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
+import OAuth from './OAuth';
 
 export default class OAuth1 extends OAuth {
     private static _now(): string {
@@ -50,8 +50,8 @@ export default class OAuth1 extends OAuth {
     }
 
     public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
-        let template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
-        let value: IApiPayload = Object.assign({}, payload);
+        const template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
+        const value: IApiPayload = Object.assign({}, payload);
         const timestamp = OAuth1._now();
         const signature = OAuth1._signature(authInfo, apiData, payload, timestamp);
         const nonce = 'fusianasan';
@@ -79,7 +79,7 @@ export default class OAuth1 extends OAuth {
                         OAuth1._headerstring(authProps.oauth_nonce, nonce) + ',' +
                         OAuth1._headerstring(authProps.oauth_version, authInfo.oauthVersion) + ',' +
                         OAuth1._headerstring(authProps.oauth_signature, signature);
-                    ;
+                    
                     break;
                 case SignSpace.Query:
                     const authParamDefault = {required: true, type: ApiParameterMethods.Query};

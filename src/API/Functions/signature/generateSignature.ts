@@ -1,7 +1,7 @@
 import * as authSign from 'oauth-sign';
-import {HttpMethods} from "../../Enums/HttpMethods";
-import {OAuthVersion} from "../../Enums/OAuthVersion";
-import {IOAuth1Parameters} from "../../Interfaces/IOAuth1Parameters";
+import {HttpMethods} from '../../Enums/HttpMethods';
+import {OAuthVersion} from '../../Enums/OAuthVersion';
+import {IOAuth1Parameters} from '../../Interfaces/IOAuth1Parameters';
 
 export default (
     authMethod: OAuthVersion,
@@ -20,4 +20,4 @@ export default (
         consumerSecretKey,
         tokenSecret,
     ))
-)
+);

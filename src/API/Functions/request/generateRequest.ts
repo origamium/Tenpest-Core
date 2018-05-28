@@ -1,8 +1,8 @@
 import * as Exceptions from '../../../Exception/Exceptions';
-import generateUri from '../uri/generateUri';
 import {IApiData} from '../../Interfaces/IApiData';
+import {IApiPayload} from '../../Interfaces/IApiPayload';
 import getParameterKey, {parameterKeysObject} from '../parameterKeys/getParameterKeys';
-import {IApiPayload} from "../../Interfaces/IApiPayload";
+import generateUri from '../uri/generateUri';
 
 export default (apiUrl: string, data: IApiData): Function => {
     const parameterKeys: parameterKeysObject = getParameterKey(data);

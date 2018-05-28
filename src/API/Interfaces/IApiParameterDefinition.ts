@@ -1,4 +1,4 @@
-import {ApiParameterMethods} from "../Enums/ApiParameterMethods";
+import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
 
 export interface IApiParameterDefinition {
     [key: string]: {

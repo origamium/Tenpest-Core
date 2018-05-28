@@ -1,6 +1,6 @@
+import {IReturnedDatumInfo} from '../../Service/ApiSet/ApiData/IReturnedDatumInfo';
 import {HttpMethods} from '../Enums/HttpMethods';
 import {IApiParameterDefinition} from './IApiParameterDefinition';
-import {IReturnedDatumInfo} from '../../Service/ApiSet/ApiData/IReturnedDatumInfo';
 
 export interface IApiData {
     baseUri: string;

@@ -1,7 +1,7 @@
 import {AuthMethods} from '../Enums/AuthMethods';
+import {IApiData} from '../Interfaces/IApiData';
 import {IApiPayload} from '../Interfaces/IApiPayload';
-import {IApiData} from "../Interfaces/IApiData";
-import {IAuthInfo} from "../Interfaces/IAuthInfo";
+import {IAuthInfo} from '../Interfaces/IAuthInfo';
 
 export default abstract class OAuth {
     public abstract authorization(method: AuthMethods): void;

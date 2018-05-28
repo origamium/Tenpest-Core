@@ -1,8 +1,8 @@
-import {IAuthorization} from "../../../Interfaces/IAuthorization";
-import {IApiPayload} from "../../../Interfaces/IApiPayload";
-import {OAuthVersion} from "../../../Enums/OAuthVersion";
-import {SignSpace} from "../../../Enums/SignSpace";
-import {UnknownOAuthSignatureSpace, UnknownAuthorizationMethod} from "../../../../Exception/Exceptions";
+import {UnknownAuthorizationMethod, UnknownOAuthSignatureSpace} from '../../../../Exception/Exceptions';
+import {OAuthVersion} from '../../../Enums/OAuthVersion';
+import {SignSpace} from '../../../Enums/SignSpace';
+import {IApiPayload} from '../../../Interfaces/IApiPayload';
+import {IAuthorization} from '../../../Interfaces/IAuthorization';
 import generateOAuthHeaderString from '../oauthHeaderString/generateOAuthHeaderString';
 
 // in OAuth1.0, Headerstring is 'Authorization: OAuth ~'
@@ -10,11 +10,11 @@ import generateOAuthHeaderString from '../oauthHeaderString/generateOAuthHeaderS
 
 export default (
     authenticate: IAuthorization,
-    payload: IApiPayload
+    payload: IApiPayload,
 ): any => {
-    let result = {};
+    const result = {};
 
-    switch (authenticate.oauthSignatureSpace){
+    switch (authenticate.oauthSignatureSpace) {
         case SignSpace.Query:
             break;
         case SignSpace.Header:
@@ -24,5 +24,4 @@ export default (
             throw UnknownOAuthSignatureSpace;
     }
     return result;
-}
-
+};
