@@ -79,7 +79,6 @@ export default class OAuth1 extends OAuth {
                         OAuth1._headerstring(authProps.oauth_nonce, nonce) + ',' +
                         OAuth1._headerstring(authProps.oauth_version, authInfo.oauthVersion) + ',' +
                         OAuth1._headerstring(authProps.oauth_signature, signature);
-                    
                     break;
                 case SignSpace.Query:
                     const authParamDefault = {required: true, type: ApiParameterMethods.Query};
