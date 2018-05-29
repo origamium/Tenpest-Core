@@ -8,15 +8,20 @@ import {IAuthInfo} from '../Interfaces/IAuthInfo';
 import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import OAuth1 from './OAuth1';
 import OAuth2 from './OAuth2';
+import {AuthMethods} from '../Enums/AuthMethods';
 
 export default class Authorization {
     private oauth: OAuth1 | OAuth2;
     private info: IAuthInfo;
+    private authorizeMethod: AuthMethods;
+    private scope: string | null;
 
     constructor(
         version: OAuthVersion,
         signMethod: SignMethod,
         signatureSpace: SignSpace,
+        authorizeMethod: AuthMethods,
+        scope: string[] = [],
         key: IAPIKey,
         token: IToken | null = null,
     ) {
@@ -27,6 +32,8 @@ export default class Authorization {
             signMethod,
             oauthVersion: version,
         };
+        this.authorizeMethod = authorizeMethod;
+        this.scope = 0 < scope.length ? scope.reduce((p, c): string => p + ' ' + c) : null;
 
         switch (this.info.oauthVersion) {
             case OAuthVersion.OAuth1:

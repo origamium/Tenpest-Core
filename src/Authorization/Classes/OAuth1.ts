@@ -41,8 +41,9 @@ export default class OAuth1 extends OAuth {
         super();
     }
 
-    public authorization(method: AuthMethods): void {
+    public authorization(apiData: IApiData, method: AuthMethods): string {
 
+        return '';
     }
 
     public requestToken(tempToken: string | object): void {
