@@ -1,3 +1,9 @@
-export class Set {
+/*
+* ┌───────────┐
+* │無料Javaのダウンロード│
+* └───────────┘
+*/
 
+export class Set {
+    // TODO
 }
