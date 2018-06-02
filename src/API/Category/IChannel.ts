@@ -1,6 +1,6 @@
 import {Unit} from '../Unit';
 
 export interface IChannel {
-    getChannelList?: Unit;
+    getChannelList: Unit;
     getChannelDetail?: Unit;
 }
