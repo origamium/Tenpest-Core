@@ -8,6 +8,4 @@ export default abstract class OAuth {
     public abstract requestToken(tempToken: string | object): void;
     public abstract getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload)
         : [IApiData, IApiPayload] ;
-
-    public abstract export(): object;
 }

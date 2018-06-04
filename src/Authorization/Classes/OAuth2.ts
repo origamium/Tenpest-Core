@@ -46,8 +46,4 @@ export default class OAuth2 extends OAuth {
 
         return [Object.assign({}, apiData, {parameter: template}), value];
     }
-
-    public export(): object {
-        return {};
-    }
 }
