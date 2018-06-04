@@ -2,10 +2,39 @@ import {AuthMethods} from '../Enums/AuthMethods';
 import {IApiData} from '../Interfaces/IApiData';
 import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IAuthInfo} from '../Interfaces/IAuthInfo';
+import {IAPIKey, IToken} from '../Interfaces/IKeys';
 
 export default abstract class OAuth {
-    public abstract authorization(method: AuthMethods): void;
-    public abstract requestToken(tempToken: string | object): void;
+    // optional: step 0
+    public abstract requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
+        : {apiData: IApiData, payload: IApiPayload, requiredPayload?: object};
+
+    // required: step 1
+    public abstract authorizeUri(
+        apiData: IApiData,
+        apiKey: IAPIKey,
+        redirect_uri: string,
+        method: AuthMethods,
+        optional?: {
+            scope?: string[],
+            authToken?: IToken,
+        }): {apiData: IApiData, payload: IApiPayload, requiredPayload?: object};
+
+    // required: step 2
+    public abstract requestToken(
+        apiData: IApiData,
+        apiKey: IAPIKey,
+        code: string,
+        redirect_uri: string,
+        optional?: {
+            scope?: string[],
+            authToken?: IToken,
+        }): {apiData: IApiData, payload: IApiPayload};
+
+    // optional: step 3
+    public abstract refreshToken(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
+        : {apiData: IApiData, payload: IApiPayload};
+
     public abstract getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload)
-        : [IApiData, IApiPayload] ;
+        : {apiData: IApiData, payload: IApiPayload};
 }
