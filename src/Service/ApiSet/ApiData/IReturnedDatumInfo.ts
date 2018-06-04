@@ -8,8 +8,7 @@ export interface IReturnedDatumInfo {
     /*
     * default: null. In this state, target data is received json/xml data.
     * e.g. Slack is always contain "ok" parameter in return data, and It always changing target data by request api.
-    * F*CKING SLACK API!
-    * */
+    */
     targetParameterName?: string;
 
     body: object | object[];
