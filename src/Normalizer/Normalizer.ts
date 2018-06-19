@@ -1,4 +1,4 @@
-import {Unit} from '../API/Unit';
+import {Unit} from '../Unit/Unit';
 import normalize from './normalize';
 import smooth from './smooth';
 

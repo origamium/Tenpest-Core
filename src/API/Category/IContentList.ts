@@ -1,4 +1,4 @@
-import {Unit} from '../Unit';
+import {Unit} from '../../Unit/Unit';
 
 export interface IContentList {
     getContentList: Unit;

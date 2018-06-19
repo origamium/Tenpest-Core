@@ -1,4 +1,4 @@
-import {Unit} from '../Unit';
+import {Unit} from '../../Unit/Unit';
 
 export interface IRealTimeConnection {
     WebSocket?: Unit;

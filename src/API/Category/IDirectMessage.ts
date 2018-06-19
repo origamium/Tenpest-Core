@@ -1,4 +1,4 @@
-import {Unit} from '../Unit';
+import {Unit} from '../../Unit/Unit';
 
 export interface IDirectMessage {
     // getDMChannel ,getDMHistory CAN NOT COEXISTENCE. Use register one or the other.
