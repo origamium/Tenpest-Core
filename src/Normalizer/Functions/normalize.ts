@@ -40,6 +40,5 @@ const recursiveNormalizer = (schemaData: IRecursiveSchema) => (
 
 export default (schemaData: IDefinedSchema, data: any): object => {
     const target = schemaData.target ? data[schemaData.target] : data;
-    console.log(schemaCreator(schemaData.schema));
     return normalize(target, schemaCreator(schemaData.schema));
 };
