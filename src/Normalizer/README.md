@@ -4,6 +4,7 @@ Normalizerは、APIから取得した異なるデータを2つの過程を経て
   
 ## 正規化 - normalize
 正規化は、Normalizrを介して行われます。これの主な理由は、階層構造になったデータを均し、操作しやすい形にするためです。  
+[Dynamizr](https://stackblitz.com/edit/dynamizer)という名前にしていますがnpmで公開していません。  
   
 ## 平滑化 - smooth
 平滑化は、平滑化されたデータを、データの種類―――User, Contentなど―――ごとにそれぞれ一意のオブジェクト形式に変換することです。  
