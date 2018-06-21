@@ -10,6 +10,4 @@ export interface IReturnedDatumInfo {
     * e.g. Slack is always contain "ok" parameter in return data, and It always changing target data by request api.
     */
     targetParameterName?: string;
-
-    body: object | object[];
 }
