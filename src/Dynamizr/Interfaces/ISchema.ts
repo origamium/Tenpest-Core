@@ -1,17 +1,22 @@
 import { schemaTypes } from '../Enums/schemaTypes';
 
-export interface IDefinedSchema {
-    target?: string;
-    schema: ISchema;
+export interface ITransform {
+    [key: string]: string | ITransform | Array<ITransform>;
 }
 
 export interface ISchema {
-    name: string;
-    type: schemaTypes;
-    idAttribute?: string;
-    definition?: IRecursiveSchema;
+    target?: string;
+    schema: ISchemaElement;
 }
 
-export interface IRecursiveSchema {
-    [key: string]: ISchema;
+export interface IRecursiveSchema{
+    [key: string]: ISchemaElement;
+}
+
+export interface ISchemaElement {
+    name: string;
+    type: schemaTypes;
+    transform: ITransform;
+    idAttribute?: string;
+    definition?: IRecursiveSchema;
 }
