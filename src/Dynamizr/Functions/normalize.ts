@@ -1,44 +1,41 @@
 import { schema, normalize } from 'normalizr';
 import { schemaTypes } from '../Enums/schemaTypes';
-import { IDefinedSchema, ISchema, IRecursiveSchema } from '../Interfaces/ISchema';
+import { ISchemaElement, ISchema, IRecursiveSchema } from '../Interfaces/ISchema';
 import { UnsupportedSchemaType } from '../Exceptions';
 
-const schemaCreator = (schemaData: ISchema, key?: string) => {
+const entityCreator = (schemaData: ISchemaElement) => (
+    new schema.Entity(
+        schemaData.name,
+        schemaData.definition ?
+            normalizer(schemaData.definition) : {},
+        schemaData.idAttribute ?
+            {idAttribute: schemaData.idAttribute} : {},
+    )
+);
+
+const schemaCreator = (schemaData: ISchemaElement, key?: string) => {
     switch(schemaData.type) {
         case schemaTypes.Entity:
-            return new schema.Entity(
-                key ? key : schemaData.name,
-                schemaData.definition ?
-                    recursiveNormalizer(schemaData.definition) : {},
-                schemaData.idAttribute ?
-                    {idAttribute: schemaData.idAttribute} : {},
-            );
+            return entityCreator(schemaData);
         case schemaTypes.Array:
-            return new schema.Array(
-                new schema.Entity(
-                    key ? key : schemaData.name,
-                    schemaData.definition ?
-                        recursiveNormalizer(schemaData.definition) : {},
-                    schemaData.idAttribute ?
-                        {idAttribute: schemaData.idAttribute} : {},
-                ),
-            );
+            return new schema.Array(entityCreator(schemaData));
         default:
             throw UnsupportedSchemaType;
     }
 };
 
-const recursiveNormalizer = (schemaData: IRecursiveSchema) => (
-    Object.keys(schemaData).map((key) => ({
-        name: schemaData[key].name,
+const normalizer = (schemaData: IRecursiveSchema) => (
+    Object.keys(schemaData).map(key => ({
+        name: key,
         schema: schemaCreator(schemaData[key], key),
-    })).reduce((acc, curr) => ({
-        ...acc,
+    })).reduce((accu, curr) => ({
+        ...accu,
         [curr.name]: curr.schema,
     }), {})
 );
 
-export default (schemaData: IDefinedSchema, data: any): object => {
-    const target = schemaData.target ? data[schemaData.target] : data;
-    return normalize(target, schemaCreator(schemaData.schema));
-};
+export default (schemaData: ISchema, data: any): object => (
+    normalize(
+        schemaData.target ? data[schemaData.target] : data,
+        schemaCreator(schemaData.schema))
+);
