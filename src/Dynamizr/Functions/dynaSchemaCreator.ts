@@ -1,8 +1,10 @@
-import { schema, normalize } from 'normalizr';
+import { schema } from 'normalizr';
 import { schemaTypes } from '../Enums/schemaTypes';
 import { ISchemaElement, ISchema, IRecursiveSchema } from '../Interfaces/ISchema';
 import { UnsupportedSchemaType } from '../Exceptions';
+import {IDynaSchema} from '../Interfaces/IDynaSchema';
 
+// --- normalizr schema creator ----
 const entityCreator = (schemaData: ISchemaElement) => (
     new schema.Entity(
         schemaData.name,
@@ -33,5 +35,13 @@ const schemaCreator = (schemaData: ISchemaElement): any => {
             throw UnsupportedSchemaType;
     }
 };
+// --- end of normalizr schema creator ---
 
-export default schemaCreator;
+// --- transform ---
+const pickupTransformAttr = (schemaData: ISchemaElement, root = {}) => {
+    if (schemaData.definition) {
+        Object.keys(schemaData.definition)
+            .forEach(key => pickupTransformAttr(schemaData.definition[key], root));
+    }
+    return Object.assign(root, { [schemaData.name]: schemaData.transform });
+};
