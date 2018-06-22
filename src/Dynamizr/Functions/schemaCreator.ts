@@ -7,13 +7,23 @@ const entityCreator = (schemaData: ISchemaElement) => (
     new schema.Entity(
         schemaData.name,
         schemaData.definition ?
-            normalizer(schemaData.definition) : {},
+            reCreateSchema(schemaData.definition) : {},
         schemaData.idAttribute ?
             {idAttribute: schemaData.idAttribute} : {},
     )
 );
 
-const schemaCreator = (schemaData: ISchemaElement, key?: string) => {
+const reCreateSchema = (schemaData: IRecursiveSchema) => (
+    Object.keys(schemaData).map(key => ({
+        name: key,
+        schema: schemaCreator(schemaData[key]),
+    })).reduce((accu, curr) => ({
+        ...accu,
+        [curr.name]: curr.schema,
+    }), {})
+);
+
+const schemaCreator = (schemaData: ISchemaElement): any => {
     switch(schemaData.type) {
         case schemaTypes.Entity:
             return entityCreator(schemaData);
@@ -24,18 +34,4 @@ const schemaCreator = (schemaData: ISchemaElement, key?: string) => {
     }
 };
 
-const normalizer = (schemaData: IRecursiveSchema) => (
-    Object.keys(schemaData).map(key => ({
-        name: key,
-        schema: schemaCreator(schemaData[key], key),
-    })).reduce((accu, curr) => ({
-        ...accu,
-        [curr.name]: curr.schema,
-    }), {})
-);
-
-export default (schemaData: ISchema, data: any): object => (
-    normalize(
-        schemaData.target ? data[schemaData.target] : data,
-        schemaCreator(schemaData.schema))
-);
+export default schemaCreator;
