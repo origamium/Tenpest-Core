@@ -1,8 +1,8 @@
 import { schema } from 'normalizr';
 import { schemaTypes } from '../Enums/schemaTypes';
-import { ISchemaElement, ISchema, IRecursiveSchema } from '../Interfaces/ISchema';
 import { UnsupportedSchemaType } from '../Exceptions';
 import {IDynaSchema} from '../Interfaces/IDynaSchema';
+import { IRecursiveSchema, ISchema, ISchemaElement } from '../Interfaces/ISchema';
 
 // --- normalizr schema creator ----
 const entityCreator = (schemaData: ISchemaElement) => (
@@ -16,7 +16,7 @@ const entityCreator = (schemaData: ISchemaElement) => (
 );
 
 const reCreateSchema = (schemaData: IRecursiveSchema) => (
-    Object.keys(schemaData).map(key => ({
+    Object.keys(schemaData).map((key) => ({
         name: key,
         schema: schemaCreator(schemaData[key]),
     })).reduce((accu, curr) => ({
@@ -26,7 +26,7 @@ const reCreateSchema = (schemaData: IRecursiveSchema) => (
 );
 
 const schemaCreator = (schemaData: ISchemaElement): any => {
-    switch(schemaData.type) {
+    switch (schemaData.type) {
         case schemaTypes.Entity:
             return entityCreator(schemaData);
         case schemaTypes.Array:
@@ -41,7 +41,7 @@ const schemaCreator = (schemaData: ISchemaElement): any => {
 const pickupTransformAttr = (schemaData: ISchemaElement, root = {}) => {
     if (schemaData.definition) {
         Object.keys(schemaData.definition)
-            .forEach(key => pickupTransformAttr(schemaData.definition[key], root));
+            .forEach((key) => pickupTransformAttr(schemaData.definition[key], root));
     }
     return Object.assign(root, { [schemaData.name]: schemaData.transform });
 };

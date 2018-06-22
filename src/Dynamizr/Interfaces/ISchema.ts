@@ -6,7 +6,7 @@ export interface ISchema {
     schema: ISchemaElement;
 }
 
-export interface IRecursiveSchema{
+export interface IRecursiveSchema {
     [key: string]: ISchemaElement;
 }
 

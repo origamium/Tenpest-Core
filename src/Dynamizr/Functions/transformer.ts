@@ -6,7 +6,7 @@ const dataTransform = (format: any, target: any) => {
             return target[format];
         case 'object':
             return Object.keys(format)
-                .map(key => ({key, data: dataTransform(format[key], target)}))
+                .map((key) => ({key, data: dataTransform(format[key], target)}))
                 .reduce((accm, curr) => ({ ...accm, [curr.key]: curr.data }), {});
         default:
             throw new Error('oh');
@@ -15,10 +15,10 @@ const dataTransform = (format: any, target: any) => {
 
 const transform = (format: any, target: any) => {
     return Object.keys(target)
-        .map(itemKey => ({
+        .map((itemKey) => ({
             itemKey,
             data: Object.keys(target[itemKey])
-                .map(id => ({
+                .map((id) => ({
                     id,
                     data: dataTransform(format[itemKey], target[itemKey][id]),
                 }))

@@ -1,3 +1,3 @@
 export interface ITransform {
-    [key: string]: string | ITransform | Array<ITransform>;
+    [key: string]: string | ITransform | ITransform[];
 }

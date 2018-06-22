@@ -1,7 +1,7 @@
 import {IReaction} from './IReaction';
-import {IUser} from './IUser';
 import {IReplyTo} from './IReplyTo';
 import {IThread} from './IThread';
+import {IUser} from './IUser';
 
 export interface IStatus {
     id: string;

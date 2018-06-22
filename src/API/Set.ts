@@ -4,11 +4,11 @@
 * └───────────┘
 */
 
-import {IChannel} from './Category/IChannel';
-import {IUser} from './Category/IUser';
-import {IDirectMessage} from './Category/IDirectMessage';
 import {IAccount} from './Category/IAccount';
+import {IChannel} from './Category/IChannel';
 import {IContentList} from './Category/IContentList';
+import {IDirectMessage} from './Category/IDirectMessage';
+import {IUser} from './Category/IUser';
 
 export class Set {
     private readonly _authorization: object; // TODO

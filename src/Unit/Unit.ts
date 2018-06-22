@@ -1,6 +1,6 @@
-import {IReturnedDatumInfo} from './IReturnedDatumInfo';
-import {IApiParameterDefinition} from '../Authorization/Interfaces/IApiParameterDefinition';
 import {HttpMethods} from '../Authorization/Enums/HttpMethods';
+import {IApiParameterDefinition} from '../Authorization/Interfaces/IApiParameterDefinition';
+import {IReturnedDatumInfo} from './IReturnedDatumInfo';
 
 export class Unit {
     private readonly _path: string;
@@ -25,7 +25,7 @@ export class Unit {
     }
 
     constructor(
-        path: string, httpMethod: HttpMethods, returnDatum: IReturnedDatumInfo, parameter: IApiParameterDefinition
+        path: string, httpMethod: HttpMethods, returnDatum: IReturnedDatumInfo, parameter: IApiParameterDefinition,
     ) {
         this._path = path;
         this._httpMethod = httpMethod;

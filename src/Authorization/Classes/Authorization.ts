@@ -1,4 +1,5 @@
 import {UnknownAuthorizationMethod} from '../../Exception/Exceptions';
+import {AuthMethods} from '../Enums/AuthMethods';
 import {OAuthVersion} from '../Enums/OAuthVersion';
 import {SignMethod} from '../Enums/SignMethod';
 import {SignSpace} from '../Enums/SignSpace';
@@ -8,7 +9,6 @@ import {IAuthInfo} from '../Interfaces/IAuthInfo';
 import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import OAuth1 from './OAuth1';
 import OAuth2 from './OAuth2';
-import {AuthMethods} from '../Enums/AuthMethods';
 
 export default class Authorization {
     private oauth: OAuth1 | OAuth2;
