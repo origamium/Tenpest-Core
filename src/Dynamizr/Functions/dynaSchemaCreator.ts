@@ -49,4 +49,5 @@ const pickupTransformAttr = (schemaData: ISchemaElement, root = {}) => {
 export default (schemaData: ISchema): IDynaSchema => ({
     normalizrSchema: schemaCreator(schemaData.schema),
     transformerSchema: pickupTransformAttr(schemaData.schema),
+    target: schemaData.target,
 });
