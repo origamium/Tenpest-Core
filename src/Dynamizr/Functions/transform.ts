@@ -1,7 +1,7 @@
-import { ISchema } from '../Interfaces/ISchema';
+import { IDynaSchema } from '../Interfaces/IDynaSchema';
 
 const dataTransform = (format: any, target: any) => {
-    switch(typeof format) {
+    switch (typeof format) {
         case 'string':
             return target[format];
         case 'object':
@@ -27,14 +27,7 @@ const transform = (format: any, target: any) => {
         .reduce((accm, curr) => ({ ...accm, [curr.itemKey]: curr.data}), {});
 };
 
-const pickupTransformAttr = (schema, root = {}) => {
-    if(schema.definition){
-        Object.keys(schema.definition).forEach(key => pickupTransformAttr(schema.definition[key], root));
-    }
-    return Object.assign(root, { [schema.name]: schema.transform });
-};
-
-export default (schemaData: ISchema, target: any) => ({
-    entities: transform(pickupTransformAttr(schemaData.schema), target.entities),
+export default (dynaSchemaData: IDynaSchema, target: any) => ({
+    entities: transform(dynaSchemaData.transformerSchema, target.entities),
     result: target.result,
 });
