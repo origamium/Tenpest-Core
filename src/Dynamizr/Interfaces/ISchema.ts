@@ -1,8 +1,5 @@
 import { schemaTypes } from '../Enums/schemaTypes';
-
-export interface ITransform {
-    [key: string]: string | ITransform | Array<ITransform>;
-}
+import { ITransform } from './ITransform';
 
 export interface ISchema {
     target?: string;
