@@ -12,6 +12,7 @@
   "author": "ONOUE Origami",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "oauth-sign": "^0.8.2",
     "query-string": "^6.0.0"
   },
