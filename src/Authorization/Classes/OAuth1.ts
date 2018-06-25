@@ -8,6 +8,8 @@ import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IAuthInfo} from '../Interfaces/IAuthInfo';
 import OAuth from './OAuth';
+import {IAPIKey, IToken} from '../Interfaces/IKeys';
+import {IAuthorizedApiData} from '../Interfaces/IAuthorizedApiData';
 
 export default class OAuth1 extends OAuth {
     private static _now(): string {
@@ -37,20 +39,22 @@ export default class OAuth1 extends OAuth {
         return key + '="' + value + '"';
     }
 
-    constructor() {
-        super();
+    public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
+        : IAuthorizedApiData & {requiredPayload?: object} {
+        return {};
     }
 
-    public authorization(apiData: IApiData, method: AuthMethods): string {
+    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthMethods, optional?: {scope?: string[], authToken?: IToken})
+        : IAuthorizedApiData & {requiredPayload?: object} {
+        return {};
+    };
 
-        return '';
+    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthMethods, optional?: {scope?: string[], authToken?: IToken})
+        : IAuthorizedApiData {
+        return {}
     }
 
-    public requestToken(tempToken: string | object): void {
-
-    }
-
-    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
+    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {
         const template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
         const value: IApiPayload = Object.assign({}, payload);
         const timestamp = OAuth1._now();
@@ -99,6 +103,9 @@ export default class OAuth1 extends OAuth {
             }
         }
 
-        return [Object.assign({}, apiData, {parameter: template}), value];
+        return {
+            apiData: Object.assign({}, apiData, {parameter: template}),
+            payload: value,
+        };
     }
 }

@@ -7,7 +7,7 @@ import {IAPIKey, IToken} from '../Interfaces/IKeys';
 
 export default abstract class OAuth {
     // optional: step 0
-    public abstract requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
+    public requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : IAuthorizedApiData & {requiredPayload?: object};
 
     // required: step 1
@@ -33,7 +33,7 @@ export default abstract class OAuth {
         }): IAuthorizedApiData;
 
     // optional: step 3
-    public abstract refreshToken?(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
+    public refreshToken?(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
         : IAuthorizedApiData;
 
     public abstract getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload)
