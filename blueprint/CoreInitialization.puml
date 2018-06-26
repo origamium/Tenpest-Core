@@ -1,0 +1,8 @@
+@startuml
+Store -> Service: Request Create Provider instance
+loop
+    Service -> Provider: request\ncreate instance
+    Provider -> "Dynamizr/schemaCreator": Send Schema Data
+    "Dynamizr/schemaCreator" -> Provider: return dynaschema
+end
+@enduml
