@@ -3,6 +3,7 @@ import { ITransform } from './ITransform';
 
 export interface ISchema {
     target?: string;
+    errorCheckParam?: string;
     schema: ISchemaElement;
 }
 

@@ -1,7 +1,7 @@
 import { schema } from 'normalizr';
 import { schemaTypes } from '../Enums/schemaTypes';
 import { UnsupportedSchemaType } from '../Exceptions';
-import {IDynaSchema} from '../Interfaces/IDynaSchema';
+import { IReturnedDatumInfo } from '../../Unit/IReturnedDatumInfo';
 import { IRecursiveSchema, ISchema, ISchemaElement } from '../Interfaces/ISchema';
 
 // --- normalizr schema creator ----
@@ -46,8 +46,9 @@ const pickupTransformAttr = (schemaData: ISchemaElement, root = {}) => {
     return Object.assign(root, { [schemaData.name]: schemaData.transform });
 };
 
-export default (schemaData: ISchema): IDynaSchema => ({
+export default (schemaData: ISchema): IReturnedDatumInfo => ({
     normalizrSchema: schemaCreator(schemaData.schema),
     transformerSchema: pickupTransformAttr(schemaData.schema),
-    target: schemaData.target,
+    targetParameterName: schemaData.target, // undefinedable and nullable
+    extendErrorCheck: schemaData.errorCheckParam, // undefinedable and nullable
 });
