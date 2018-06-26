@@ -1,12 +1,12 @@
 import {normalize, schema} from 'normalizr';
 import transformer from './Functions/transformer';
-import { IDynaSchema } from './Interfaces/IDynaSchema';
+import {IReturnedDatumInfo} from '../Unit/IReturnedDatumInfo';
 
-export default (schemaData: IDynaSchema, data: any) => (
+export default (schemaData: IReturnedDatumInfo, data: any) => (
     transformer(
         schemaData,
         normalize(
-            schemaData.target ? data[schemaData.target] : data,
+            schemaData.targetParameterName ? data[schemaData.targetParameterName] : data,
             schemaData.normalizrSchema),
     )
 );

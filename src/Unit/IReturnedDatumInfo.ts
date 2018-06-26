@@ -1,4 +1,9 @@
+import {Schema} from 'normalizr';
+
 export interface IReturnedDatumInfo {
+    normalizrSchema: Schema;
+    transformerSchema: object;
+
     /*
      *  default: null. In this state, checking HTTP Status Code.
      *  e.g. Slack is always return 200 OK, error checking must be see "ok" parameter.
