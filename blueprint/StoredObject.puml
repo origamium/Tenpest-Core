@@ -1,0 +1,97 @@
+@startuml
+
+package Stored{
+    package AccountStore{
+        interface Accounts <<(A,#FF5555) Array>>{
+            Account
+        }
+    }
+
+    package ServiceStore{
+        interface Services <<(A,#FF5555) Array>>{
+            Service
+        }
+    }
+}
+
+package "AccountData" {
+    interface Account<<(O,#7777FF)Object>>{
+        String: id
+        String: ServiceName
+        String: ProviderDomain <<optional>>
+        authorizationData: authorizedData
+    }
+
+    interface AuthorizationData<<(O,#7777FF)Object>>{
+        String: token
+        String: tokenSecret
+
+        String: refreshToken <<optional>>
+        Date: tokenAcquisitionDate <<optional>>
+        String: tokenExpiredTime <<optional>>
+    }
+
+    Account "1" o-- "1" AuthorizationData
+}
+
+package "Service" {
+    interface Service<<(O,#7777FF)Object>>{
+        String: serviceName
+        APISet: apiGroup
+        Provider OR {[key]: Provider}: provider
+    }
+
+    interface Provider<<(O,#7777FF)Object>>{
+        URL: baseUrl
+        String: domain
+
+        String: APIKey
+        String: APISecret
+    }
+
+    interface APISet<<(O,#7777FF)Object>>{
+        Category: Authorization
+        Category: RealTimeConnection
+
+        Category: etc...
+    }
+
+    interface Category<<(O,#7777FF)Object>>{
+        Unit: [unit name]
+    }
+
+    interface Unit<<(O,#7777FF)Object>>{
+        String: path
+        String: HttpMethod
+        ParameterDefinition: paramDef
+        ReturnedDatumInfo: schema
+    }
+
+    interface Interaction<<(O,#7777FF)Object>>{
+
+    }
+
+    interface ReturnedDatumInfo<<(O,#7777FF)Object>>{
+        Object: normalizrSchema
+        Object: transformSchema
+        String: extendErrorCheck <<optional>>
+        String: targetParameterName <<optional>>
+    }
+
+
+    Service "1" o-- "n" Provider
+
+    Service "1" o-- "1" APISet
+    APISet "1" o-- "n" Category
+    Category "1"  o-- "n" Unit
+    Unit "1" o-- "1" ReturnedDatumInfo
+    Unit "1" o-- "1" Interaction
+}
+
+Account *-- Service : Related with 'ServiceName'
+Account *-- Provider : Related with 'ProviderName'
+
+Accounts o-- Account
+Services o-- Service
+
+@enduml
