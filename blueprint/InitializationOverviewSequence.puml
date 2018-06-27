@@ -1,0 +1,36 @@
+@startuml
+database DefaultSupportServiceStore as Default
+database ServiceStore <<JSON>>
+database AccountStore <<JSON>>
+
+participant Store
+participant Service
+participant Provider
+participant Account
+participant RelationChecker
+
+alt JSON Storage is exists
+    group Services Initialization
+        ServiceStore -> Store: Load
+        Store -> Service: インスタンスの生成リクエスト
+        Service -> Provider: Providerインスタンス\nの生成リクエスト
+        Provider -> Store: Provider配列を返却
+    end
+
+    group Accounts Initialization
+        AccountStore -> Store: Load
+        Store -> Account: インスタンス生成リクエスト
+        Account -> Store: インスタンス配列を返却
+    end
+
+    group Relation Consistency Check
+        Store -> RelationChecker: Checking Account and Providers Relation
+        alt Relation is Broken
+            RelationChecker -> RelationChecker: Account側の壊れたデータに\n"違法"フラグを建立
+        end
+        RelationChecker ->Store: return
+    end
+else ストレージが存在しなかった場合（初回起動の場合）
+    Default -> Store: Load
+end
+@enduml
