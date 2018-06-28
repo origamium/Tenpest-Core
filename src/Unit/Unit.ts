@@ -7,6 +7,7 @@ export class Unit {
     private readonly _httpMethod: HttpMethods;
     private readonly _returnDatum: IReturnedDatumInfo;
     private readonly _parameter: IApiParameterDefinition;
+    private readonly _interaction: undefined; // TODO
 
     get path(): string {
         return this._path;
