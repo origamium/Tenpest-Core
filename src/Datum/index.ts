@@ -22,3 +22,5 @@ export const DataProperties = {
     replyTo: ReplyToProperties,
     reaction: ReactionProperties,
 };
+
+export type Data = keyof IDataType;
