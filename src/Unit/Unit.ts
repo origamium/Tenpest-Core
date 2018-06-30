@@ -1,3 +1,4 @@
+import {dynaSchemaCreator} from '../Dynamizr';
 import {HttpMethods} from '../Authorization/Enums/HttpMethods';
 import {IApiParameterDefinition} from '../Authorization/Interfaces/IApiParameterDefinition';
 import {IReturnedDatumInfo} from './IReturnedDatumInfo';
@@ -25,12 +26,10 @@ export class Unit {
         return this._parameter;
     }
 
-    constructor(
-        path: string, httpMethod: HttpMethods, returnDatum: IReturnedDatumInfo, parameter: IApiParameterDefinition,
-    ) {
+    constructor(path: string, httpMethod: HttpMethods, returnDatum: any, parameter: IApiParameterDefinition) {
         this._path = path;
         this._httpMethod = httpMethod;
-        this._returnDatum = returnDatum;
+        this._returnDatum = dynaSchemaCreator(returnDatum);
         this._parameter = parameter;
     }
 }
