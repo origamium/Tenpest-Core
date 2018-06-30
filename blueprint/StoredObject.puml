@@ -37,7 +37,8 @@ package "AccountData" {
 package "Service" {
     interface Service<<(O,#7777FF)Object>>{
         String: serviceName
-        APISet: apiGroup
+        ApiSet: apiGroup
+        DataSet: keyObject{dataSet}
         Provider OR {[key]: Provider}: provider
     }
 
@@ -54,6 +55,12 @@ package "Service" {
         Category: RealTimeConnection
 
         Category: etc...
+    }
+
+    interface DataSet<<(0, #7777FF)Object>>{
+        String: datumName
+        String: targetName
+        Object: Schema
     }
 
     interface Category<<(O,#7777FF)Object>>{
@@ -80,7 +87,7 @@ package "Service" {
 
 
     Service "1" o-- "n" Provider
-
+    Service "1" o-- "n" DataSet
     Service "1" o-- "1" APISet
     APISet "1" o-- "n" Category
     Category "1"  o-- "n" Unit
