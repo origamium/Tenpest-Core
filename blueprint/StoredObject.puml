@@ -1,6 +1,13 @@
 @startuml
 
-package Stored{
+package Store{
+    class Store{
+        Array<Account>: Accounts
+        Array<Service>: Services
+        Array<Provider>: Providers
+        public export(): JSON
+    }
+
     package AccountStore{
         interface Accounts <<(A,#FF5555) Array>>{
             Account
@@ -15,6 +22,10 @@ package Stored{
             Provider
         }
     }
+
+    Store o-- Accounts
+    Store o-- Services
+    Store o-- Providers
 }
 
 package "AccountData" {
