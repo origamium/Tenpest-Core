@@ -1,19 +1,21 @@
 import Provider from './Provider/Provider';
+import Service from './Service/Service';
+import Account from './Account/Account';
 
 export default class Store {
-    public ProviderList: Provider[];
+    private Providers: Provider[];
+    private Services: Service[];
+    private Accounts: Account[];
 
     constructor() {
-        this.ProviderList = [];
+        this.Providers = [];
+        this.Services = [];
+        this.Accounts = [];
     }
 
-    public messageHandler(e: Event) {
-        console.log('message received.');
-        console.log(e);
-        postMessage(['okay', 'lets', 'time', 'to', 'move']);
+    public messageHandler() {
     }
 
-    private _loadingData() {
-
+    private _loadData() {
     }
 }
