@@ -11,6 +11,9 @@ package Stored{
         interface Services <<(A,#FF5555) Array>>{
             Service
         }
+        interface Providers <<(A,#FF5555) Array>>{
+            Provider
+        }
     }
 }
 
@@ -100,5 +103,7 @@ Account *-- Provider : Related with 'ProviderName'
 
 Accounts o-- Account
 Services o-- Service
+Providers o-- Provider
+Services - Providers : Related
 
 @enduml
