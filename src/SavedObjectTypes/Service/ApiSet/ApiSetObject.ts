@@ -1,7 +1,8 @@
 import {RestApiUnits} from './RestApiUnitObject';
+import {AuthorizationUnitObject} from './AuthorizationUnitObject';
 
 export type ApiSetObject = {
-    authorization: object, // TODO
-    rtc: object, // real-time connection. // TODO
+    authorization: AuthorizationUnitObject,
     rest: RestApiUnits,
+    rtc?: object, // real-time connection. // TODO
 };
