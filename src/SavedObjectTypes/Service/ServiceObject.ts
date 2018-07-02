@@ -1,4 +1,4 @@
-import {PairOfObject} from '../PairOfObject';
+import {PairOfObject} from '../../helper/PairOfObject';
 import {DataSets} from './DataSet/DataSetObject';
 import {ApiSets} from './ApiSet/ApiSetObject';
 

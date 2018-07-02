@@ -1,4 +1,4 @@
-import {PairOfObject} from '../PairOfObject';
+import {PairOfObject} from '../../helper/PairOfObject';
 
 export type ProviderObject = {
     serviceName: string,

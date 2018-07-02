@@ -1,5 +1,5 @@
 import {schemaTypes} from '../../../Dynamizr/Enums/schemaTypes';
-import {PairOfObject} from '../../PairOfObject';
+import {PairOfObject} from '../../../helper/PairOfObject';
 
 export type SchemaObjectElement = {
     name: string,
