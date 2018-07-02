@@ -72,8 +72,10 @@ package "Service" {
     }
 
     interface DataSet<<(0, #7777FF)Object>>{
-        String: datumName
+        String: datumName <<key>>
         String: targetName
+        String: extendErrorCheck <<optional>>
+        String: targetParameterName <<optional>>
         Object: Schema
     }
 
@@ -85,27 +87,19 @@ package "Service" {
         String: path
         String: HttpMethod
         ParameterDefinition: paramDef
-        ReturnedDatumInfo: schema
+        DataSet: DatumInfo
     }
 
     interface Interaction<<(O,#7777FF)Object>>{
 
     }
 
-    interface ReturnedDatumInfo<<(O,#7777FF)Object>>{
-        Object: normalizrSchema
-        Object: transformSchema
-        String: extendErrorCheck <<optional>>
-        String: targetParameterName <<optional>>
-    }
-
-
     Service "1" o-- "n" Provider
     Service "1" o-- "n" DataSet
     Service "1" o-- "1" APISet
     APISet "1" o-- "n" Category
     Category "1"  o-- "n" Unit
-    Unit "1" o-- "1" ReturnedDatumInfo
+    Unit - DataSet : Related with Key
     Unit "1" o-- "1" Interaction
 }
 
