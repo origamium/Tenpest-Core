@@ -79,10 +79,6 @@ package "Service" {
         Object: Schema
     }
 
-    interface Category<<(O,#7777FF)Object>>{
-        Unit: [unit name]
-    }
-
     interface Unit<<(O,#7777FF)Object>>{
         String: path
         String: HttpMethod
@@ -97,8 +93,7 @@ package "Service" {
     Service "1" o-- "n" Provider
     Service "1" o-- "n" DataSet
     Service "1" o-- "1" APISet
-    APISet "1" o-- "n" Category
-    Category "1"  o-- "n" Unit
+    APISet "1"  o-- "n" Unit
     Unit - DataSet : Related with Key
     Unit "1" o-- "1" Interaction
 }
