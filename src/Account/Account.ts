@@ -1,4 +1,6 @@
 import AuthorizationData from './AuthorizationData';
+import {AccountObject} from '../SavedObjectTypes/Account/AccountObject';
+import {IUser} from '../Datum/User';
 
 export default class Account {
     private readonly _id: string;
@@ -6,10 +8,17 @@ export default class Account {
     private readonly _providerName: string;
     private _authData?: AuthorizationData;
 
-    constructor(id: string, serviceName: string, providerName: string, authData?: object) {
-        this._id = id;
-        this._serviceName = serviceName;
-        this._providerName = providerName;
-        authData ? this._authData = new AuthorizationData(authData) : this._authData = undefined;
+    private _latestUserData?: IUser;
+
+    constructor(source: AccountObject) {
+        this._id = source.id;
+        this._serviceName = source.service;
+        this._providerName = source.provider;
+        this._authData = source.authData ? new AuthorizationData(source.authData) : undefined;
+        this._latestUserData = source.latestAccountInfo;
+    }
+
+    public updateUserData(source: IUser) {
+        this._latestUserData = source;
     }
 }
