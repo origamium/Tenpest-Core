@@ -3,8 +3,9 @@
     "target": "es5",
     "module": "commonjs",
     "lib": ["es7"],
+    "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": true
   }
 }
