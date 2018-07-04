@@ -1,5 +1,5 @@
 import * as authSign from 'oauth-sign';
-import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
+import {UnknownOAuthSignatureSpace} from '../../../Exception/Exceptions';
 import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
 import {AuthMethods} from '../Enums/AuthMethods';
 import {SignSpace} from '../Enums/SignSpace';

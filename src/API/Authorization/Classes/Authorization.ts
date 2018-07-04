@@ -1,4 +1,4 @@
-import {UnknownAuthorizationMethod} from '../../Exception/Exceptions';
+import {UnknownAuthorizationMethod} from '../../../Exception/Exceptions';
 import {AuthMethods} from '../Enums/AuthMethods';
 import {OAuthVersion} from '../Enums/OAuthVersion';
 import {SignMethod} from '../Enums/SignMethod';

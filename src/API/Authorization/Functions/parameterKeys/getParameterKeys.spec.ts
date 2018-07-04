@@ -1,5 +1,5 @@
 /* tslint:disable */
-import {MultipleSandWitchParameterNotAllowed} from '../../../Exception/Exceptions';
+import {MultipleSandWitchParameterNotAllowed} from '../../../../Exception/Exceptions';
 import {HttpMethods} from '../../Enums/HttpMethods';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import getParameterKeys from './getParameterKeys';

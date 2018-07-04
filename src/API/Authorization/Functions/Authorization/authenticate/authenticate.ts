@@ -1,4 +1,4 @@
-import {UnknownAuthorizationMethod, UnknownOAuthSignatureSpace} from '../../../../Exception/Exceptions';
+import {UnknownAuthorizationMethod, UnknownOAuthSignatureSpace} from '../../../../../Exception/Exceptions';
 import {OAuthVersion} from '../../../Enums/OAuthVersion';
 import {SignSpace} from '../../../Enums/SignSpace';
 import {IApiPayload} from '../../../Interfaces/IApiPayload';

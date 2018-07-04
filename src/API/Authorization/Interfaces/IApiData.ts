@@ -1,4 +1,4 @@
-import {IReturnedDatumInfo} from '../../Unit/IReturnedDatumInfo';
+import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
 import {HttpMethods} from '../Enums/HttpMethods';
 import {IApiParameterDefinition} from './IApiParameterDefinition';
 

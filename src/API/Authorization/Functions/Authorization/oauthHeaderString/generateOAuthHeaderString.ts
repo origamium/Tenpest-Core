@@ -1,5 +1,5 @@
 import * as authSign from 'oauth-sign';
-import {UnknownAuthorizationMethod} from '../../../../Exception/Exceptions';
+import {UnknownAuthorizationMethod} from '../../../../../Exception/Exceptions';
 import {HttpMethods} from '../../../Enums/HttpMethods';
 import {OAuthVersion} from '../../../Enums/OAuthVersion';
 import {IOAuth1Parameters} from '../../../Interfaces/IOAuth1Parameters';

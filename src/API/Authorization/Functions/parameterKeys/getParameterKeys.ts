@@ -1,4 +1,4 @@
-import * as Exceptions from '../../../Exception/Exceptions';
+import * as Exceptions from '../../../../Exception/Exceptions';
 import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
 import {IApiData} from '../../Interfaces/IApiData';
 
