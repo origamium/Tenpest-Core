@@ -9,6 +9,9 @@ export default class Service {
     private readonly _uiSet: object; // TODO
 
     constructor(source: ServiceObject) {
-
+        this._serviceName = source.serviceName;
+        this._apiSet = new APISet(source.apiSet);
+        this._dataSet = undefined;
+        this._uiSet = undefined;
     }
 }
