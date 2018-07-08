@@ -1,5 +1,5 @@
 import {PairOfObject} from '../../../helper/PairOfObject';
-import {HttpMethods} from '../../../Authorization/Enums/HttpMethods';
+import {HttpMethods} from '../../../Provider/Authorization/Enums/HttpMethods';
 
 export type RestApiUnitObject = {
     path: string,
