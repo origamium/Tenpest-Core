@@ -1,5 +1,5 @@
-import {AuthMethods} from '../../../Authorization/Enums/AuthMethods';
-import {OAuthVersion} from '../../../Authorization/Enums/OAuthVersion';
+import {AuthMethods} from '../../../Provider/Authorization/Enums/AuthMethods';
+import {OAuthVersion} from '../../../Provider/Authorization/Enums/OAuthVersion';
 
 export type AuthorizationUnitObject = {
     oauthVersion: OAuthVersion

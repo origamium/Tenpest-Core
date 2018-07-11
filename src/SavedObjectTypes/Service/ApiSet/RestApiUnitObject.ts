@@ -1,12 +1,13 @@
 import {PairOfObject} from '../../../helper/PairOfObject';
 import {HttpMethods} from '../../../Provider/Authorization/Enums/HttpMethods';
+import {ParameterDefinition} from './ParameterDefinition';
 
 export type RestApiUnitObject = {
     path: string,
     httpMethod: HttpMethods,
-    parameterDefinition: object, // TODO
-    returnedDataKey: string, // related with SchemaObject
-    errorKey: string, // related with SchemaObject
+    parameterDefinition: ParameterDefinition,
+    returnedDataKey: string, // related SchemaObject.
+    errorKey?: string, // use SchemaObject
 };
 
 export type RestApiUnits = PairOfObject<RestApiUnitObject>;
