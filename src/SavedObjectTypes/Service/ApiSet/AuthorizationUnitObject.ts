@@ -6,8 +6,8 @@ export type AuthorizationUnitObject = {
     authMethod: AuthMethods,
     scope?: string[],
     redirectUrl: string,
-    requestAuthorizeToken?: string,
-    requestAuthorizePagePath: string,
-    requestAccessTokenPath: string,
+    requestAuthorizeTokenPath?: string,
+    requestAuthorizePagePath: string, // required
+    requestAccessTokenPath: string, // required
     requestTokenRefreshPath?: string,
 };
