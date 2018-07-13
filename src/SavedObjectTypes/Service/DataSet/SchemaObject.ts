@@ -9,4 +9,4 @@ export type SchemaObjectElement = {
     definition?: PairOfObject<SchemaObject>,
 };
 
-export type SchemaObject = PairOfObject<SchemaObjectElement>;
+export type SchemaObject = SchemaObjectElement;
