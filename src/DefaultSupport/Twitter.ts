@@ -4,7 +4,7 @@ import {OAuthVersion} from '../Provider/Authorization/Enums/OAuthVersion';
 import {AuthMethods} from '../Provider/Authorization/Enums/AuthMethods';
 import {HttpMethods} from '../Provider/Authorization/Enums/HttpMethods';
 import {ApiParameterMethods} from '../Provider/Authorization/Enums/ApiParameterMethods';
-import {schemaTypes} from '../Dynamizr/Enums/schemaTypes';
+import {schemaTypes} from '../Data/Dynamizr/Enums/schemaTypes';
 import {DataSets} from '../SavedObjectTypes/Service/DataSet/DataSetObject';
 import {ApiSetObject} from '../SavedObjectTypes/Service/ApiSet/ApiSetObject';
 
