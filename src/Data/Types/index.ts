@@ -1,9 +1,9 @@
 import {EventProperties, IEvent} from './Event';
 import {IReaction, ReactionProperties} from './Reaction';
-import {IUser, UserProperties} from './User';
 import {IReplyTo, ReplyToProperties} from './ReplyTo';
-import {IThread, ThreadProperties} from './Thread';
 import {IStatus, StatusProperties} from './Status';
+import {IThread, ThreadProperties} from './Thread';
+import {IUser, UserProperties} from './User';
 
 export interface IDataType {
     user: IUser;

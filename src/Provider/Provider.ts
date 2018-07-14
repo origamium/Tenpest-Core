@@ -1,6 +1,6 @@
-import { IAPIKey } from './Authorization/Interfaces/IKeys';
 import {ProviderObject} from '../SavedObjectTypes/Provider/ProviderObject';
 import Authorization from './Authorization/Classes/Authorization';
+import { IAPIKey } from './Authorization/Interfaces/IKeys';
 
 export default class Provider {
     private readonly _name: string;

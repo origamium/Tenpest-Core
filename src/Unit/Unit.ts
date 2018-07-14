@@ -1,6 +1,6 @@
-import {dynaSchemaCreator} from '../Dynamizr';
 import {HttpMethods} from '../Authorization/Enums/HttpMethods';
 import {IApiParameterDefinition} from '../Authorization/Interfaces/IApiParameterDefinition';
+import {dynaSchemaCreator} from '../Dynamizr';
 import {IReturnedDatumInfo} from './IReturnedDatumInfo';
 
 export class Unit {

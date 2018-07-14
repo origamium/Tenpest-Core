@@ -1,7 +1,7 @@
 import {schema} from 'normalizr';
 import {schemaTypes} from '../../../Enums/schemaTypes';
-import {UnsupportedSchemaType} from '../Exceptions';
 import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
+import {UnsupportedSchemaType} from '../Exceptions';
 import {IRecursiveSchema, ISchema, ISchemaElement} from '../Interfaces/ISchema';
 
 // --- normalizr schema creator ----

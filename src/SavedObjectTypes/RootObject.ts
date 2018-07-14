@@ -1,6 +1,6 @@
 import {Accounts} from './Account/AccountObject';
-import {Services} from './Service/ServiceObject';
 import {Providers} from './Provider/ProviderObject';
+import {Services} from './Service/ServiceObject';
 
 export type RootObject = {
     accounts: Accounts,

@@ -6,6 +6,6 @@ export type AuthorizationDataObject = {
 
 export type RefreshTokenObject = {
     refreshToken: string,
-    tokenAcquisitionDate: number, //unix time
+    tokenAcquisitionDate: number, // unix time
     tokenExpireDate: number; // unix time
-}
+};

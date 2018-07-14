@@ -1,6 +1,6 @@
+import {IUser} from '../../Datum/Types/User';
 import {PairOfObject} from '../../helper/PairOfObject';
 import {AuthorizationDataObject} from './AuthorizationDataObject';
-import {IUser} from '../../Datum/Types/User';
 
 export type AccountObject = {
     id: string,

@@ -1,12 +1,12 @@
-import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
-import {ProviderObject} from '../SavedObjectTypes/Provider/ProviderObject';
-import {OAuthVersion} from '../Enums/OAuthVersion';
+import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
 import {AuthMethods} from '../Enums/AuthMethods';
 import {HttpMethods} from '../Enums/HttpMethods';
-import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
+import {OAuthVersion} from '../Enums/OAuthVersion';
 import {schemaTypes} from '../Enums/schemaTypes';
-import {DataSets} from '../SavedObjectTypes/Service/DataSet/DataSetObject';
+import {ProviderObject} from '../SavedObjectTypes/Provider/ProviderObject';
 import {ApiSetObject} from '../SavedObjectTypes/Service/ApiSet/ApiSetObject';
+import {DataSets} from '../SavedObjectTypes/Service/DataSet/DataSetObject';
+import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
 
 const apiSet: ApiSetObject = {
     authorization: {

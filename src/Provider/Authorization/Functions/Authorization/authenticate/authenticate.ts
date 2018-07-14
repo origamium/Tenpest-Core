@@ -1,5 +1,5 @@
-import {UnknownOAuthSignatureSpace} from '../../../../../Exception/Exceptions';
 import {SignSpace} from '../../../../../Enums/SignSpace';
+import {UnknownOAuthSignatureSpace} from '../../../../../Exception/Exceptions';
 import {IApiPayload} from '../../../Interfaces/IApiPayload';
 import {IAuthorization} from '../../../Interfaces/IAuthorization';
 

@@ -5,10 +5,10 @@
 */
 
 import {ApiSetObject} from '../SavedObjectTypes/Service/ApiSet/ApiSetObject';
-// import RCP from './RCP';
-import Websocket from './Websocket';
 // import Streaming from './Streaming';
 import REST from './REST';
+// import RCP from './RCP';
+import Websocket from './Websocket';
 
 export class APISet {
     private readonly _rest: REST; // REST

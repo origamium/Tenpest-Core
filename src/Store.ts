@@ -1,8 +1,8 @@
-import Provider from './Provider/Provider';
-import Service from './Service/Service';
 import Account from './Account/Account';
-import {RootObject} from './SavedObjectTypes/RootObject';
 import {PairOfObject} from './helper/PairOfObject';
+import Provider from './Provider/Provider';
+import {RootObject} from './SavedObjectTypes/RootObject';
+import Service from './Service/Service';
 
 export default class Store {
     private providers: PairOfObject<Provider> = {};
@@ -30,9 +30,9 @@ export default class Store {
             }
         });
         Object.keys(loadedObject.providers).forEach((key) => {
-            try{
+            try {
                 this.providers[key] = new Provider(loadedObject.providers[key]);
-            }catch (e) {
+            } catch (e) {
                 console.error('failed load provider object.');
                 console.error(e.toString());
                 loadIsSuccessed = false;

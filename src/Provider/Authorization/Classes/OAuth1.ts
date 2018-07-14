@@ -1,15 +1,15 @@
 import * as authSign from 'oauth-sign';
-import {UnknownOAuthSignatureSpace} from '../../../Exception/Exceptions';
 import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
 import {AuthMethods} from '../../../Enums/AuthMethods';
 import {SignSpace} from '../../../Enums/SignSpace';
+import {UnknownOAuthSignatureSpace} from '../../../Exception/Exceptions';
 import {IApiData} from '../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IAuthInfo} from '../Interfaces/IAuthInfo';
-import OAuth from './OAuth';
-import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import {IAuthorizedApiData} from '../Interfaces/IAuthorizedApiData';
+import {IAPIKey, IToken} from '../Interfaces/IKeys';
+import OAuth from './OAuth';
 
 export default class OAuth1 extends OAuth {
     private static _now(): string {
@@ -47,11 +47,11 @@ export default class OAuth1 extends OAuth {
     public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthMethods, optional?: {scope?: string[], authToken?: IToken})
         : IAuthorizedApiData & {requiredPayload?: object} {
         return {};
-    };
+    }
 
     public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthMethods, optional?: {scope?: string[], authToken?: IToken})
         : IAuthorizedApiData {
-        return {}
+        return {};
     }
 
     public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {

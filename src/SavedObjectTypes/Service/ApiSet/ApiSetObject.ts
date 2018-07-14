@@ -1,5 +1,5 @@
-import {RestApiUnits} from './RestApiUnitObject';
 import {AuthorizationUnitObject} from './AuthorizationUnitObject';
+import {RestApiUnits} from './RestApiUnitObject';
 
 export type ApiSetObject = {
     authorization: AuthorizationUnitObject,

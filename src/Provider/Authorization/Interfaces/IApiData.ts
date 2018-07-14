@@ -1,5 +1,5 @@
-import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
 import {HttpMethods} from '../../../Enums/HttpMethods';
+import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
 import {IApiParameterDefinition} from './IApiParameterDefinition';
 
 export interface IApiData {

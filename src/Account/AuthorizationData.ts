@@ -1,5 +1,5 @@
-import {AuthorizationDataObject} from '../SavedObjectTypes/Account/AuthorizationDataObject';
 import Exportable from '../helper/Exportable';
+import {AuthorizationDataObject} from '../SavedObjectTypes/Account/AuthorizationDataObject';
 
 export default class AuthorizationData extends Exportable {
     private _token: string;

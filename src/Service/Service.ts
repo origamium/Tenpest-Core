@@ -1,5 +1,5 @@
-import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
 import {APISet} from '../API/APISet';
+import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
 
 export default class Service {
     private readonly _serviceName: string;
