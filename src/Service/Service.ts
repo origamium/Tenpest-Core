@@ -1,4 +1,5 @@
 import {APISet} from '../API/APISet';
+import DataSet from '../Data/DataSet';
 import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
 
 export default class Service {
@@ -11,6 +12,6 @@ export default class Service {
         this._serviceName = source.serviceName;
         this._apiSet = new APISet(source.apiSet);
         this._dataSet = new DataSet(source.dataSet);
-        this._uiSet = undefined;
+        this._uiSet = {};
     }
 }
