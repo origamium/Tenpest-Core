@@ -1,4 +1,4 @@
-import {IUser} from '../../Datum/Types/User';
+import {IUser} from '../../Data/Types/User';
 import {PairOfObject} from '../../helper/PairOfObject';
 import {AuthorizationDataObject} from './AuthorizationDataObject';
 

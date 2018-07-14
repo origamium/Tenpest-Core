@@ -4,7 +4,7 @@
 * └───────────┘
 */
 
-import {ApiSetObject} from '../SavedObjectTypes/Service/ApiSet/ApiSetObject';
+import {ApiSetObject} from '../StoredObjectTypes/Service/ApiSet/ApiSetObject';
 // import Streaming from './Streaming';
 import REST from './REST';
 // import RCP from './RCP';
