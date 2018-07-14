@@ -1,6 +1,6 @@
-import {IDynaSchema} from '../Interfaces/IDynaSchema';
+import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
 
-const dataTransform = (format: any, target: any) => {
+const dataTransform = (format: any, target: any): any => {
     switch (typeof format) {
         case 'string':
             return target[format];
@@ -27,7 +27,7 @@ const transform = (format: any, target: any) => {
         .reduce((accm, curr) => ({ ...accm, [curr.itemKey]: curr.data}), {});
 };
 
-export default (dynaSchemaData: IDynaSchema, target: any) => ({
+export default (dynaSchemaData: IReturnedDatumInfo, target: any) => ({ // TODO: Return Data Definition
     entities: transform(dynaSchemaData.transformerSchema, target.entities),
     result: target.result,
 });
