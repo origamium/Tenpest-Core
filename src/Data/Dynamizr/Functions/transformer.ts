@@ -1,4 +1,4 @@
-import { IDynaSchema } from '../Interfaces/IDynaSchema';
+import {IDynaSchema} from '../Interfaces/IDynaSchema';
 
 const dataTransform = (format: any, target: any) => {
     switch (typeof format) {

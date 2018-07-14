@@ -1,6 +1,6 @@
 import AuthorizationData from './AuthorizationData';
 import {AccountObject} from '../SavedObjectTypes/Account/AccountObject';
-import {IUser} from '../Datum/User';
+import {IUser} from '../Datum/Types/User';
 
 export default class Account {
     private readonly _id: string;
