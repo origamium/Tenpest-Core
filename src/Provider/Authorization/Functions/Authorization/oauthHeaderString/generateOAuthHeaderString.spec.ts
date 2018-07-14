@@ -1,8 +1,8 @@
 /* tslint:disable */
 import generateOAuthHeaderString from './generateOAuthHeaderString';
-import {SignMethod} from '../../../Enums/SignMethod';
-import {HttpMethods} from '../../../Enums/HttpMethods';
-import {OAuthVersion} from "../../../Enums/OAuthVersion";
+import {SignMethod} from '../../../../../Enums/SignMethod';
+import {HttpMethods} from '../../../../../Enums/HttpMethods';
+import {OAuthVersion} from '../../../../../Enums/OAuthVersion';
 
 const parameter1 = {
     oauth_consumer_key: '123456789abcde',

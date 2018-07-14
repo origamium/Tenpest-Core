@@ -1,4 +1,4 @@
-import {HttpMethods} from '../Provider/Authorization/Enums/HttpMethods';
+import {HttpMethods} from '../Enums/HttpMethods';
 
 export default class REST {
     private readonly _path: string;

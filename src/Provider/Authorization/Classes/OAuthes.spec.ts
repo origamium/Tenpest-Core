@@ -1,14 +1,14 @@
 /* tslint:disable */
 
 import Authorization from './Authorization';
-import {OAuthVersion} from '../Enums/OAuthVersion';
-import {SignMethod} from '../Enums/SignMethod';
-import {SignSpace} from '../Enums/SignSpace';
+import {OAuthVersion} from '../../../Enums/OAuthVersion';
+import {SignMethod} from '../../../Enums/SignMethod';
+import {SignSpace} from '../../../Enums/SignSpace';
 import {IAPIKey, IToken} from '../Interfaces/IKeys';
 import {IApiData} from '../Interfaces/IApiData';
-import {HttpMethods} from '../Enums/HttpMethods';
+import {HttpMethods} from '../../../Enums/HttpMethods';
 import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
-import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
+import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
 
 const blank: IApiData = {
     baseUri: 'https://example.com',

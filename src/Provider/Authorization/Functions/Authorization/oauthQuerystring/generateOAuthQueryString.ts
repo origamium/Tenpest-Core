@@ -1,5 +1,5 @@
-import {HttpMethods} from '../../../Enums/HttpMethods';
-import {OAuthVersion} from '../../../Enums/OAuthVersion';
+import {HttpMethods} from '../../../../../Enums/HttpMethods';
+import {OAuthVersion} from '../../../../../Enums/OAuthVersion';
 import {IOAuth1Parameters} from '../../../Interfaces/IOAuth1Parameters';
 
 export default (

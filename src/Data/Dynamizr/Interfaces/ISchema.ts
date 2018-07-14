@@ -1,4 +1,4 @@
-import {schemaTypes} from '../Enums/schemaTypes';
+import {schemaTypes} from '../../../Enums/schemaTypes';
 import {ITransform} from './ITransform';
 
 export interface ISchema {

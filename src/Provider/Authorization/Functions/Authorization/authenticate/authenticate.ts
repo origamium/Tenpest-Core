@@ -1,9 +1,7 @@
-import {UnknownAuthorizationMethod, UnknownOAuthSignatureSpace} from '../../../../../Exception/Exceptions';
-import {OAuthVersion} from '../../../Enums/OAuthVersion';
-import {SignSpace} from '../../../Enums/SignSpace';
+import {UnknownOAuthSignatureSpace} from '../../../../../Exception/Exceptions';
+import {SignSpace} from '../../../../../Enums/SignSpace';
 import {IApiPayload} from '../../../Interfaces/IApiPayload';
 import {IAuthorization} from '../../../Interfaces/IAuthorization';
-import generateOAuthHeaderString from '../oauthHeaderString/generateOAuthHeaderString';
 
 // in OAuth1.0, Headerstring is 'Authorization: OAuth ~'
 // in OAuth2.0, Headerstring is  'Authorization: Bearer ~'

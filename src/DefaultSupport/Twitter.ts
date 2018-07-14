@@ -1,10 +1,10 @@
 import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
 import {ProviderObject} from '../SavedObjectTypes/Provider/ProviderObject';
-import {OAuthVersion} from '../Provider/Authorization/Enums/OAuthVersion';
-import {AuthMethods} from '../Provider/Authorization/Enums/AuthMethods';
-import {HttpMethods} from '../Provider/Authorization/Enums/HttpMethods';
-import {ApiParameterMethods} from '../Provider/Authorization/Enums/ApiParameterMethods';
-import {schemaTypes} from '../Data/Dynamizr/Enums/schemaTypes';
+import {OAuthVersion} from '../Enums/OAuthVersion';
+import {AuthMethods} from '../Enums/AuthMethods';
+import {HttpMethods} from '../Enums/HttpMethods';
+import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
+import {schemaTypes} from '../Enums/schemaTypes';
 import {DataSets} from '../SavedObjectTypes/Service/DataSet/DataSetObject';
 import {ApiSetObject} from '../SavedObjectTypes/Service/ApiSet/ApiSetObject';
 

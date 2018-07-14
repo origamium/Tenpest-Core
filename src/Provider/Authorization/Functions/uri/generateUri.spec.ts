@@ -1,8 +1,9 @@
 /* tslint:disable */
-import {HttpMethods} from '../../Enums/HttpMethods';
+import {HttpMethods} from '../../../../Enums/HttpMethods';
 import generateUri from './generateUri';
-import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
+import {ApiParameterMethods} from '../../../../Enums/ApiParameterMethods';
 import {IApiData} from '../../Interfaces/IApiData';
+
 const targetUrl = 'https://example.com';
 
 const blank: IApiData = {

@@ -1,4 +1,4 @@
-import {AuthMethods} from '../Enums/AuthMethods';
+import {AuthMethods} from '../../../Enums/AuthMethods';
 import {IApiData} from '../Interfaces/IApiData';
 import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IAuthInfo} from '../Interfaces/IAuthInfo';

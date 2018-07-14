@@ -1,5 +1,5 @@
 import {PairOfObject} from '../../../helper/PairOfObject';
-import {ApiParameterMethods} from '../../../Provider/Authorization/Enums/ApiParameterMethods';
+import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
 
 export type ParameterDefinitionObject = {
     required: boolean,

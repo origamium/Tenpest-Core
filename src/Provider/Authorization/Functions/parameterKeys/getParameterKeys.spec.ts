@@ -1,9 +1,9 @@
 /* tslint:disable */
 import {MultipleSandWitchParameterNotAllowed} from '../../../../Exception/Exceptions';
-import {HttpMethods} from '../../Enums/HttpMethods';
+import {HttpMethods} from '../../../../Enums/HttpMethods';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import getParameterKeys from './getParameterKeys';
-import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
+import {ApiParameterMethods} from '../../../../Enums/ApiParameterMethods';
 import {IApiData} from '../../Interfaces/IApiData';
 
 const blank: IApiData = {
