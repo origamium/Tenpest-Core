@@ -39,9 +39,10 @@ const schemaCreator = (schemaData: ISchemaElement): any => {
 
 // --- transform ---
 const pickupTransformAttr = (schemaData: ISchemaElement, root = {}) => {
-    if (schemaData.definition) {
-        Object.keys(schemaData.definition)
-            .forEach((key) => pickupTransformAttr(schemaData.definition[key], root));
+    const definition = schemaData.definition;
+    if (definition) {
+        Object.keys(definition)
+            .forEach((key) => pickupTransformAttr(definition[key], root));
     }
     return Object.assign(root, { [schemaData.name]: schemaData.transform });
 };
