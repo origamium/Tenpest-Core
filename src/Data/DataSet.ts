@@ -1,4 +1,4 @@
-import {DataSets} from '../SavedObjectTypes/Service/DataSet/DataSetObject';
+import {DataSets} from '../StoredObjectTypes/Service/DataSet/DataSetObject';
 import dynamize, {dynaSchemaCreator} from './Dynamizr';
 import {PairOfObject} from '../helper/PairOfObject';
 import {IReturnedDatumInfo} from '../Unit/IReturnedDatumInfo';
@@ -13,11 +13,7 @@ export default class DataSet {
         });
     }
 
-    get data(): PairOfObject<IReturnedDatumInfo> {
-        return this._data;
-    }
-
-    public normalize(key: string, data: any): any { // TODO:  return value is not any....
+    public normalize(key: string, data: any): any {
         if (this._data[key]) {
             throw new Error();
         }

@@ -1,4 +1,6 @@
 import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
+import {ISolvedData} from '../Interfaces/ISolvedData';
+import {ITransform} from '../Interfaces/ITransform';
 
 const dataTransform = (format: any, target: any): any => {
     switch (typeof format) {
@@ -13,7 +15,7 @@ const dataTransform = (format: any, target: any): any => {
     }
 };
 
-const transform = (format: any, target: any) => {
+const transform = (format: ITransform, target: any) => {
     return Object.keys(target)
         .map((itemKey) => ({
             itemKey,
@@ -27,7 +29,7 @@ const transform = (format: any, target: any) => {
         .reduce((accm, curr) => ({ ...accm, [curr.itemKey]: curr.data}), {});
 };
 
-export default (dynaSchemaData: IReturnedDatumInfo, target: any) => ({ // TODO: Return Data Definition
+export default (dynaSchemaData: IReturnedDatumInfo, target: any): ISolvedData => ({ // TODO: Return Data Definition
     entities: transform(dynaSchemaData.transformerSchema, target.entities),
     result: target.result,
 });
