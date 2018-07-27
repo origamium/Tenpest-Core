@@ -4,3 +4,4 @@ export const UnknownAuthorizationMethod = new Error('Unknown Authorization Metho
 export const MultipleSandWitchParameterNotAllowed = new Error('Multiple SandWitched parameter is not allowed.');
 export const RequiredParameterNotFound = new Error('Required parameter not found.');
 export const NotDefinedParameterFound = new Error('Contains not defined parameters.');
+export const UnexpectedDataKey = new Error('Unexpected data key.');

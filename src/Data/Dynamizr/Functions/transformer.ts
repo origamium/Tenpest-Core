@@ -1,6 +1,7 @@
 import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
 import {ISolvedData} from '../Interfaces/ISolvedData';
 import {ITransform} from '../Interfaces/ITransform';
+import {UnexpectedFormatType} from '../Exceptions';
 
 const dataTransform = (format: any, target: any): any => {
     switch (typeof format) {
@@ -11,7 +12,7 @@ const dataTransform = (format: any, target: any): any => {
                 .map((key) => ({key, data: dataTransform(format[key], target)}))
                 .reduce((accm, curr) => ({ ...accm, [curr.key]: curr.data }), {});
         default:
-            throw new Error('oh');
+            throw UnexpectedFormatType;
     }
 };
 
