@@ -1,7 +1,7 @@
 import Account from './Account/Account';
 import {PairOfObject} from './helper/PairOfObject';
 import Provider from './Provider/Provider';
-import {RootObject} from './SavedObjectTypes/RootObject';
+import {RootObject} from './StoredObjectTypes/RootObject';
 import Service from './Service/Service';
 
 export default class Store {
@@ -20,20 +20,23 @@ export default class Store {
         */
         let loadIsSuccessed = true;
 
-        Object.keys(loadedObject.services).forEach((key) => {
+        Object.keys(loadedObject.services).forEach((serviceKey) => {
             try {
-                this.services[key] = new Service(loadedObject.services[key]);
+                this.services[serviceKey] = new Service(loadedObject.services[serviceKey]);
+
+                Object.keys(loadedObject.providers)
+                    .filter((providerKey) => serviceKey === loadedObject.providers[providerKey].serviceKey)
+                    .forEach((providerKey) => {
+                    try {
+                        this.providers[providerKey] = new Provider(loadedObject.providers[providerKey]);
+                    } catch (e) {
+                        console.error('failed load provider object.');
+                        console.error(e.toString());
+                        loadIsSuccessed = false;
+                    }
+                });
             } catch (e) {
                 console.error('failed load service object.');
-                console.error(e.toString());
-                loadIsSuccessed = false;
-            }
-        });
-        Object.keys(loadedObject.providers).forEach((key) => {
-            try {
-                this.providers[key] = new Provider(loadedObject.providers[key]);
-            } catch (e) {
-                console.error('failed load provider object.');
                 console.error(e.toString());
                 loadIsSuccessed = false;
             }

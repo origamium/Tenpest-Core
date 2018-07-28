@@ -1,6 +1,7 @@
 import {PairOfObject} from '../../helper/PairOfObject';
 
 export type ProviderObject = {
+    serviceKey: string, // equal Service Object key.
     providerName: string,
     domain: string, // domain must be equal key
     baseUrl: string,
