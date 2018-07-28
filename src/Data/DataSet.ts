@@ -1,8 +1,8 @@
-import {DataSets} from '../StoredObjectTypes/Service/DataSet/DataSetObject';
-import dynamize, {dynaSchemaCreator} from './Dynamizr';
+import {UnexpectedDataKey} from '../Exception/Exceptions';
 import {PairOfObject} from '../helper/PairOfObject';
 import {IReturnedDatumInfo} from '../Interfaces/IReturnedDatumInfo';
-import {UnexpectedDataKey} from '../Exception/Exceptions';
+import {DataSets} from '../StoredObjectTypes/Service/DataSet/DataSetObject';
+import dynamize, {dynaSchemaCreator} from './Dynamizr';
 
 export default class DataSet {
     private readonly _receivedDataInfo: PairOfObject<IReturnedDatumInfo>;

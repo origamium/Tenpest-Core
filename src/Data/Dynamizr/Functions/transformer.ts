@@ -1,7 +1,7 @@
 import {IReturnedDatumInfo} from '../../../Interfaces/IReturnedDatumInfo';
+import {UnexpectedFormatType} from '../Exceptions';
 import {ISolvedData} from '../Interfaces/ISolvedData';
 import {ITransform} from '../Interfaces/ITransform';
-import {UnexpectedFormatType} from '../Exceptions';
 
 const dataTransform = (format: any, target: any): any => {
     switch (typeof format) {
