@@ -1,0 +1,8 @@
+{
+    "target": "messages",
+    "schema": {
+        "name": "content",
+        "type": "Array",
+        "idAttribute": "ts"
+    }
+}
