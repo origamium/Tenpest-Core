@@ -1,6 +1,6 @@
 import {schema} from 'normalizr';
 import {schemaTypes} from '../../../Enums/schemaTypes';
-import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
+import {IReturnedDatumInfo} from '../../../Interfaces/IReturnedDatumInfo';
 import {UnsupportedSchemaType} from '../Exceptions';
 import {IRecursiveSchema, ISchema, ISchemaElement} from '../Interfaces/ISchema';
 

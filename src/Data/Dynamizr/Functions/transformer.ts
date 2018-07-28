@@ -1,4 +1,4 @@
-import {IReturnedDatumInfo} from '../../../Unit/IReturnedDatumInfo';
+import {IReturnedDatumInfo} from '../../../Interfaces/IReturnedDatumInfo';
 import {ISolvedData} from '../Interfaces/ISolvedData';
 import {ITransform} from '../Interfaces/ITransform';
 import {UnexpectedFormatType} from '../Exceptions';

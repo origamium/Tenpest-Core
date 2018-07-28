@@ -1,5 +1,5 @@
 import {normalize} from 'normalizr';
-import {IReturnedDatumInfo} from '../../Unit/IReturnedDatumInfo';
+import {IReturnedDatumInfo} from '../../Interfaces/IReturnedDatumInfo';
 import transformer from './Functions/transformer';
 
 export default (schemaData: IReturnedDatumInfo, data: any) => (

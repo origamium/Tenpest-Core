@@ -1,6 +1,6 @@
 import {HttpMethods} from '../Enums/HttpMethods';
-import {IApiParameterDefinition} from '../Provider/Authorization/Interfaces/IApiParameterDefinition';
-import {RestApiUnitObject} from '../SavedObjectTypes/Service/ApiSet/RestApiUnitObject';
+import {IApiParameterDefinition} from '../Interfaces/IApiParameterDefinition';
+import {RestApiUnitObject} from '../StoredObjectTypes/Service/ApiSet/RestApiUnitObject';
 
 export default class RESTElement {
     private readonly _path: string;

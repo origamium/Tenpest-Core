@@ -1,6 +1,6 @@
-import {ProviderObject} from '../SavedObjectTypes/Provider/ProviderObject';
-import Authorization from './Authorization/Classes/Authorization';
-import { IAPIKey } from './Authorization/Interfaces/IKeys';
+import Authorization from '../API/Authorization/Classes/Authorization';
+import { IAPIKey } from '../Interfaces/IKeys';
+import { ProviderObject } from '../StoredObjectTypes/Provider/ProviderObject';
 
 export default class Provider {
     private readonly _name: string;

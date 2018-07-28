@@ -1,7 +1,7 @@
 import {DataSets} from '../StoredObjectTypes/Service/DataSet/DataSetObject';
 import dynamize, {dynaSchemaCreator} from './Dynamizr';
 import {PairOfObject} from '../helper/PairOfObject';
-import {IReturnedDatumInfo} from '../Unit/IReturnedDatumInfo';
+import {IReturnedDatumInfo} from '../Interfaces/IReturnedDatumInfo';
 import {UnexpectedDataKey} from '../Exception/Exceptions';
 
 export default class DataSet {
