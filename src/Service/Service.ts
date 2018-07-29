@@ -1,5 +1,6 @@
 import {APISet} from '../API/APISet';
 import DataSet from '../Data/DataSet';
+import {AuthorizationUnitObject} from '../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
 import {ServiceObject} from '../StoredObjectTypes/Service/ServiceObject';
 
 export default class Service {
