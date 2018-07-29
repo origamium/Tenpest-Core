@@ -5,15 +5,15 @@ import {IApiPayload} from '../Interfaces/IApiPayload';
 import {IAuthorizedApiData} from '../Interfaces/IAuthorizedApiData';
 
 export default class Request {
-    public static createUri(): string {
+    public static createUri(): string { // TODO
         return '';
     }
 
-    public static createQueryParameter(): object {
+    public static createQueryParameter(): object { // TODO
         return {};
     }
 
-    public static createHeader(): object {
+    public static createHeader(): object { // TODO
         return {};
     }
 
