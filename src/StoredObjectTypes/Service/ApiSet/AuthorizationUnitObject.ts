@@ -1,9 +1,9 @@
-import {AuthMethods} from '../../../Enums/AuthMethods';
+import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
 import {OAuthVersion} from '../../../Enums/OAuthVersion';
 
 export type AuthorizationUnitObject = {
     oauthVersion: OAuthVersion
-    authMethod: AuthMethods,
+    authMethod: AuthorizeMethod,
     scope?: string[],
     redirectUrl: string,
     requestAuthorizeTokenPath?: string,

@@ -1,4 +1,4 @@
-import {AuthMethods} from '../../../Enums/AuthMethods';
+import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
 import {OAuthVersion} from '../../../Enums/OAuthVersion';
 import {SignMethod} from '../../../Enums/SignMethod';
 import {SignSpace} from '../../../Enums/SignSpace';
@@ -13,14 +13,14 @@ import OAuth2 from './OAuth2';
 export default class Authorization {
     private oauth: OAuth1 | OAuth2;
     private info: IAuthInfo;
-    private authorizeMethod: AuthMethods;
+    private authorizeMethod: AuthorizeMethod;
     private scope: string | null;
 
     constructor(
         version: OAuthVersion,
         signMethod: SignMethod,
         signatureSpace: SignSpace,
-        authorizeMethod: AuthMethods,
+        authorizeMethod: AuthorizeMethod,
         scope: string[] = [],
         key: IAPIKey,
         token: IToken | null = null,

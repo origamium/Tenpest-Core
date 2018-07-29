@@ -1,5 +1,5 @@
 import {ApiParameterMethods} from '../Enums/ApiParameterMethods';
-import {AuthMethods} from '../Enums/AuthMethods';
+import {AuthorizeMethod} from '../Enums/AuthorizeMethod';
 import {HttpMethods} from '../Enums/HttpMethods';
 import {OAuthVersion} from '../Enums/OAuthVersion';
 import {schemaTypes} from '../Enums/schemaTypes';
@@ -11,7 +11,7 @@ import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
 const apiSet: ApiSetObject = {
     authorization: {
         oauthVersion: OAuthVersion.OAuth1,
-        authMethod: AuthMethods.PIN,
+        authMethod: AuthorizeMethod.PIN,
         redirectUrl: 'https://google.com',
         requestAuthorizeTokenPath: 'oauth/request_token',
         requestAuthorizePagePath: 'oauth/authorize',

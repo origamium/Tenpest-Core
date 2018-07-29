@@ -1,11 +1,11 @@
 import {OAuthVersion} from '../../Enums/OAuthVersion';
 import {SignMethod} from '../../Enums/SignMethod';
 import {SignSpace} from '../../Enums/SignSpace';
-import {AuthMethods} from '../../Enums/AuthMethods';
+import {AuthorizeMethod} from '../../Enums/AuthorizeMethod';
 
 export type AuthInfoObject = {
-    authMethod: OAuthVersion,
+    oauthVersion: OAuthVersion,
+    authMethod: AuthorizeMethod,
     signMethod: SignMethod,
     signSpace: SignSpace,
-    certMethod: AuthMethods,
 };

@@ -1,6 +1,6 @@
 import * as authSign from 'oauth-sign';
 import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
-import {AuthMethods} from '../../../Enums/AuthMethods';
+import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
 import {SignSpace} from '../../../Enums/SignSpace';
 import {UnknownOAuthSignatureSpace} from '../../../Exception/Exceptions';
 import {IApiData} from '../../../Interfaces/IApiData';
@@ -44,12 +44,12 @@ export default class OAuth1 extends OAuth {
         return {};
     }
 
-    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthMethods, optional?: {scope?: string[], authToken?: IToken})
+    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
         : IAuthorizedApiData & {requiredPayload?: object} {
         return {};
     }
 
-    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthMethods, optional?: {scope?: string[], authToken?: IToken})
+    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
         : IAuthorizedApiData {
         return {};
     }

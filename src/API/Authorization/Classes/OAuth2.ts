@@ -1,5 +1,5 @@
 import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
-import {AuthMethods} from '../../../Enums/AuthMethods';
+import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
 import {SignSpace} from '../../../Enums/SignSpace';
 import {UnknownOAuthSignatureSpace} from '../../../Exception/Exceptions';
 import {IApiData} from '../../../Interfaces/IApiData';
@@ -14,7 +14,7 @@ export default class OAuth2 extends OAuth {
 
     }
 
-    public authorization(method: AuthMethods): void {
+    public authorization(method: AuthorizeMethod): void {
 
     }
 

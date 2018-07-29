@@ -1,4 +1,4 @@
-import {AuthMethods} from '../../../Enums/AuthMethods';
+import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
 import {IApiData} from '../../../Interfaces/IApiData';
 import {IApiPayload} from '../../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../../Interfaces/IAuthInfo';
@@ -15,7 +15,7 @@ export default abstract class OAuth {
         apiData: IApiData,
         apiKey: IAPIKey,
         redirect_uri: string,
-        method: AuthMethods,
+        method: AuthorizeMethod,
         optional?: {
             scope?: string[],
             authToken?: IToken,
