@@ -3,15 +3,21 @@ import {AuthorizeMethod} from '../Enums/AuthorizeMethod';
 import {HttpMethods} from '../Enums/HttpMethods';
 import {OAuthVersion} from '../Enums/OAuthVersion';
 import {schemaTypes} from '../Enums/schemaTypes';
-import {ProviderObject} from '../SavedObjectTypes/Provider/ProviderObject';
-import {ApiSetObject} from '../SavedObjectTypes/Service/ApiSet/ApiSetObject';
-import {DataSets} from '../SavedObjectTypes/Service/DataSet/DataSetObject';
-import {ServiceObject} from '../SavedObjectTypes/Service/ServiceObject';
+import {SignMethod} from '../Enums/SignMethod';
+import {SignSpace} from '../Enums/SignSpace';
+import {ProviderObject} from '../StoredObjectTypes/Provider/ProviderObject';
+import {ApiSetObject} from '../StoredObjectTypes/Service/ApiSet/ApiSetObject';
+import {DataSets} from '../StoredObjectTypes/Service/DataSet/DataSetObject';
+import {ServiceObject} from '../StoredObjectTypes/Service/ServiceObject';
+
+const serviceKey = 'Twitter';
 
 const apiSet: ApiSetObject = {
     authorization: {
         oauthVersion: OAuthVersion.OAuth1,
         authMethod: AuthorizeMethod.PIN,
+        signMethod: SignMethod.hmac,
+        signSpace: SignSpace.Header,
         redirectUrl: 'https://google.com',
         requestAuthorizeTokenPath: 'oauth/request_token',
         requestAuthorizePagePath: 'oauth/authorize',
@@ -109,21 +115,22 @@ const dataSet: DataSets = {
     },
 };
 
-const uiSet: object = { // todo
-
-};
-
 const service: ServiceObject = {
-    serviceName: 'Twitter',
+    serviceName: serviceKey,
     apiSet,
     dataSet,
-    uiSet,
 };
 
 const provider: ProviderObject = {
-    providerName: 'Twitter',
+    serviceKey,
+    providerName: 'twitter.com',
     baseUrl: 'https://twitter.com/',
     domain: 'twitter.com',
     apiKey: '',
     apiSecret: '',
+};
+
+export default {
+    service,
+    provider,
 };
