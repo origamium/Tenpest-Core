@@ -25,8 +25,8 @@ export default class OAuth2 extends OAuth {
     }
 
     public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {
-        const template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
-        const value: IApiPayload = Object.assign({}, payload);
+        const template: IApiParameterDefinition = {};
+        const value: IApiPayload ={};
         let key: string = '';
         if (token) {
             switch (authInfo.signSpace) {
@@ -46,7 +46,7 @@ export default class OAuth2 extends OAuth {
         }
 
         return {
-            apiData: Object.assign({}, apiData, {parameter: template}),
+            definition: template,
             payload: value,
         };
     }

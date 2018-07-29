@@ -67,8 +67,9 @@ export default class OAuth1 extends OAuth {
     public getAuthorizationData(
         authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload,
     ): IAuthorizedApiData {
-        const template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
-        const value: IApiPayload = Object.assign({}, payload);
+        const template: IApiParameterDefinition = {};
+        const value: IApiPayload = {};
+
         const timestamp = OAuth1._now();
         const signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
         const nonce = 'fusianasan';
@@ -106,7 +107,7 @@ export default class OAuth1 extends OAuth {
         }
 
         return {
-            apiData: Object.assign({}, apiData, {parameter: template}),
+            definition: template,
             payload: value,
         };
     }
