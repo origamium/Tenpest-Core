@@ -1,39 +1,27 @@
-import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
 import {OAuthVersion} from '../../../Enums/OAuthVersion';
-import {SignMethod} from '../../../Enums/SignMethod';
-import {SignSpace} from '../../../Enums/SignSpace';
 import {UnknownAuthorizationMethod} from '../../../Exception/Exceptions';
 import {IApiData} from '../../../Interfaces/IApiData';
 import {IApiPayload} from '../../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../../Interfaces/IAuthInfo';
+import {IAuthorizedApiData} from '../../../Interfaces/IAuthorizedApiData';
 import {IAPIKey, IToken} from '../../../Interfaces/IKeys';
+import {AuthorizationUnitObject} from '../../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
 import OAuth1 from './OAuth1';
 import OAuth2 from './OAuth2';
 
 export default class Authorization {
-    private oauth: OAuth1 | OAuth2;
-    private info: IAuthInfo;
-    private authorizeMethod: AuthorizeMethod;
-    private scope: string | null;
+    private readonly oauth: OAuth1 | OAuth2;
+    private readonly info: IAuthInfo;
 
-    constructor(
-        version: OAuthVersion,
-        signMethod: SignMethod,
-        signatureSpace: SignSpace,
-        authorizeMethod: AuthorizeMethod,
-        scope: string[] = [],
-        key: IAPIKey,
-        token: IToken | null = null,
-    ) {
+    constructor(source: AuthorizationUnitObject, apiKey: IAPIKey) {
         this.info = {
-            apiKey: key,
-            token,
-            signSpace: signatureSpace,
-            signMethod,
-            oauthVersion: version,
+            apiKey,
+            oauthVersion: source.oauthVersion,
+            authMethod: source.authMethod,
+            signMethod: source.signMethod,
+            signSpace: source.signSpace,
+            scope: source.scope ? source.scope.reduce((p, c): string => p + ' ' + c, '') : undefined,
         };
-        this.authorizeMethod = authorizeMethod;
-        this.scope = 0 < scope.length ? scope.reduce((p, c): string => p + ' ' + c) : null;
 
         switch (this.info.oauthVersion) {
             case OAuthVersion.OAuth1:
@@ -47,11 +35,7 @@ export default class Authorization {
         }
     }
 
-    public updateToken(token: IToken) {
-        this.info.token = token;
-    }
-
-    public getAuthorizationData(apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
-        return this.oauth.getAuthorizationData(this.info, apiData, payload);
+    public getAuthorizationData(token: IToken, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {
+        return this.oauth.getAuthorizationData(this.info, token, apiData, payload);
     }
 }

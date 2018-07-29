@@ -11,15 +11,25 @@ import {IAuthorizedApiData} from '../../../Interfaces/IAuthorizedApiData';
 import {IAPIKey, IToken} from '../../../Interfaces/IKeys';
 import OAuth from './OAuth';
 
+const authProps = {
+    oauth_consumer_key: 'oauth_consumer_key',
+    oauth_token: 'oauth_token',
+    oauth_signature_method: 'oauth_signature_method',
+    oauth_timestamp: 'oauth_timestamp',
+    oauth_nonce: 'oauth_nonce',
+    oauth_version: 'oauth_version',
+    oauth_signature: 'oauth_signature',
+};
+
 export default class OAuth1 extends OAuth {
     private static _now(): string {
         return Math.round(+new Date() / 1000).toString();
     }
 
-    private static _signature(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload, timestamp: string): string {
+    private static _signature(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload, timestamp: string): string {
         const signParameter = {
             oauth_consumer_key: authInfo.apiKey.ApiKey,
-            oauth_token: authInfo.token ? authInfo.token.Token : '',
+            oauth_token: token ? token.Token : '',
             oauth_signature_method: authInfo.signMethod,
             oauth_timestamp: timestamp,
             oauth_nonce: 'superdrysinasai2018',
@@ -31,7 +41,7 @@ export default class OAuth1 extends OAuth {
             apiData.baseUri + apiData.path,
             {...signParameter, ...payload},
             authInfo.apiKey.ApiSecretKey,
-            authInfo.token ? authInfo.token.TokenSecret : '',
+            token ? token.TokenSecret : '',
         ));
     }
 
@@ -54,31 +64,23 @@ export default class OAuth1 extends OAuth {
         return {};
     }
 
-    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {
+    public getAuthorizationData(
+        authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload,
+    ): IAuthorizedApiData {
         const template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
         const value: IApiPayload = Object.assign({}, payload);
         const timestamp = OAuth1._now();
-        const signature = OAuth1._signature(authInfo, apiData, payload, timestamp);
+        const signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
         const nonce = 'fusianasan';
-        // TODO
-        if (authInfo.token) {
-            const authProps = {
-                oauth_consumer_key: 'oauth_consumer_key',
-                oauth_token: 'oauth_token',
-                oauth_signature_method: 'oauth_signature_method',
-                oauth_timestamp: 'oauth_timestamp',
-                oauth_nonce: 'oauth_nonce',
-                oauth_version: 'oauth_version',
-                oauth_signature: 'oauth_signature',
-            };
 
+        if (token) {
             switch (authInfo.signSpace) {
                 case SignSpace.Header:
                     const key = 'Authorization';
                     template[key] = { required: true, type: ApiParameterMethods.Header };
                     value[key] = 'OAuth ' +
                         OAuth1._headerstring(authProps.oauth_consumer_key, authInfo.apiKey.ApiKey) + ',' +
-                        OAuth1._headerstring(authProps.oauth_token, authInfo.token.Token) + ',' +
+                        OAuth1._headerstring(authProps.oauth_token, token.Token) + ',' +
                         OAuth1._headerstring(authProps.oauth_signature_method, authInfo.signMethod) + ',' +
                         OAuth1._headerstring(authProps.oauth_timestamp, timestamp) + ',' +
                         OAuth1._headerstring(authProps.oauth_nonce, nonce) + ',' +
@@ -91,7 +93,7 @@ export default class OAuth1 extends OAuth {
                         template[v] = {...authParamDefault};
                     });
                     value[authProps.oauth_consumer_key] = authInfo.apiKey.ApiKey;
-                    value[authProps.oauth_token] = authInfo.token.Token;
+                    value[authProps.oauth_token] = token.Token;
                     value[authProps.oauth_signature_method] = authInfo.signMethod;
                     value[authProps.oauth_timestamp] = timestamp;
                     value[authProps.oauth_nonce] = nonce;

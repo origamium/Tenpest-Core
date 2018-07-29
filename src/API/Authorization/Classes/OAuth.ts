@@ -36,6 +36,6 @@ export default abstract class OAuth {
     public refreshToken?(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
         : IAuthorizedApiData;
 
-    public abstract getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload)
+    public abstract getAuthorizationData(authInfo: IAuthInfo, token: IToken,  apiData: IApiData, payload: IApiPayload)
         : IAuthorizedApiData;
 }

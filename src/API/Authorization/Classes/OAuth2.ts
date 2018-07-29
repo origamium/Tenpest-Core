@@ -6,7 +6,9 @@ import {IApiData} from '../../../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../../../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../../Interfaces/IAuthInfo';
+import {IToken} from '../../../Interfaces/IKeys';
 import OAuth from './OAuth';
+import {IAuthorizedApiData} from '../../../Interfaces/IAuthorizedApiData';
 
 export default class OAuth2 extends OAuth {
     constructor() {
@@ -22,27 +24,30 @@ export default class OAuth2 extends OAuth {
 
     }
 
-    public getAuthorizationData(authInfo: IAuthInfo, apiData: IApiData, payload: IApiPayload): [IApiData, IApiPayload] {
+    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {
         const template: IApiParameterDefinition = Object.assign({}, apiData.parameter);
         const value: IApiPayload = Object.assign({}, payload);
         let key: string = '';
-        if (authInfo.token) {
+        if (token) {
             switch (authInfo.signSpace) {
                 case SignSpace.Header:
                     key = 'Authorization';
                     template[key] = {required: true, type: ApiParameterMethods.Header};
-                    value[key] = 'Bearer ' + authInfo.token.Token;
+                    value[key] = 'Bearer ' + token.Token;
                     break;
                 case SignSpace.Query:
                     key = 'access_token';
                     template[key] = {required: true, type: ApiParameterMethods.Query};
-                    value[key] = authInfo.token.Token;
+                    value[key] = token.Token;
                     break;
                 default:
                     throw UnknownOAuthSignatureSpace;
             }
         }
 
-        return [Object.assign({}, apiData, {parameter: template}), value];
+        return {
+            apiData: Object.assign({}, apiData, {parameter: template}),
+            payload: value,
+        };
     }
 }
