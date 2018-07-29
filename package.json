@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/jest": "^22.2.3",
     "@types/query-string": "^5.1.0",
+      "babel-core": "^6.26.3",
     "chalk": "^2.4.1",
     "jest": "^23.0.0",
     "normalizr": "^3.2.4",
