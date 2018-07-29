@@ -16,9 +16,7 @@ export default (
         if (sandWitchedParameterKey) {
             r += '/' + sandWitchedParameterKey + '/' + value[sandWitchedParameterKey];
             delete value[sandWitchedParameterKey];
-            r += queryStringify(queryParameterKeys, value);
-        } else {
-            r += queryStringify(queryParameterKeys, value);
         }
+        r += queryStringify(queryParameterKeys, value);
         return r;
     };
