@@ -1,20 +1,13 @@
 import {PairOfObject} from '../../helper/PairOfObject';
 import {ApiSetObject} from './ApiSet/ApiSetObject';
 import {DataSets} from './DataSet/DataSetObject';
-import {OAuthVersion} from '../../Enums/OAuthVersion';
-import {SignMethod} from '../../Enums/SignMethod';
-import {SignSpace} from '../../Enums/SignSpace';
-import {AuthMethods} from '../../Enums/AuthMethods';
+import {AuthInfoObject} from './AuthInfoObject';
 
 export type ServiceObject = {
     serviceName: string, // is equal key
     apiSet: ApiSetObject,
     dataSet: DataSets,
-
-    authMethod: OAuthVersion,
-    signMethod: SignMethod,
-    signSpace: SignSpace,
-    certMethod: AuthMethods,
+    authInfo: AuthInfoObject,
 };
 
 // key is Service Name. e.g. 'twitter', 'slack', 'mastodon'.
