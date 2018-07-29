@@ -1,4 +1,4 @@
-import {schemaTypes} from '../../../Dynamizr/Enums/schemaTypes';
+import {schemaTypes} from '../../../Enums/schemaTypes';
 import {PairOfObject} from '../../../helper/PairOfObject';
 
 export type SchemaObjectElement = {
