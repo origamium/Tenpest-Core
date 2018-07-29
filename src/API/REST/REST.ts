@@ -1,5 +1,5 @@
-import {PairOfObject} from '../helper/PairOfObject';
-import {RestApiUnits} from '../SavedObjectTypes/Service/ApiSet/RestApiUnitObject';
+import {PairOfObject} from '../../helper/PairOfObject';
+import {RestApiUnits} from '../../StoredObjectTypes/Service/ApiSet/RestApiUnitObject';
 import RESTElement from './RESTElement';
 
 export default class REST {
