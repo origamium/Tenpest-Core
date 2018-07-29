@@ -1,4 +1,4 @@
-import Authorization from '../API/Authorization/Classes/Authorization';
+import Authorization from '../API/Authorization/Authorization';
 import { IAPIKey } from '../Interfaces/IKeys';
 import { ProviderObject } from '../StoredObjectTypes/Provider/ProviderObject';
 

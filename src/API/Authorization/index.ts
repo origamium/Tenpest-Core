@@ -1,2 +1,2 @@
-import Authorization from './Classes/Authorization';
+import Authorization from './Authorization';
 export default Authorization;

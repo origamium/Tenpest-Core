@@ -1,11 +1,11 @@
-import {OAuthVersion} from '../../../Enums/OAuthVersion';
-import {UnknownAuthorizationMethod} from '../../../Exception/Exceptions';
-import {IApiData} from '../../../Interfaces/IApiData';
-import {IApiPayload} from '../../../Interfaces/IApiPayload';
-import {IAuthInfo} from '../../../Interfaces/IAuthInfo';
-import {IAuthorizedApiData} from '../../../Interfaces/IAuthorizedApiData';
-import {IAPIKey, IToken} from '../../../Interfaces/IKeys';
-import {AuthorizationUnitObject} from '../../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
+import {OAuthVersion} from '../../Enums/OAuthVersion';
+import {UnknownAuthorizationMethod} from '../../Exception/Exceptions';
+import {IApiData} from '../../Interfaces/IApiData';
+import {IApiPayload} from '../../Interfaces/IApiPayload';
+import {IAuthInfo} from '../../Interfaces/IAuthInfo';
+import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {IAPIKey, IToken} from '../../Interfaces/IKeys';
+import {AuthorizationUnitObject} from '../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
 import OAuth1 from './OAuth1';
 import OAuth2 from './OAuth2';
 

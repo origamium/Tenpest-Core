@@ -1,14 +1,14 @@
-import {ApiParameterMethods} from '../../../../Enums/ApiParameterMethods';
-import {AuthorizeMethod} from '../../../../Enums/AuthorizeMethod';
-import {HttpMethods} from '../../../../Enums/HttpMethods';
-import {OAuthVersion} from '../../../../Enums/OAuthVersion';
-import {SignMethod} from '../../../../Enums/SignMethod';
-import {SignSpace} from '../../../../Enums/SignSpace';
-import {PairOfObject} from '../../../../helper/PairOfObject';
-import {IApiData} from '../../../../Interfaces/IApiData';
-import {IApiParameterDefinition} from '../../../../Interfaces/IApiParameterDefinition';
-import {IAPIKey, IToken} from '../../../../Interfaces/IKeys';
-import {AuthorizationUnitObject} from '../../../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
+import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
+import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
+import {HttpMethods} from '../../../Enums/HttpMethods';
+import {OAuthVersion} from '../../../Enums/OAuthVersion';
+import {SignMethod} from '../../../Enums/SignMethod';
+import {SignSpace} from '../../../Enums/SignSpace';
+import {PairOfObject} from '../../../helper/PairOfObject';
+import {IApiData} from '../../../Interfaces/IApiData';
+import {IApiParameterDefinition} from '../../../Interfaces/IApiParameterDefinition';
+import {IAPIKey, IToken} from '../../../Interfaces/IKeys';
+import {AuthorizationUnitObject} from '../../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
 
 export const DummyApiKey: IAPIKey = {
     ApiKey: 'qwerty',

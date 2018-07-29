@@ -1,9 +1,9 @@
-import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
-import {IApiData} from '../../../Interfaces/IApiData';
-import {IApiPayload} from '../../../Interfaces/IApiPayload';
-import {IAuthInfo} from '../../../Interfaces/IAuthInfo';
-import {IAuthorizedApiData} from '../../../Interfaces/IAuthorizedApiData';
-import {IAPIKey, IToken} from '../../../Interfaces/IKeys';
+import {AuthorizeMethod} from '../../Enums/AuthorizeMethod';
+import {IApiData} from '../../Interfaces/IApiData';
+import {IApiPayload} from '../../Interfaces/IApiPayload';
+import {IAuthInfo} from '../../Interfaces/IAuthInfo';
+import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 
 export default abstract class OAuth {
     // optional: step 0

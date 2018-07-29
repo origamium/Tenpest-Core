@@ -1,14 +1,14 @@
 import * as authSign from 'oauth-sign';
-import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
-import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
-import {SignSpace} from '../../../Enums/SignSpace';
-import {UnknownOAuthSignatureSpace} from '../../../Exception/Exceptions';
-import {IApiData} from '../../../Interfaces/IApiData';
-import {IApiParameterDefinition} from '../../../Interfaces/IApiParameterDefinition';
-import {IApiPayload} from '../../../Interfaces/IApiPayload';
-import {IAuthInfo} from '../../../Interfaces/IAuthInfo';
-import {IAuthorizedApiData} from '../../../Interfaces/IAuthorizedApiData';
-import {IAPIKey, IToken} from '../../../Interfaces/IKeys';
+import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
+import {AuthorizeMethod} from '../../Enums/AuthorizeMethod';
+import {SignSpace} from '../../Enums/SignSpace';
+import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
+import {IApiData} from '../../Interfaces/IApiData';
+import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
+import {IApiPayload} from '../../Interfaces/IApiPayload';
+import {IAuthInfo} from '../../Interfaces/IAuthInfo';
+import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 import OAuth from './OAuth';
 
 const authProps = {
