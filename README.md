@@ -5,5 +5,26 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/tsuruclient/core/badge.svg?targetFile=package.json)](https://snyk.io/test/github/tsuruclient/core?targetFile=package.json)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/88b15a1a8f4645a8b4b4a0057cf3adf4)](https://www.codacy.com/app/FirstStar/core?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tsuruclient/core&amp;utm_campaign=Badge_Grade)
 
-# tsuruclient/core
-tsuruclient/coreのデータ通信・データストア保持部分を切り離して開発しなおしています。    
+# TSURUCLIENT/CORE
+
+## Now
+
+Developing in progress. check back later.
+
+## CORE CONCEPT
+
+Data driven API Client including normalizer, and data transformer.
+
+Support:
+
+* HTTP REST API
+* HTTP Streaming API
+* WebSocket API
+
+
+
+Future:
+
+* GraphQL
+* Remote Call Procedure
+
