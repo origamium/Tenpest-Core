@@ -4,7 +4,7 @@ import * as Exceptions from '../../Exception/Exceptions';
 import {IApiData} from '../../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
-import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 interface IParameterKeysObject {
     key: string[];
@@ -13,6 +13,7 @@ interface IParameterKeysObject {
     sandwitch: string | null;
     query: string[];
 }
+
 export default class Request {
 
     public static getParameterClassifier(parameter: IApiParameterDefinition): IParameterKeysObject {
@@ -35,21 +36,41 @@ export default class Request {
         };
     }
 
-    public static createUri(): string { // TODO
-        return '';
+    public static parameterRequireChecker(parameters: ICombinedParameterData, keys: IParameterKeysObject): boolean {
+        for (const requiredKey in keys.required) {
+            if (parameters.payload[requiredKey]) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public static createQueryParameter(): object { // TODO
-        return {};
+    public static createUri(data: IApiData, parameters: ICombinedParameterData, keys: IParameterKeysObject): string {
+        return data.baseUri + data.path + (keys.sandwitch ? '/' + parameters.payload[keys.sandwitch] : '');
     }
 
-    public static createHeader(): object { // TODO
-        return {};
+    public static createQueryParameterObject(parameters: ICombinedParameterData, keys: IParameterKeysObject): object {
+        return keys.query
+            .filter((key) => parameters.payload[key])
+            .reduce((prev, currKey) => ({
+                ...prev,
+                ...{currKey: parameters.payload[currKey]},
+            }), {});
     }
 
+    public static createHeaderObject(parameters: ICombinedParameterData, keys: IParameterKeysObject): object {
+        return keys.header
+            .filter((key) => parameters.payload[key])
+            .reduce((prev, currKey) => ({
+                ...prev,
+                ...{currKey: parameters.payload[currKey]},
+            }), {});
+    }
 
-    public static createRequest(data: IApiData, payload: IApiPayload, cert?: IAuthorizedApiData): AxiosRequestConfig {
-        let combinedParameter = {
+    public static createRequest(data: IApiData, payload: IApiPayload, cert?: ICombinedParameterData)
+        : AxiosRequestConfig {
+
+        let combinedParameter: ICombinedParameterData = {
             definition: data.parameter,
             payload,
         };
@@ -60,11 +81,16 @@ export default class Request {
             };
         }
 
+        const classifiedKey: IParameterKeysObject = this.getParameterClassifier(combinedParameter.definition);
+        if (this.parameterRequireChecker(combinedParameter, classifiedKey)) {
+            throw new Error('');
+        }
+
         return {
-            url: this.createUri(), // TODO
+            url: this.createUri(data, combinedParameter, classifiedKey),
             method: data.method,
-            headers: this.createHeader(), // TODO
-            params: this.createQueryParameter(), // TODO
+            headers: this.createHeaderObject(combinedParameter, classifiedKey),
+            params: this.createQueryParameterObject(combinedParameter, classifiedKey),
         };
     }
 }
