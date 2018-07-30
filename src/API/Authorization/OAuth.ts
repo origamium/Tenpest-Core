@@ -2,13 +2,13 @@ import {AuthorizeMethod} from '../../Enums/AuthorizeMethod';
 import {IApiData} from '../../Interfaces/IApiData';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
-import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 
 export default abstract class OAuth {
     // optional: step 0
     public requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
-        : IAuthorizedApiData & {requiredPayload?: object};
+        : ICombinedParameterData & {requiredPayload?: object};
 
     // required: step 1
     public abstract authorizeUri(
@@ -19,7 +19,7 @@ export default abstract class OAuth {
         optional?: {
             scope?: string[],
             authToken?: IToken,
-        }): IAuthorizedApiData & {requiredPayload?: object};
+        }): ICombinedParameterData & {requiredPayload?: object};
 
     // required: step 2
     public abstract requestToken(
@@ -30,12 +30,12 @@ export default abstract class OAuth {
         optional?: {
             scope?: string[],
             authToken?: IToken,
-        }): IAuthorizedApiData;
+        }): ICombinedParameterData;
 
     // optional: step 3
     public refreshToken?(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
-        : IAuthorizedApiData;
+        : ICombinedParameterData;
 
     public abstract getAuthorizationData(authInfo: IAuthInfo, token: IToken,  apiData: IApiData, payload: IApiPayload)
-        : IAuthorizedApiData;
+        : ICombinedParameterData;
 }

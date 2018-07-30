@@ -1,7 +1,7 @@
 import {IApiParameterDefinition} from './IApiParameterDefinition';
 import {IApiPayload} from './IApiPayload';
 
-export interface IAuthorizedApiData {
+export interface ICombinedParameterData {
     definition: IApiParameterDefinition;
     payload: IApiPayload;
 }

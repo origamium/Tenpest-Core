@@ -3,7 +3,7 @@ import {UnknownAuthorizationMethod} from '../../Exception/Exceptions';
 import {IApiData} from '../../Interfaces/IApiData';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
-import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 import {AuthorizationUnitObject} from '../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
 import OAuth1 from './OAuth1';
@@ -35,7 +35,7 @@ export default class Authorization {
         }
     }
 
-    public getAuthorizationData(token: IToken, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {
+    public getAuthorizationData(token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData {
         return this.oauth.getAuthorizationData(this.info, token, apiData, payload);
     }
 }

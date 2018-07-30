@@ -7,7 +7,7 @@ import {IApiData} from '../../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
-import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 import OAuth from './OAuth';
 
@@ -50,23 +50,23 @@ export default class OAuth1 extends OAuth {
     }
 
     public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
-        : IAuthorizedApiData & {requiredPayload?: object} {
+        : ICombinedParameterData & {requiredPayload?: object} {
         return {};
     }
 
     public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
-        : IAuthorizedApiData & {requiredPayload?: object} {
+        : ICombinedParameterData & {requiredPayload?: object} {
         return {};
     }
 
     public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
-        : IAuthorizedApiData {
+        : ICombinedParameterData {
         return {};
     }
 
     public getAuthorizationData(
         authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload,
-    ): IAuthorizedApiData {
+    ): ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};
 

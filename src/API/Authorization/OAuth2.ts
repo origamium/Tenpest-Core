@@ -8,7 +8,7 @@ import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
 import {IToken} from '../../Interfaces/IKeys';
 import OAuth from './OAuth';
-import {IAuthorizedApiData} from '../../Interfaces/IAuthorizedApiData';
+import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 export default class OAuth2 extends OAuth {
     constructor() {
@@ -24,7 +24,7 @@ export default class OAuth2 extends OAuth {
 
     }
 
-    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): IAuthorizedApiData {
+    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload ={};
         let key: string = '';
