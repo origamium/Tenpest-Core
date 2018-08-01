@@ -162,3 +162,16 @@ test('createUrl method', () => {
     expect(Request.createUri(blank, sample1CombinedParameters, Request.getParameterClassifier(sample1CombinedParameters.definition)))
         .toEqual(blank.baseUri + blank.path + '/' + sample1CombinedParameters.payload.yuru);
 });
+
+
+test('createHeaderObject method', () => {
+   expect(Request.createHeaderObject(blankCombinedParameter, Request.getParameterClassifier(blankCombinedParameter.definition)))
+       .toEqual({});
+   //だるい: TODO
+});
+
+test('createQueryParameterObject method', () => {
+    expect(Request.createQueryParameterObject(blankCombinedParameter, Request.getParameterClassifier(blankCombinedParameter.definition)))
+        .toEqual({});
+    //だるい: TODO
+});

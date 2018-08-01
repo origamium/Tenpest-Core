@@ -95,7 +95,7 @@ export default class Request {
 
         const classifiedKey: IParameterKeysObject = this.getParameterClassifier(combinedParameter.definition);
         if (this.parameterChecker(combinedParameter, classifiedKey)) {
-            throw new Error('');
+            throw new Error('invalid parameter definition and payload.');
         }
 
         return {
