@@ -55,7 +55,10 @@ export default class Request {
     }
 
     public static createUri(data: IApiData, parameters: ICombinedParameterData, keys: IParameterKeysObject): string {
-        return data.baseUri + data.path + (keys.sandwitch ? '/' + parameters.payload[keys.sandwitch] : '');
+        return data.baseUri + data.path +
+        (keys.sandwitch ?
+            '/' + parameters.payload[keys.sandwitch] + (parameters.definition[keys.sandwitch].extendPath || '')
+            : '');
     }
 
     public static createQueryParameterObject(parameters: ICombinedParameterData, keys: IParameterKeysObject): object {

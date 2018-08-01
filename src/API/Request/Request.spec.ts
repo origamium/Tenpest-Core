@@ -128,3 +128,37 @@ test('parameterRequireChecker method', () => {
     expect(Request.parameterChecker(unknownPayload, Request.getParameterClassifier(unknownPayload.definition)))
         .toEqual(false);
 });
+
+
+const sandWitchUriParam: ICombinedParameterData = {
+    definition: sandwitch_param,
+    payload: {yuru: 'yuri~~~~~~~'}
+};
+
+const sandWitchParamIncludingExtendParam: ICombinedParameterData = {
+    definition: {yuru: {...sandwitch_param.yuru, extendPath: '/followers'}},
+    payload: {yuru: 'yuri'}
+};
+
+const sample1CombinedParameters: ICombinedParameterData = {
+    definition: sample1,
+    payload: {
+        yuru:'komeri',
+        yuri:'power',
+        yoshikawa: 'furyroad',
+    }
+};
+
+test('createUrl method', () => {
+    expect(Request.createUri(blank, blankCombinedParameter, Request.getParameterClassifier(blankCombinedParameter.definition)))
+        .toEqual(blank.baseUri + blank.path);
+
+    expect(Request.createUri(blank, sandWitchUriParam, Request.getParameterClassifier(sandWitchUriParam.definition)))
+        .toEqual(blank.baseUri + blank.path + '/' + sandWitchUriParam.payload.yuru);
+
+    expect(Request.createUri(blank, sandWitchParamIncludingExtendParam, Request.getParameterClassifier(sandWitchParamIncludingExtendParam.definition)))
+        .toEqual(blank.baseUri + blank.path + '/' + sandWitchParamIncludingExtendParam.payload.yuru + sandWitchParamIncludingExtendParam.definition.yuru.extendPath);
+
+    expect(Request.createUri(blank, sample1CombinedParameters, Request.getParameterClassifier(sample1CombinedParameters.definition)))
+        .toEqual(blank.baseUri + blank.path + '/' + sample1CombinedParameters.payload.yuru);
+});
