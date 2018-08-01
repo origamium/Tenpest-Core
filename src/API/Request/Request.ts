@@ -36,12 +36,21 @@ export default class Request {
         };
     }
 
-    public static parameterRequireChecker(parameters: ICombinedParameterData, keys: IParameterKeysObject): boolean {
-        for (const requiredKey in keys.required) {
-            if (parameters.payload[requiredKey]) {
+    public static parameterChecker(parameters: ICombinedParameterData, keys: IParameterKeysObject): boolean {
+        const payloadKeys = Object.keys(parameters.payload);
+
+        for (const payloadKeyIndex in payloadKeys) {
+            if (!keys.key.includes(payloadKeys[payloadKeyIndex])) {
                 return false;
             }
         }
+
+        for (const requiredKey in keys.required) {
+            if (!payloadKeys.includes(keys.required[requiredKey])) {
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -82,7 +91,7 @@ export default class Request {
         }
 
         const classifiedKey: IParameterKeysObject = this.getParameterClassifier(combinedParameter.definition);
-        if (this.parameterRequireChecker(combinedParameter, classifiedKey)) {
+        if (this.parameterChecker(combinedParameter, classifiedKey)) {
             throw new Error('');
         }
 

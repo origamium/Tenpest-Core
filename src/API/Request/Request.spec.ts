@@ -7,6 +7,7 @@ import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
 
 import Request from './Request';
 import {MultipleSandWitchParameterNotAllowed} from '../../Exception/Exceptions';
+import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 const blank: IApiData = {
     baseUri: 'https://example.com',
@@ -92,4 +93,38 @@ test('getParameterKeys method ', () => {
             sandwitch: 'yuru',
             query: ['oomuro', 'sakurako', 'yoshikawa'],
         });
+});
+
+const blankCombinedParameter: ICombinedParameterData = {
+    definition: {},
+    payload: {}
+};
+
+const errorParameter: ICombinedParameterData = {
+    definition: sample1,
+    payload: {},
+};
+
+const goodParameter: ICombinedParameterData = {
+    definition: sample1,
+    payload: {yuru: 'yuri', yuri: 'yuru', yoshikawa: 'chinatsu'},
+};
+
+const unknownPayload: ICombinedParameterData = {
+    definition: sample1,
+    payload: {yuru: 'yuri', yuri: 'yuru', yoshikawa: 'chinatsu', donald: 'trump'},
+}
+
+test('parameterRequireChecker method', () => {
+    expect(Request.parameterChecker(blankCombinedParameter, Request.getParameterClassifier(blankCombinedParameter.definition)))
+        .toEqual(true);
+
+    expect(Request.parameterChecker(errorParameter, Request.getParameterClassifier(errorParameter.definition)))
+        .toEqual(false);
+
+    expect(Request.parameterChecker(goodParameter, Request.getParameterClassifier(goodParameter.definition)))
+        .toEqual(true);
+
+    expect(Request.parameterChecker(unknownPayload, Request.getParameterClassifier(unknownPayload.definition)))
+        .toEqual(false);
 });
