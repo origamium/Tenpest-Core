@@ -9,7 +9,7 @@ install:
     - yarn
     - npm i -g codecov
 before_script:
-    - yarn tsc
+    - tsc | exit 0
 script:
     - yarn test
 after_script:
