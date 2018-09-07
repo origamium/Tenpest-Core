@@ -9,13 +9,15 @@ export default class DataSet {
 
     constructor(source: DataSets) {
         this._receivedDataInfo = {};
-        Object.keys(source).forEach((key) => {
-            this._receivedDataInfo[key] = dynaSchemaCreator(source[key]);
-        });
+        for (const key in source) {
+            if (key) {
+                this._receivedDataInfo[key] = dynaSchemaCreator(source[key]);
+            }
+        }
     }
 
     public normalize(key: string, data: any): any {
-        if (this._receivedDataInfo[key]) {
+        if (!this._receivedDataInfo[key]) {
             throw UnexpectedDataKey;
         }
         return dynamize(this._receivedDataInfo[key], data);

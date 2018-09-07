@@ -2,7 +2,9 @@ import {PairOfObject} from '../../../helper/PairOfObject';
 import {SchemaObject} from './SchemaObject';
 
 export type DataSetObject = {
-    target: string,
+    key: string,
+    targetDataKey?: string,
+    extendErrorKey?: string,
     schema: SchemaObject,
 };
 

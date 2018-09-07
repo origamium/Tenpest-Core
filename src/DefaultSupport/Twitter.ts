@@ -56,7 +56,7 @@ const apiSet: ApiSetObject = {
 
 const dataSet: DataSets = {
     status: {
-        target: 'status',
+        key: 'status',
         schema: {
             name: 'contents',
             type: schemaTypes.Entity,
@@ -72,7 +72,7 @@ const dataSet: DataSets = {
         },
     },
     statusList: {
-        target: 'status',
+        key: 'status',
         schema: {
             name: 'contents',
             type: schemaTypes.Array,
@@ -103,7 +103,7 @@ const dataSet: DataSets = {
         },
     },
     user: {
-        target: 'user',
+        key: 'user',
         schema: {
             name: 'user',
             type: schemaTypes.Entity,

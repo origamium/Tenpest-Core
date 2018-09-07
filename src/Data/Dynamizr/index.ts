@@ -1,5 +1,5 @@
 import dynamize from './dynamize';
-import dynaSchemaCreator from './Functions/dynaSchemaCreator';
+import schemaCreator from './Functions/dynaSchemaCreator';
 
-export const dynaSchemaCreator = dynaSchemaCreator;
+export const dynaSchemaCreator = schemaCreator;
 export default dynamize;
