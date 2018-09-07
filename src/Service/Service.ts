@@ -6,7 +6,7 @@ import {ServiceObject} from '../StoredObjectTypes/Service/ServiceObject';
 export default class Service {
     private readonly _serviceName: string;
     private readonly _apiSet: APISet;
-    private readonly _dataSet: DataSet; // TODO
+    private readonly _dataSet: DataSet;
 
     constructor(source: ServiceObject) {
         this._serviceName = source.serviceName;
