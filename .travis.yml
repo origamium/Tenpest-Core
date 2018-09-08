@@ -5,6 +5,12 @@ cache:
     yarn: true
     directories:
         - node_modules
+# https://stackoverflow.com/questions/15674064/how-to-fix-a-permission-denied-publickey-error-for-a-git-submodule-update-in-t/24600210
+git:
+    submodules: false
+before_install:
+    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+    - git submodule update --init --recursive
 install:
     - yarn
     - npm i -g codecov
