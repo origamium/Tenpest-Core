@@ -1,0 +1,18 @@
+@startuml
+
+database APISet
+database DataSet
+participant core
+boundary RenderProcess
+boundary API
+
+core -> APISet: request axios request instance
+APISet -> core: return axios request
+core -> API: Request
+
+API -> core: Response
+core -> DataSet: request data normalization
+DataSet -> core: normalized data
+core -> RenderProcess: data allow!
+
+@enduml
