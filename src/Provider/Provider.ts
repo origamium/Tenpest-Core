@@ -1,6 +1,7 @@
 import Authorization from '../API/Authorization/Authorization';
 import { IAPIKey } from '../Interfaces/IKeys';
 import { ProviderObject } from '../StoredObjectTypes/Provider/ProviderObject';
+import { ServiceObject } from '../StoredObjectTypes/Service/ServiceObject';
 
 export default class Provider {
     private readonly _name: string;
@@ -9,14 +10,15 @@ export default class Provider {
     private readonly _apiKey: IAPIKey;
     private readonly _auth: Authorization;
 
-    constructor(source: ProviderObject) {
-        this._name = source.providerName;
-        this._baseUrl = source.baseUrl;
-        this._domain = source.domain;
+    constructor(serviceSource: ServiceObject, providerSource: ProviderObject) {
+        this._name = providerSource.providerName;
+        this._baseUrl = providerSource.baseUrl;
+        this._domain = providerSource.domain;
         this._apiKey = {
-            ApiKey: source.apiKey,
-            ApiSecretKey: source.apiSecret,
+            ApiKey: providerSource.apiKey,
+            ApiSecretKey: providerSource.apiSecret,
         };
-        this._auth = new Authorization();
+
+        this._auth = new Authorization(serviceSource.apiSet.authorization, this._apiKey);
     }
 }
