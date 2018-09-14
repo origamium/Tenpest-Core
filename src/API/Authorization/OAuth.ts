@@ -5,37 +5,29 @@ import {IAuthInfo} from '../../Interfaces/IAuthInfo';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 
-export default abstract class OAuth {
+export type optionObject = {
+    scope?: string[],
+    authToken: IToken,
+};
+
+export default interface IOAuth {
     // optional: step 0
-    public requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
+    requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object};
 
     // required: step 1
-    public abstract authorizeUri(
-        apiData: IApiData,
-        apiKey: IAPIKey,
-        redirect_uri: string,
-        method: AuthorizeMethod,
-        optional?: {
-            scope?: string[],
-            authToken?: IToken,
-        }): ICombinedParameterData & {requiredPayload?: object};
+     authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, option?: optionObject)
+         : ICombinedParameterData & {requiredPayload?: object};
 
     // required: step 2
-    public abstract requestToken(
-        apiData: IApiData,
-        apiKey: IAPIKey,
-        code: string,
-        redirect_uri: string,
-        optional?: {
-            scope?: string[],
-            authToken?: IToken,
-        }): ICombinedParameterData;
-
-    // optional: step 3
-    public refreshToken?(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
+    requestToken(apiData: IApiData, apiKey: IAPIKey, code: string, redirect_uri: string, option?: optionObject)
         : ICombinedParameterData;
 
-    public abstract getAuthorizationData(authInfo: IAuthInfo, token: IToken,  apiData: IApiData, payload: IApiPayload)
+    // optional: step 3
+    refreshToken?(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
+        : ICombinedParameterData;
+
+    // required: autohorized data
+    getAuthorizationData(authInfo: IAuthInfo, token: IToken,  apiData: IApiData, payload: IApiPayload)
         : ICombinedParameterData;
 }

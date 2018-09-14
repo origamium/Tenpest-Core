@@ -10,7 +10,7 @@ import {IToken} from '../../Interfaces/IKeys';
 import OAuth from './OAuth';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
-export default class OAuth2 extends OAuth {
+export default class OAuth2 implements OAuth {
     constructor() {
         super();
 
@@ -26,7 +26,7 @@ export default class OAuth2 extends OAuth {
 
     public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData {
         const template: IApiParameterDefinition = {};
-        const value: IApiPayload ={};
+        const value: IApiPayload = {};
         let key: string = '';
         if (token) {
             switch (authInfo.signSpace) {

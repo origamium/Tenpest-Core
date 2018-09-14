@@ -21,7 +21,7 @@ const authProps = {
     oauth_signature: 'oauth_signature',
 };
 
-export default class OAuth1 extends OAuth {
+export default class OAuth1 implements OAuth {
     private static _now(): string {
         return Math.round(+new Date() / 1000).toString();
     }
