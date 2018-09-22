@@ -8,11 +8,11 @@ import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 import {AuthorizationUnitObject} from '../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
 import OAuth1 from './OAuth1';
 import OAuth2 from './OAuth2';
+import OAuth from './OAuth';
 
 export default class Authorization {
-    private readonly oauth: OAuth1 | OAuth2;
     private readonly info: IAuthInfo;
-
+    private readonly auth: OAuth;
     constructor(source: AuthorizationUnitObject, apiKey: IAPIKey) {
         this.info = {
             apiKey,
@@ -25,10 +25,10 @@ export default class Authorization {
 
         switch (this.info.oauthVersion) {
             case OAuthVersion.OAuth1:
-                this.oauth = new OAuth1();
+                this.auth = OAuth1;
                 break;
             case OAuthVersion.OAuth2:
-                this.oauth = new OAuth2();
+                this.auth = OAuth2;
                 break;
             default:
                 throw UnknownAuthorizationMethod;
@@ -36,6 +36,6 @@ export default class Authorization {
     }
 
     public getAuthorizationData(token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData {
-        return this.oauth.getAuthorizationData(this.info, token, apiData, payload);
+        return this.auth.getAuthorizationData(this.info, token, apiData, payload);
     }
 }

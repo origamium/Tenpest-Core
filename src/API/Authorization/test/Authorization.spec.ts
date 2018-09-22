@@ -15,8 +15,8 @@ test('OAuth1 getOAuthorization method test', () => {
 
     expect('dummy').toEqual('dummy');
 
-    //expect(OAuth1Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
-    //expect(OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
+    expect(OAuth1Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
+    expect(OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
 });
 
 
@@ -24,6 +24,6 @@ test('OAuth2 getOAuthorization method test', () => {
 
     expect('dummy').toEqual('dummy');
 
-    //expect(OAuth2Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
-    //expect(OAuth2Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
+    expect(OAuth2Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
+    expect(OAuth2Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
 });

@@ -11,20 +11,16 @@ import OAuth from './OAuth';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 export default class OAuth2 implements OAuth {
-    constructor() {
-        super();
+    public static authorization(method: AuthorizeMethod): void {
 
     }
 
-    public authorization(method: AuthorizeMethod): void {
+    public static requestToken(tempToken: string | object): void {
 
     }
 
-    public requestToken(tempToken: string | object): void {
-
-    }
-
-    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData {
+    public static getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
+        : ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};
         let key: string = '';
