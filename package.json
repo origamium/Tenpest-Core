@@ -23,7 +23,7 @@
     "@types/query-string": "^5.1.0",
     "babel-core": "^6.26.3",
     "chalk": "^2.4.1",
-    "jest": "^23.0.0",
+    "jest": "^23.5.0",
     "normalizr": "^3.2.4",
     "rimraf": "^2.6.2",
     "ts-jest": "^23.0.0",
