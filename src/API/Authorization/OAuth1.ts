@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as authSign from 'oauth-sign';
 import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
 import {AuthorizeMethod} from '../../Enums/AuthorizeMethod';
