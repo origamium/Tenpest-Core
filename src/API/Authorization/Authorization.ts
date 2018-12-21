@@ -29,10 +29,10 @@ export default class Authorization {
 
         switch (this.info.oauthVersion) {
             case OAuthVersion.OAuth1:
-                this.auth = OAuth1;
+                this.auth = new OAuth1();
                 break;
             case OAuthVersion.OAuth2:
-                this.auth = OAuth2;
+                this.auth = new OAuth2();
                 break;
             default:
                 throw UnknownAuthorizationMethod;
