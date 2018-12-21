@@ -6,20 +6,28 @@ import {IApiData} from '../../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
-import {IToken} from '../../Interfaces/IKeys';
-import OAuth from './OAuth';
+import {IAPIKey, IToken} from '../../Interfaces/IKeys';
+import OAuth, {optionObject} from './OAuth';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 export default class OAuth2 implements OAuth {
-    public static authorization(method: AuthorizeMethod): void {
-
+    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, option?: optionObject)
+        : ICombinedParameterData & { requiredPayload?: object } {
+        return {
+            definition: {},
+            payload: {},
+        };
     }
 
-    public static requestToken(tempToken: string | object): void {
-
+    public requestToken(tempToken: string | object)
+        : ICombinedParameterData & { requiredPayload?: object } {
+        return {
+            definition: {},
+            payload: {},
+        };
     }
 
-    public static getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
+    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
         : ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};

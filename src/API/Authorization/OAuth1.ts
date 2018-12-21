@@ -23,6 +23,8 @@ const authProps = {
 };
 
 export default class OAuth1 implements OAuth {
+    private static readonly nonce: string = 'superdry';
+
     private static _now(): string {
         return Math.round(+new Date() / 1000).toString();
     }
@@ -33,7 +35,7 @@ export default class OAuth1 implements OAuth {
             oauth_token: token ? token.Token : '',
             oauth_signature_method: authInfo.signMethod,
             oauth_timestamp: timestamp,
-            oauth_nonce: 'superdrysinasai2018',
+            oauth_nonce: OAuth1.nonce,
             oauth_version: authInfo.oauthVersion,
         };
         return encodeURIComponent(authSign.sign(
@@ -52,17 +54,26 @@ export default class OAuth1 implements OAuth {
 
     public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object} {
-        return {};
+        return {
+            definition: {},
+            payload: {},
+        };
     }
 
     public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
         : ICombinedParameterData & {requiredPayload?: object} {
-        return {};
+        return {
+            definition: {},
+            payload: {},
+        };
     }
 
     public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
         : ICombinedParameterData {
-        return {};
+        return {
+            definition: {},
+            payload: {},
+        };
     }
 
     public getAuthorizationData( authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
@@ -72,7 +83,7 @@ export default class OAuth1 implements OAuth {
 
         const timestamp = OAuth1._now();
         const signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
-        const nonce = 'fusianasan';
+        const nonce = OAuth1.nonce;
 
         if (token) {
             switch (authInfo.signSpace) {

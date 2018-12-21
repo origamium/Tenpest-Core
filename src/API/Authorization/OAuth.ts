@@ -12,7 +12,7 @@ export type optionObject = {
 
 export default interface IOAuth {
     // optional: step 0
-    requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
+    rsequestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object};
 
     // required: step 1

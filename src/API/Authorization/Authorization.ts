@@ -8,11 +8,15 @@ import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 import {AuthorizationUnitObject} from '../../StoredObjectTypes/Service/ApiSet/AuthorizationUnitObject';
 import OAuth1 from './OAuth1';
 import OAuth2 from './OAuth2';
-import OAuth from './OAuth';
+
+/*
+ * Authorizationクラスは認証に関する一貫したデータの入出力と管理を行います。すべてのメソッドはAPIとの通信に必要なデータの生成のみを行い、通信を行いません。
+ * OAuth1, 2のみをサポートしています。
+ */
 
 export default class Authorization {
     private readonly info: IAuthInfo;
-    private readonly auth: OAuth;
+    private readonly auth: any;
     constructor(source: AuthorizationUnitObject, apiKey: IAPIKey) {
         this.info = {
             apiKey,
