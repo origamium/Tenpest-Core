@@ -15,14 +15,16 @@ export default interface IOAuth {
     requestAuthToken?(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object};
 
-    // required: step 1
+    // required: step 1. Generate Authorization url
      authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, option?: optionObject)
-         : ICombinedParameterData & {requiredPayload?: object};
+         : {uri: string, method: AuthorizeMethod};
 
     // required: step 2
-    requestToken(apiData: IApiData, apiKey: IAPIKey, code: string, redirect_uri: string, option?: optionObject)
+    // "verifier" is also known as "PIN"
+    requestToken(apiData: IApiData, apiKey: IAPIKey, code: string, redirect_uri: string, verifier: string, option?: optionObject)
         : ICombinedParameterData;
 
+    // TODO: code だったり token だったりしているのなんとかしよう
     // optional: step 3
     refreshToken?(apiData: IApiData, apiKey: IAPIKey, code: IToken, redirect_uri: string)
         : ICombinedParameterData;
