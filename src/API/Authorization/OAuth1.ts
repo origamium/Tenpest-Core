@@ -54,25 +54,52 @@ export default class OAuth1 implements OAuth {
 
     public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object} {
+        const template: IApiParameterDefinition = {};
+        const value: IApiPayload = {};
+
+        const callbackKey = 'oauth_callback';
+        template[callbackKey] = {required: true, type: ApiParameterMethods.Query};
+        value[callbackKey] = redirect_uri;
+
+        const consumerKey = 'oauth_consumer_key';
+        template[consumerKey] = {required: true, type: ApiParameterMethods.Query};
+        value[consumerKey] = apiKey.ApiKey;
+
         return {
-            definition: {},
-            payload: {},
+            definition: template,
+            payload: value,
         };
     }
 
     public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
-        : ICombinedParameterData & {requiredPayload?: object} {
+        : {uri: string, method: AuthorizeMethod} {
+        const uri: string = apiData.baseUri + apiData.path;
+        const parameters: string[] = [];
+
+        if (!optional || !optional.authToken || !optional.authToken.Token) {
+            throw new Error('OAuth1 required optional.authToken.Token');
+        }
+
+        parameters.push('oauth_token=' + optional.authToken.Token);
+
         return {
-            definition: {},
-            payload: {},
+            uri: uri + '?' + encodeURIComponent(parameters.reduce((accm, curr) => (accm + '&' + curr), '')),
+            method,
         };
     }
 
-    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
+    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, verifier: string, optional?: { scope?: string[], authToken?: IToken })
         : ICombinedParameterData {
+        const template: IApiParameterDefinition = {};
+        const value: IApiPayload = {};
+
+        const consumerKey = 'oauth_consumer_key';
+        template[consumerKey] = {required: true, type: ApiParameterMethods.Query};
+        value[consumerKey] = apiKey.ApiKey;
+
         return {
-            definition: {},
-            payload: {},
+            definition: template,
+            payload: value,
         };
     }
 

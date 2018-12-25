@@ -12,18 +12,30 @@ import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 export default class OAuth2 implements OAuth {
     public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, option?: optionObject)
-        : ICombinedParameterData & { requiredPayload?: object } {
+        : {uri: string, method: AuthorizeMethod} {
+        const uri = apiData.baseUri + apiData.path;
+        const parameters = [];
+        if (option) {
+            if (option.scope) {
+                parameters.push('scope=' + option.scope.reduce((accm, curr) => (accm + '+' + curr), ''));
+            }
+        }
+
         return {
-            definition: {},
-            payload: {},
+            uri: uri + '?' + encodeURIComponent(parameters.reduce((accm, curr) => (accm + '&' + curr), '')),
+            method,
         };
     }
 
-    public requestToken(tempToken: string | object)
-        : ICombinedParameterData & { requiredPayload?: object } {
+    public requestToken(apiData: IApiData, apiKey: IAPIKey, code: string, redirect_uri: string, verifier: string, option?: optionObject)
+        : ICombinedParameterData {
+
+        const template: IApiParameterDefinition = {};
+        const value: IApiPayload = {};
+
         return {
-            definition: {},
-            payload: {},
+            definition: template,
+            payload: value,
         };
     }
 
