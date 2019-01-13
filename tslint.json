@@ -9,7 +9,10 @@
         "no-console": false,
         "object-literal-sort-keys": false,
         "variable-name": false,
-        "interface-over-type-literal": false
+        "interface-over-type-literal": false,
+        "max-line-length": false,
+        "member-ordering": false,
+        "ordered-imports": false
     },
     "rulesDirectory": []
 }

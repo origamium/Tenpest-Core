@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as authSign from 'oauth-sign';
 import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
 import {AuthorizeMethod} from '../../Enums/AuthorizeMethod';
@@ -22,6 +23,8 @@ const authProps = {
 };
 
 export default class OAuth1 implements OAuth {
+    private static readonly nonce: string = 'superdry';
+
     private static _now(): string {
         return Math.round(+new Date() / 1000).toString();
     }
@@ -32,7 +35,7 @@ export default class OAuth1 implements OAuth {
             oauth_token: token ? token.Token : '',
             oauth_signature_method: authInfo.signMethod,
             oauth_timestamp: timestamp,
-            oauth_nonce: 'superdrysinasai2018',
+            oauth_nonce: OAuth1.nonce,
             oauth_version: authInfo.oauthVersion,
         };
         return encodeURIComponent(authSign.sign(
@@ -51,17 +54,53 @@ export default class OAuth1 implements OAuth {
 
     public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object} {
-        return {};
+        const template: IApiParameterDefinition = {};
+        const value: IApiPayload = {};
+
+        const callbackKey = 'oauth_callback';
+        template[callbackKey] = {required: true, type: ApiParameterMethods.Query};
+        value[callbackKey] = redirect_uri;
+
+        const consumerKey = 'oauth_consumer_key';
+        template[consumerKey] = {required: true, type: ApiParameterMethods.Query};
+        value[consumerKey] = apiKey.ApiKey;
+
+        return {
+            definition: template,
+            payload: value,
+        };
     }
 
     public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
-        : ICombinedParameterData & {requiredPayload?: object} {
-        return {};
+        : {uri: string, method: AuthorizeMethod} {
+        const uri: string = apiData.baseUri + apiData.path;
+        const parameters: string[] = [];
+
+        if (!optional || !optional.authToken || !optional.authToken.Token) {
+            throw new Error('OAuth1 required optional.authToken.Token');
+        }
+
+        parameters.push('oauth_token=' + optional.authToken.Token);
+
+        return {
+            uri: uri + '?' + encodeURIComponent(parameters.reduce((accm, curr) => (accm + '&' + curr), '')),
+            method,
+        };
     }
 
-    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
+    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, verifier: string, optional?: { scope?: string[], authToken?: IToken })
         : ICombinedParameterData {
-        return {};
+        const template: IApiParameterDefinition = {};
+        const value: IApiPayload = {};
+
+        const consumerKey = 'oauth_consumer_key';
+        template[consumerKey] = {required: true, type: ApiParameterMethods.Query};
+        value[consumerKey] = apiKey.ApiKey;
+
+        return {
+            definition: template,
+            payload: value,
+        };
     }
 
     public getAuthorizationData( authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
@@ -71,7 +110,7 @@ export default class OAuth1 implements OAuth {
 
         const timestamp = OAuth1._now();
         const signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
-        const nonce = 'fusianasan';
+        const nonce = OAuth1.nonce;
 
         if (token) {
             switch (authInfo.signSpace) {
