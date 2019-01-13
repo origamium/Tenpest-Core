@@ -29,7 +29,6 @@ export default class OAuth2 implements OAuth {
 
     public requestToken(apiData: IApiData, apiKey: IAPIKey, code: string, redirect_uri: string, verifier: string, option?: optionObject)
         : ICombinedParameterData {
-
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};
 
@@ -38,6 +37,8 @@ export default class OAuth2 implements OAuth {
             payload: value,
         };
     }
+
+    // TODO: refreshToken
 
     public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
         : ICombinedParameterData {
