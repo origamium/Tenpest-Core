@@ -10,7 +10,7 @@ export default class AuthorizationData extends Exportable {
         tokenAcquisitionDate: Date,
         tokenExpireDate: Date,
     };
-    private _tokenIsExprired?: boolean;
+    private _tokenIsExpired?: boolean;
 
     constructor(source: AuthorizationDataObject) {
         super();
@@ -22,7 +22,7 @@ export default class AuthorizationData extends Exportable {
                 tokenAcquisitionDate: new Date(source.refreshTokenObject.tokenAcquisitionDate),
                 tokenExpireDate: new Date(source.refreshTokenObject.tokenExpireDate),
             };
-            this._tokenIsExprired =  source.refreshTokenObject.tokenExpireDate <= Date.now();
+            this._tokenIsExpired =  source.refreshTokenObject.tokenExpireDate <= Date.now();
         }
     }
 
