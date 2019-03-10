@@ -11,19 +11,32 @@ const OAuth2Instances = {
     query: new Authorization(TD.oauth2data.pin_plain_query, TD.DummyApiKey),
 };
 
-test('OAuth1 getOAuthorization method test', () => {
+describe('OAuth1(header)', () => {
+    it('getAuthorizationData method', () => {
+        const target = OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {});
+        expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
+    })
 
-    expect('dummy').toEqual('dummy');
 
-    expect(OAuth1Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
-    expect(OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
 });
 
+describe('OAuth1(query)', () => {
+    it('getAuthorizationData method', () => {
+        const target = OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {});
+        expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
+    })
+});
 
-test('OAuth2 getOAuthorization method test', () => {
+describe('OAuth2(header)', () => {
+    it('getAuthorizationData method', () => {
+        const target = OAuth2Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {});
+        expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
+    })
+});
 
-    expect('dummy').toEqual('dummy');
-
-    expect(OAuth2Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
-    expect(OAuth2Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {})).toBe(0);
+describe('OAuth2(query)', () => {
+    it('getAuthorizationData method', () => {
+        const target = OAuth2Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {});
+        expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
+    })
 });
