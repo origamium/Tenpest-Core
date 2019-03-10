@@ -14,4 +14,5 @@ export type AuthorizationUnitObject = {
     requestAuthorizePagePath: string, // required
     requestAccessTokenPath: string, // required
     requestTokenRefreshPath?: string,
+    official?: string, // connect authorization lambda
 };

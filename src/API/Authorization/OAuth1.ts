@@ -103,7 +103,7 @@ export default class OAuth1 implements OAuth {
         };
     }
 
-    public getAuthorizationData( authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
+    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
         : ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};

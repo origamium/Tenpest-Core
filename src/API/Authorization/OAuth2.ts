@@ -33,6 +33,7 @@ export default class OAuth2 implements OAuth {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};
 
+
         return {
             definition: template,
             payload: value,

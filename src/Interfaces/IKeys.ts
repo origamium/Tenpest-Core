@@ -1,6 +1,6 @@
 export interface IAPIKey {
     ApiKey: string;
-    ApiSecretKey: string;
+    ApiSecretKey?: string; // if "IAuthInfo.official" was available, ApiSecretKey may be undefined, "
 }
 
 export interface IToken {
