@@ -1,5 +1,5 @@
-import {IUser} from '../Datum/Types/User';
-import {AccountObject} from '../SavedObjectTypes/Account/AccountObject';
+import {IUser} from '@data';
+import {AccountObject} from '../StoredObjectTypes/Account/AccountObject';
 import AuthorizationData from './AuthorizationData';
 
 export default class Account {
