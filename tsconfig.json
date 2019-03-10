@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "module": "commonjs",
       "lib": [
@@ -8,6 +9,10 @@
           "es7"
       ],
     "moduleResolution": "node",
+    "paths": {
+      "@data": ["src/lib/data"],
+      "@events": ["src/lib/events"]
+    },
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": true

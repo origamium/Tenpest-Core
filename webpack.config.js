@@ -13,7 +13,11 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: [".tsx", ".ts", ".js"],
+        alias: {
+            "@data": path.resolve(__dirname, "./src/lib/data"),
+            "@events": path.resolve(__dirname, "./srv/lib/events"),
+        }
     },
     output: {
         filename: "[name].js",
