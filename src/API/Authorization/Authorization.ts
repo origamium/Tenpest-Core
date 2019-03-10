@@ -12,6 +12,7 @@ import OAuth2 from './OAuth2';
 export default class Authorization {
     private readonly info: IAuthInfo;
     private readonly auth: any;
+
     constructor(source: AuthorizationUnitObject, apiKey: IAPIKey) {
         this.info = {
             apiKey,

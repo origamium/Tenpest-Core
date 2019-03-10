@@ -54,15 +54,19 @@ export default class OAuth1 implements OAuth {
 
     public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object} {
-        const template: IApiParameterDefinition = {};
+        const template: IApiParameterDefinition = apiData.parameter;
         const value: IApiPayload = {};
 
         const callbackKey = 'oauth_callback';
-        template[callbackKey] = {required: true, type: ApiParameterMethods.Query};
+        if (!template[callbackKey]) {
+            throw new Error('oauth_callback is not defined in ApiData.parameter');
+        }
         value[callbackKey] = redirect_uri;
 
         const consumerKey = 'oauth_consumer_key';
-        template[consumerKey] = {required: true, type: ApiParameterMethods.Query};
+        if (!template[consumerKey]) {
+            throw new Error('oauth_consumer_key is not available in ApiData.parameter');
+        }
         value[consumerKey] = apiKey.ApiKey;
 
         return {
@@ -88,13 +92,15 @@ export default class OAuth1 implements OAuth {
         };
     }
 
-    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, verifier: string, optional?: { scope?: string[], authToken?: IToken })
+    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, verifier: string, optional?: { scope?: string[], authToken?: IToken })
         : ICombinedParameterData {
-        const template: IApiParameterDefinition = {};
+        const template: IApiParameterDefinition = apiData.parameter;
         const value: IApiPayload = {};
 
         const consumerKey = 'oauth_consumer_key';
-        template[consumerKey] = {required: true, type: ApiParameterMethods.Query};
+        if (!template[consumerKey]) {
+            throw new Error(consumerKey + ' is not available in ApiData.parameter');
+        }
         value[consumerKey] = apiKey.ApiKey;
 
         return {
@@ -103,7 +109,9 @@ export default class OAuth1 implements OAuth {
         };
     }
 
-    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
+    // TODO: refreshToken
+
+    public getAuthorizationData( authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
         : ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};

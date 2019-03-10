@@ -19,19 +19,19 @@
     "query-string": "^6.2.0"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "@types/query-string": "^6.1.1",
+    "@types/jest": "^23.3.12",
+    "@types/query-string": "^6.2.0",
     "babel-core": "^6.26.3",
-    "chalk": "^2.4.1",
-    "jest": "^23.6.0",
+    "chalk": "^2.4.2",
+    "jest": "^24.0.0",
     "normalizr": "^3.3.0",
-    "rimraf": "^2.6.2",
+    "rimraf": "^2.6.3",
     "ts-jest": "^23.10.5",
-    "ts-loader": "^5.3.1",
-    "tslint": "^5.10.0",
-    "typescript": "^3.2.1",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }

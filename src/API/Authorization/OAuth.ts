@@ -21,7 +21,7 @@ export default interface IOAuth {
 
     // required: step 2
     // "verifier" is also known as "PIN"
-    requestToken(apiData: IApiData, apiKey: IAPIKey, code: string, redirect_uri: string, verifier: string, option?: optionObject)
+    requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, verifier: string, option?: optionObject)
         : ICombinedParameterData;
 
     // TODO: code だったり token だったりしているのなんとかしよう

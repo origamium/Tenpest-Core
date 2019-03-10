@@ -11,14 +11,16 @@ import OAuth, {optionObject} from './OAuth';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 export default class OAuth2 implements OAuth {
+    private scopeToString(scope: string[]) {
+        return 'scope=' + scope.reduce((accm, curr) => (accm + '+' + curr), '');
+    }
+
     public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, option?: optionObject)
         : {uri: string, method: AuthorizeMethod} {
         const uri = apiData.baseUri + apiData.path;
         const parameters = [];
-        if (option) {
-            if (option.scope) {
-                parameters.push('scope=' + option.scope.reduce((accm, curr) => (accm + '+' + curr), ''));
-            }
+        if (option && option.scope) {
+            parameters.push(this.scopeToString(option.scope));
         }
 
         return {
@@ -27,18 +29,28 @@ export default class OAuth2 implements OAuth {
         };
     }
 
-    public requestToken(apiData: IApiData, apiKey: IAPIKey, code: string, redirect_uri: string, verifier: string, option?: optionObject)
+    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, verifier: string, option?: optionObject)
         : ICombinedParameterData {
-
-        const template: IApiParameterDefinition = {};
+        const template: IApiParameterDefinition = apiData.parameter;
         const value: IApiPayload = {};
 
+        const scope = 'scope',
+            client_id = 'client_id',
+            client_secret = 'client_secret',
+            code_paylaod = 'code';
+
+
+        if (option && option.scope && template[scope]) {
+            value[scope] = this.scopeToString(option.scope);
+        }
 
         return {
             definition: template,
             payload: value,
         };
     }
+
+    // TODO: refreshToken
 
     public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
         : ICombinedParameterData {
