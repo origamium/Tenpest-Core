@@ -11,6 +11,7 @@ import {IAuthInfo} from '../../Interfaces/IAuthInfo';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 import OAuth from './OAuth';
+import {SignMethod} from '../../Enums/SignMethod';
 
 const authProps = {
     oauth_consumer_key: 'oauth_consumer_key',
@@ -21,6 +22,14 @@ const authProps = {
     oauth_version: 'oauth_version',
     oauth_signature: 'oauth_signature',
 };
+
+export interface IGenerateAuthorizationParameters {
+    oauth_consumer_key: string,
+    oauth_token?: string,
+    oauth_signature_method: SignMethod,
+    oauth_nonce: string,
+    oauth_version: string,
+}
 
 export default class OAuth1 implements OAuth {
     private static readonly nonce: string = 'superdry';
@@ -38,18 +47,70 @@ export default class OAuth1 implements OAuth {
             oauth_nonce: OAuth1.nonce,
             oauth_version: authInfo.oauthVersion,
         };
-        return encodeURIComponent(authSign.sign(
+        return authSign.sign(
             authInfo.signMethod,
             apiData.method,
             apiData.baseUri + apiData.path,
             {...signParameter, ...payload},
             authInfo.apiKey.ApiSecretKey,
             token ? token.TokenSecret : '',
-        ));
+        );
     }
 
     private static _headerstring(key: string, value: string): string {
         return key + '="' + value + '"';
+    }
+
+    private static _authorization(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData  {
+        const timestamp = OAuth1._now();
+
+        const authPayload: any = Object.assign({}, {
+            oauth_consumer_key: authInfo.apiKey.ApiKey,
+            oauth_signature_method: authInfo.signMethod,
+            oauth_timestamp: timestamp,
+            oauth_nonce: OAuth1.nonce,
+            oauth_version: authInfo.oauthVersion,
+        }, token ? { oauth_token: token.Token } : {});
+
+        authPayload.oauth_signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
+
+        switch (authInfo.signSpace) {
+            case SignSpace.Header:
+                return {
+                    definition: {
+                        Authorization: { required: true, type: ApiParameterMethods.Header }
+                    },
+                    payload: {
+                        Authorization: `OAuth oauth_consumer_key="${authPayload.oauth_consumer_key}",`
+                            + (authPayload.oauth_token ? `oauth_token="${authPayload.oauth_token},` : ``)
+                            + `oauth_signature_method="${authPayload.oauth_signature_method}",`
+                            + `oauth_timestamp="${authPayload.oauth_timestamp}",`
+                            + `oauth_nonce="${authPayload.oauth_nonce}",`
+                            + `oauth_version="${authPayload.oauth_version}",`
+                            + `oauth_signature="${encodeURIComponent(authPayload.oauth_signature)}"`
+                    }
+                }
+
+            case SignSpace.Query:
+                const required = {required: true, type: ApiParameterMethods.Query};
+                const definition = {
+                        oauth_consumer_key: required,
+                        oauth_token: {required: false, type: ApiParameterMethods.Query},
+                        oauth_signature_method: required,
+                        oauth_timestamp: required,
+                        oauth_nonce: required,
+                        oauth_version: required,
+                        oauth_signature: required,
+                    };
+
+                return {
+                    definition: {...definition, ...apiData.parameter},
+                    payload: {...authPayload, ...payload},
+                }
+
+            default:
+                throw new Error();
+        }
     }
 
     public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)

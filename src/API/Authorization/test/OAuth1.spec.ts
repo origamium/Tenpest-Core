@@ -3,13 +3,23 @@ import OAuth1 from '../OAuth1';
 import {IApiData} from '../../../Interfaces/IApiData';
 import {HttpMethods} from '../../../Enums/HttpMethods';
 import {IAPIKey} from '../../../Interfaces/IKeys';
+import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
 
 const auth = new OAuth1();
 
 const apidata: IApiData = {
     baseUri: "https://example.com/",
     path: "yeah/good",
-    parameter: {},
+    parameter: {
+        oauth_callback: {
+            required: true,
+            type: ApiParameterMethods.Header
+        },
+        oauth_consumer_key: {
+            required: true,
+            type: ApiParameterMethods.Header
+        }
+    },
     method: HttpMethods.GET,
     return: null
 };
