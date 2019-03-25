@@ -38,7 +38,7 @@ export default class OAuth1 implements OAuth {
         return Math.round(+new Date() / 1000).toString();
     }
 
-    private static _signature(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload, timestamp: string): string {
+    private static _signature(authInfo: IAuthInfo, token: IToken | undefined, apiData: IApiData, payload: IApiPayload, timestamp: string): string {
         const signParameter = {
             oauth_consumer_key: authInfo.apiKey.ApiKey,
             oauth_token: token ? token.Token : '',
@@ -61,7 +61,7 @@ export default class OAuth1 implements OAuth {
         return key + '="' + value + '"';
     }
 
-    private static _authorization(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData  {
+    private static _authorization(authInfo: IAuthInfo, token: IToken | undefined, apiData: IApiData, payload: IApiPayload): ICombinedParameterData  {
         const timestamp = OAuth1._now();
 
         const authPayload: any = Object.assign({}, {
@@ -113,7 +113,7 @@ export default class OAuth1 implements OAuth {
         }
     }
 
-    public requestAuthToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string)
+    public requestAuthToken(apiData: IApiData, authInfo: IAuthInfo, redirect_uri: string)
         : ICombinedParameterData & {requiredPayload?: object} {
         const template: IApiParameterDefinition = apiData.parameter;
         const value: IApiPayload = {};
@@ -124,15 +124,11 @@ export default class OAuth1 implements OAuth {
         }
         value[callbackKey] = redirect_uri;
 
-        const consumerKey = 'oauth_consumer_key';
-        if (!template[consumerKey]) {
-            throw new Error('oauth_consumer_key is not available in ApiData.parameter');
-        }
-        value[consumerKey] = apiKey.ApiKey;
+        const authorizationData = OAuth1._authorization(authInfo, undefined, apiData, value)
 
         return {
-            definition: template,
-            payload: value,
+            definition: {...authorizationData.definition, ...template},
+            payload: {...authorizationData.payload, ...value},
         };
     }
 
@@ -153,7 +149,7 @@ export default class OAuth1 implements OAuth {
         };
     }
 
-    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, verifier: string, optional?: { scope?: string[], authToken?: IToken })
+    public requestToken(apiData: IApiData, authInfo: IAuthInfo, apiKey: IAPIKey, redirect_uri: string, verifier: string, optional?: { scope?: string[], authToken?: IToken })
         : ICombinedParameterData {
         const template: IApiParameterDefinition = apiData.parameter;
         const value: IApiPayload = {};
@@ -172,7 +168,7 @@ export default class OAuth1 implements OAuth {
 
     // TODO: refreshToken
 
-    public getAuthorizationData( authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
+    public getAuthorizationData(apiData: IApiData, authInfo: IAuthInfo, token: IToken, payload: IApiPayload)
         : ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};
