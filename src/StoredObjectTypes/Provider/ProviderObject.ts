@@ -7,6 +7,7 @@ export type ProviderObject = {
     baseUrl: string,
     apiKey: string,
     apiSecret: string,
+    official?: string
 };
 
 // key is domain. e.g. 'twitter.com', 'slack.com'
