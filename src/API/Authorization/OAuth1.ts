@@ -3,7 +3,6 @@ import * as authSign from 'oauth-sign';
 import {ApiParameterMethods} from '../../Enums/ApiParameterMethods';
 import {AuthorizeMethod} from '../../Enums/AuthorizeMethod';
 import {SignSpace} from '../../Enums/SignSpace';
-import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
 import {IApiData} from '../../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
@@ -11,25 +10,7 @@ import {IAuthInfo} from '../../Interfaces/IAuthInfo';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 import {IAPIKey, IToken} from '../../Interfaces/IKeys';
 import OAuth from './OAuth';
-import {SignMethod} from '../../Enums/SignMethod';
-
-const authProps = {
-    oauth_consumer_key: 'oauth_consumer_key',
-    oauth_token: 'oauth_token',
-    oauth_signature_method: 'oauth_signature_method',
-    oauth_timestamp: 'oauth_timestamp',
-    oauth_nonce: 'oauth_nonce',
-    oauth_version: 'oauth_version',
-    oauth_signature: 'oauth_signature',
-};
-
-export interface IGenerateAuthorizationParameters {
-    oauth_consumer_key: string,
-    oauth_token?: string,
-    oauth_signature_method: SignMethod,
-    oauth_nonce: string,
-    oauth_version: string,
-}
+import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
 
 export default class OAuth1 implements OAuth {
     private static readonly nonce: string = 'superdry';
@@ -55,10 +36,6 @@ export default class OAuth1 implements OAuth {
             authInfo.apiKey.ApiSecretKey,
             token ? token.TokenSecret : '',
         );
-    }
-
-    private static _headerstring(key: string, value: string): string {
-        return key + '="' + value + '"';
     }
 
     private static _authorization(authInfo: IAuthInfo, token: IToken | undefined, apiData: IApiData, payload: IApiPayload): ICombinedParameterData  {
@@ -109,7 +86,7 @@ export default class OAuth1 implements OAuth {
                 }
 
             default:
-                throw new Error();
+                throw UnknownOAuthSignatureSpace;
         }
     }
 
@@ -152,17 +129,15 @@ export default class OAuth1 implements OAuth {
     public requestToken(apiData: IApiData, authInfo: IAuthInfo, apiKey: IAPIKey, redirect_uri: string, verifier: string, optional?: { scope?: string[], authToken?: IToken })
         : ICombinedParameterData {
         const template: IApiParameterDefinition = apiData.parameter;
-        const value: IApiPayload = {};
+        const value: IApiPayload = {
+            oauth_verifier: verifier,
+        };
 
-        const consumerKey = 'oauth_consumer_key';
-        if (!template[consumerKey]) {
-            throw new Error(consumerKey + ' is not available in ApiData.parameter');
-        }
-        value[consumerKey] = apiKey.ApiKey;
+        const authorizationData = OAuth1._authorization(authInfo, undefined, apiData, value)
 
         return {
-            definition: template,
-            payload: value,
+            definition: {...authorizationData.definition, ...template},
+            payload: {...authorizationData.payload, ...value},
         };
     }
 
@@ -170,48 +145,11 @@ export default class OAuth1 implements OAuth {
 
     public getAuthorizationData(apiData: IApiData, authInfo: IAuthInfo, token: IToken, payload: IApiPayload)
         : ICombinedParameterData {
-        const template: IApiParameterDefinition = {};
-        const value: IApiPayload = {};
-
-        const timestamp = OAuth1._now();
-        const signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
-        const nonce = OAuth1.nonce;
-
-        if (token) {
-            switch (authInfo.signSpace) {
-                case SignSpace.Header:
-                    const key = 'Authorization';
-                    template[key] = { required: true, type: ApiParameterMethods.Header };
-                    value[key] = 'OAuth ' +
-                        OAuth1._headerstring(authProps.oauth_consumer_key, authInfo.apiKey.ApiKey) + ',' +
-                        OAuth1._headerstring(authProps.oauth_token, token.Token) + ',' +
-                        OAuth1._headerstring(authProps.oauth_signature_method, authInfo.signMethod) + ',' +
-                        OAuth1._headerstring(authProps.oauth_timestamp, timestamp) + ',' +
-                        OAuth1._headerstring(authProps.oauth_nonce, nonce) + ',' +
-                        OAuth1._headerstring(authProps.oauth_version, authInfo.oauthVersion) + ',' +
-                        OAuth1._headerstring(authProps.oauth_signature, signature);
-                    break;
-                case SignSpace.Query:
-                    const authParamDefault = {required: true, type: ApiParameterMethods.Query};
-                    Object.keys(authProps).forEach((v) => {
-                        template[v] = {...authParamDefault};
-                    });
-                    value[authProps.oauth_consumer_key] = authInfo.apiKey.ApiKey;
-                    value[authProps.oauth_token] = token.Token;
-                    value[authProps.oauth_signature_method] = authInfo.signMethod;
-                    value[authProps.oauth_timestamp] = timestamp;
-                    value[authProps.oauth_nonce] = nonce;
-                    value[authProps.oauth_version] = authInfo.oauthVersion;
-                    value[authProps.oauth_signature] = signature;
-                    break;
-                default:
-                    throw UnknownOAuthSignatureSpace;
-            }
-        }
+        const authorizationData = OAuth1._authorization(authInfo, token, apiData, payload)
 
         return {
-            definition: template,
-            payload: value,
+            definition: {...authorizationData.definition, ...apiData.parameter},
+            payload: {...authorizationData.payload, ...payload},
         };
     }
 }
