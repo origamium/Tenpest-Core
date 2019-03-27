@@ -11,5 +11,6 @@ export interface IAuthInfo {
     signMethod: SignMethod;
     signSpace: SignSpace;
     scope?: string;
+    callback?: string;
     official?: string;
 }

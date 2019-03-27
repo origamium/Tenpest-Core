@@ -15,7 +15,7 @@ export default class OAuth2 implements OAuth {
         return 'scope=' + scope.reduce((accm, curr) => (accm + '+' + curr), '');
     }
 
-    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, option?: optionObject)
+    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, method: AuthorizeMethod, option?: optionObject)
         : {uri: string, method: AuthorizeMethod} {
         const uri = apiData.baseUri + apiData.path;
         const parameters = [];
@@ -29,20 +29,17 @@ export default class OAuth2 implements OAuth {
         };
     }
 
-    public requestToken(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, verifier: string, option?: optionObject)
+    public requestToken(apiData: IApiData, authInfo: IAuthInfo, verifier: string, option?: optionObject)
         : ICombinedParameterData {
         const template: IApiParameterDefinition = apiData.parameter;
-        const value: IApiPayload = {};
+        if (!authInfo.apiKey.ApiSecretKey) { throw new Error('api secret key is undefined') }
 
-        const scope = 'scope',
-            client_id = 'client_id',
-            client_secret = 'client_secret',
-            code_paylaod = 'code';
-
-
-        if (option && option.scope && template[scope]) {
-            value[scope] = this.scopeToString(option.scope);
-        }
+        const value: IApiPayload = {
+            client_id: authInfo.apiKey.ApiKey,
+            client_secret: authInfo.apiKey.ApiSecretKey,
+            ...(authInfo.callback ? {redirect_uri: authInfo.callback} : {}),
+            code: verifier
+        };
 
         return {
             definition: template,
@@ -52,7 +49,7 @@ export default class OAuth2 implements OAuth {
 
     // TODO: refreshToken
 
-    public getAuthorizationData(authInfo: IAuthInfo, token: IToken, apiData: IApiData, payload: IApiPayload)
+    public getAuthorizationData(apiData: IApiData, authInfo: IAuthInfo, token: IToken, payload: IApiPayload)
         : ICombinedParameterData {
         const template: IApiParameterDefinition = {};
         const value: IApiPayload = {};

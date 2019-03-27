@@ -12,21 +12,21 @@ export type optionObject = {
 
 export default interface IOAuth {
     // optional: step 0
-    requestAuthToken?(apiData: IApiData, authInfo: IAuthInfo, redirect_uri: string)
+    requestAuthToken?(apiData: IApiData, authInfo: IAuthInfo)
         : ICombinedParameterData & {requiredPayload?: object};
 
     // required: step 1. Generate Authorization url
-     authorizeUri(apiData: IApiData, apiKey: IAPIKey, redirect_uri: string, method: AuthorizeMethod, option?: optionObject)
+     authorizeUri(apiData: IApiData, apiKey: IAPIKey, method: AuthorizeMethod, option?: optionObject)
          : {uri: string, method: AuthorizeMethod};
 
     // required: step 2
     // "verifier" is also known as "PIN"
-    requestToken(apiData: IApiData, authInfo: IAuthInfo, apiKey: IAPIKey, redirect_uri: string, verifier: string, option?: optionObject)
+    requestToken(apiData: IApiData, authInfo: IAuthInfo, verifier: string, option?: optionObject)
         : ICombinedParameterData;
 
     // TODO: code だったり token だったりしているのなんとかしよう
     // optional: step 3
-    refreshToken?(apiData: IApiData, authInfo: IAuthInfo, apiKey: IAPIKey, code: IToken, redirect_uri: string)
+    refreshToken?(apiData: IApiData, authInfo: IAuthInfo, code: IToken)
         : ICombinedParameterData;
 
     // required: autohorized data
