@@ -41,15 +41,17 @@ export default class OAuth1 implements OAuth {
     private static _authorization(authInfo: IAuthInfo, token: IToken | undefined, apiData: IApiData, payload: IApiPayload): ICombinedParameterData  {
         const timestamp = OAuth1._now();
 
-        const authPayload: any = Object.assign({}, {
+        const authSeed = {
             oauth_consumer_key: authInfo.apiKey.ApiKey,
             oauth_signature_method: authInfo.signMethod,
             oauth_timestamp: timestamp,
             oauth_nonce: OAuth1.nonce,
             oauth_version: authInfo.oauthVersion,
-        }, token ? { oauth_token: token.Token } : {});
+            ...(token ? {oauth_token: token.Token} : {})
+        };
 
-        authPayload.oauth_signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
+        const oauth_signature = OAuth1._signature(authInfo, token, apiData, payload, timestamp);
+
 
         switch (authInfo.signSpace) {
             case SignSpace.Header:
@@ -58,13 +60,13 @@ export default class OAuth1 implements OAuth {
                         Authorization: { required: true, type: ApiParameterMethods.Header }
                     },
                     payload: {
-                        Authorization: `OAuth oauth_consumer_key="${authPayload.oauth_consumer_key}",`
-                            + (authPayload.oauth_token ? `oauth_token="${authPayload.oauth_token},` : ``)
-                            + `oauth_signature_method="${authPayload.oauth_signature_method}",`
-                            + `oauth_timestamp="${authPayload.oauth_timestamp}",`
-                            + `oauth_nonce="${authPayload.oauth_nonce}",`
-                            + `oauth_version="${authPayload.oauth_version}",`
-                            + `oauth_signature="${encodeURIComponent(authPayload.oauth_signature)}"`
+                        Authorization: `OAuth oauth_consumer_key="${authSeed.oauth_consumer_key}",`
+                            + (token ? `oauth_token="${token.Token},` : ``)
+                            + `oauth_signature_method="${authSeed.oauth_signature_method}",`
+                            + `oauth_timestamp="${authSeed.oauth_timestamp}",`
+                            + `oauth_nonce="${authSeed.oauth_nonce}",`
+                            + `oauth_version="${authSeed.oauth_version}",`
+                            + `oauth_signature="${encodeURIComponent(oauth_signature)}"`
                     }
                 };
 
@@ -82,7 +84,7 @@ export default class OAuth1 implements OAuth {
 
                 return {
                     definition: {...definition, ...apiData.parameter},
-                    payload: {...authPayload, ...payload},
+                    payload: {...authSeed, ...payload, ...{oauth_signature}},
                 };
 
             default:

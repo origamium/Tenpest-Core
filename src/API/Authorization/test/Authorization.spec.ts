@@ -14,29 +14,29 @@ const OAuth2Instances = {
 
 describe('OAuth1(header)', () => {
     it('getAuthorizationData method', () => {
-        const target = OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {});
+        const target = OAuth1Instances.header.getAuthorizationData(TD.blank, TD.DummyToken, {});
         expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
     })
 });
 
 describe('OAuth1(query)', () => {
     it('getAuthorizationData method', () => {
-        const target = OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {});
-        expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
+        const target = OAuth1Instances.query.getAuthorizationData(TD.blank, TD.DummyToken, {});
+        expect(Object.keys(target.definition).sort()).toEqual(Object.keys(target.payload).sort());
     })
 });
 
 describe('OAuth2(header)', () => {
     it('getAuthorizationData method', () => {
-        const target = OAuth2Instances.header.getAuthorizationData(TD.DummyToken, TD.blank, {});
+        const target = OAuth2Instances.header.getAuthorizationData(TD.blank, TD.DummyToken, {});
         expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
     })
 });
 
 describe('OAuth2(query)', () => {
     it('getAuthorizationData method', () => {
-        const target = OAuth2Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {});
-        expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
+        const target = OAuth2Instances.query.getAuthorizationData(TD.blank, TD.DummyToken,{});
+        expect(Object.keys(target.definition).sort()).toEqual(Object.keys(target.payload).sort());
     })
 });
 
