@@ -117,14 +117,10 @@ export default class OAuth1 implements OAuth {
             throw new Error('OAuth1 required optional.authToken.Token');
         }
 
-        if (authInfo.callback) {
-            parameters.push('oauth_callback='+authInfo.callback)
-        }
-
         parameters.push('oauth_token=' + optional.authToken.Token);
 
         return {
-            uri: uri + '?' + encodeURIComponent(parameters.reduce((accm, curr) => (accm + '&' + curr), '')),
+            uri: uri + '?' + parameters.reduce((accm, curr) => (accm + '&' + curr), ''),
             method,
         };
     }

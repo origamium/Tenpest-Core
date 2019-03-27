@@ -3,7 +3,7 @@ import {IApiData} from '../../Interfaces/IApiData';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
-import {IAPIKey, IToken} from '../../Interfaces/IKeys';
+import {IToken} from '../../Interfaces/IKeys';
 
 export type optionObject = {
     scope?: string[],

@@ -56,7 +56,6 @@ describe("OAuth1 authentication test", () => {
 
     it("02: create authorize uri", () => {
         const target = auth.authorizeUri(apidata_header, authData_header, AuthorizeMethod.Callback, {authToken: {Token: "yeah"}})
-        console.log(target);
-        expect(0).toEqual(0)
+        expect(target.uri && typeof target.uri === "string").toBeTruthy()
     })
 })
