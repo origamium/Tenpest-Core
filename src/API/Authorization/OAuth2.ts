@@ -15,7 +15,7 @@ export default class OAuth2 implements OAuth {
         return 'scope=' + scope.reduce((accm, curr) => (accm + '+' + curr), '');
     }
 
-    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, method: AuthorizeMethod, option?: optionObject)
+    public authorizeUri(apiData: IApiData, authInfo: IAuthInfo, method: AuthorizeMethod, option?: optionObject)
         : {uri: string, method: AuthorizeMethod} {
         const uri = apiData.baseUri + apiData.path;
         const parameters = [];

@@ -3,7 +3,6 @@ import OAuth1 from '../OAuth1';
 import {IApiData} from '../../../Interfaces/IApiData';
 import {HttpMethods} from '../../../Enums/HttpMethods';
 import {IAPIKey} from '../../../Interfaces/IKeys';
-import {ApiParameterMethods} from '../../../Enums/ApiParameterMethods';
 import {IAuthInfo} from '../../../Interfaces/IAuthInfo';
 import {OAuthVersion} from '../../../Enums/OAuthVersion';
 import {AuthorizeMethod} from '../../../Enums/AuthorizeMethod';
@@ -51,14 +50,13 @@ const apidata_query: IApiData = {
 
 describe("OAuth1 authentication test", () => {
     it("01: request auth token", () => {
-        const target = auth.requestAuthToken(apidata_header, authData_header, "https://google.com")
-        console.log(target.definition)
+        const target = auth.requestAuthToken(apidata_header, authData_header)
         expect(Object.keys(target.definition)).toEqual(["Authorization"])
-        console.log(target.payload["Authorization"])
     })
 
     it("02: create authorize uri", () => {
+        const target = auth.authorizeUri(apidata_header, authData_header, AuthorizeMethod.Callback, {authToken: {Token: "yeah"}})
+        console.log(target);
         expect(0).toEqual(0)
-
     })
 })

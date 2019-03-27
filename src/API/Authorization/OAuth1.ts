@@ -8,7 +8,7 @@ import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition'
 import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
-import {IAPIKey, IToken} from '../../Interfaces/IKeys';
+import {IToken} from '../../Interfaces/IKeys';
 import OAuth from './OAuth';
 import {UnknownOAuthSignatureSpace} from '../../Exception/Exceptions';
 
@@ -66,7 +66,7 @@ export default class OAuth1 implements OAuth {
                             + `oauth_version="${authPayload.oauth_version}",`
                             + `oauth_signature="${encodeURIComponent(authPayload.oauth_signature)}"`
                     }
-                }
+                };
 
             case SignSpace.Query:
                 const required = {required: true, type: ApiParameterMethods.Query};
@@ -83,14 +83,14 @@ export default class OAuth1 implements OAuth {
                 return {
                     definition: {...definition, ...apiData.parameter},
                     payload: {...authPayload, ...payload},
-                }
+                };
 
             default:
                 throw UnknownOAuthSignatureSpace;
         }
     }
 
-    public requestAuthToken(apiData: IApiData, authInfo: IAuthInfo, redirect_uri?: string)
+    public requestAuthToken(apiData: IApiData, authInfo: IAuthInfo)
         : ICombinedParameterData & {requiredPayload?: object} {
         const template: IApiParameterDefinition = apiData.parameter;
         const value: IApiPayload = {};
@@ -100,7 +100,7 @@ export default class OAuth1 implements OAuth {
             value[callbackKey] = authInfo.callback;
         }
 
-        const authorizationData = OAuth1._authorization(authInfo, undefined, apiData, value)
+        const authorizationData = OAuth1._authorization(authInfo, undefined, apiData, value);
 
         return {
             definition: {...authorizationData.definition, ...template},
@@ -108,13 +108,17 @@ export default class OAuth1 implements OAuth {
         };
     }
 
-    public authorizeUri(apiData: IApiData, apiKey: IAPIKey, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
+    public authorizeUri(apiData: IApiData, authInfo: IAuthInfo, method: AuthorizeMethod, optional?: { scope?: string[], authToken?: IToken })
         : {uri: string, method: AuthorizeMethod} {
         const uri: string = apiData.baseUri + apiData.path;
         const parameters: string[] = [];
 
         if (!optional || !optional.authToken || !optional.authToken.Token) {
             throw new Error('OAuth1 required optional.authToken.Token');
+        }
+
+        if (authInfo.callback) {
+            parameters.push('oauth_callback='+authInfo.callback)
         }
 
         parameters.push('oauth_token=' + optional.authToken.Token);
@@ -132,7 +136,7 @@ export default class OAuth1 implements OAuth {
             oauth_verifier: verifier,
         };
 
-        const authorizationData = OAuth1._authorization(authInfo, undefined, apiData, value)
+        const authorizationData = OAuth1._authorization(authInfo, undefined, apiData, value);
 
         return {
             definition: {...authorizationData.definition, ...template},
@@ -144,7 +148,7 @@ export default class OAuth1 implements OAuth {
 
     public getAuthorizationData(apiData: IApiData, authInfo: IAuthInfo, token: IToken, payload: IApiPayload)
         : ICombinedParameterData {
-        const authorizationData = OAuth1._authorization(authInfo, token, apiData, payload)
+        const authorizationData = OAuth1._authorization(authInfo, token, apiData, payload);
 
         return {
             definition: {...authorizationData.definition, ...apiData.parameter},

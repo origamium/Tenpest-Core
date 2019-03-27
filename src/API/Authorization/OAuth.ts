@@ -16,7 +16,7 @@ export default interface IOAuth {
         : ICombinedParameterData & {requiredPayload?: object};
 
     // required: step 1. Generate Authorization url
-     authorizeUri(apiData: IApiData, apiKey: IAPIKey, method: AuthorizeMethod, option?: optionObject)
+     authorizeUri(apiData: IApiData, authInfo: IAuthInfo, method: AuthorizeMethod, option?: optionObject)
          : {uri: string, method: AuthorizeMethod};
 
     // required: step 2
