@@ -1,4 +1,6 @@
 /* tslint:disable */
+
+/*
 import Authorization from '../Authorization';
 import * as TD from './testdata';
 
@@ -40,3 +42,5 @@ describe('OAuth2(query)', () => {
         expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
     })
 });
+
+*/
