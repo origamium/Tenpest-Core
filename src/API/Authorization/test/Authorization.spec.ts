@@ -1,6 +1,5 @@
 /* tslint:disable */
 
-/*
 import Authorization from '../Authorization';
 import * as TD from './testdata';
 
@@ -18,8 +17,6 @@ describe('OAuth1(header)', () => {
         const target = OAuth1Instances.query.getAuthorizationData(TD.DummyToken, TD.blank, {});
         expect(Object.keys(target.definition)).toEqual(Object.keys(target.payload));
     })
-
-
 });
 
 describe('OAuth1(query)', () => {
@@ -43,4 +40,3 @@ describe('OAuth2(query)', () => {
     })
 });
 
-*/
