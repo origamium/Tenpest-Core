@@ -11,7 +11,7 @@ import OAuth2 from './OAuth2';
 
 export default class Authorization {
     private readonly info: IAuthInfo;
-    public auth: any;
+    public auth: OAuth1 | OAuth2;
 
     constructor(source: AuthorizationUnitObject, apiKey: IAPIKey) {
         this.info = {
@@ -35,7 +35,7 @@ export default class Authorization {
         }
     }
 
-    public getAuthorizationData(token: IToken, apiData: IApiData, payload: IApiPayload): ICombinedParameterData {
-        return this.auth.getAuthorizationData(this.info, token, apiData, payload);
+    public getAuthorizationData(api: IApiData, token: IToken, payload: IApiPayload): ICombinedParameterData {
+        return this.auth.getAuthorizationData(api, this.info, token, payload);
     }
 }

@@ -6,12 +6,12 @@ import {IApiData} from '../../Interfaces/IApiData';
 import {IApiParameterDefinition} from '../../Interfaces/IApiParameterDefinition';
 import {IApiPayload} from '../../Interfaces/IApiPayload';
 import {IAuthInfo} from '../../Interfaces/IAuthInfo';
-import {IAPIKey, IToken} from '../../Interfaces/IKeys';
+import {IToken} from '../../Interfaces/IKeys';
 import OAuth, {optionObject} from './OAuth';
 import {ICombinedParameterData} from '../../Interfaces/ICombinedParameterData';
 
 export default class OAuth2 implements OAuth {
-    private scopeToString(scope: string[]) {
+    private static scopeToString(scope: string[]) {
         return 'scope=' + scope.reduce((accm, curr) => (accm + '+' + curr), '');
     }
 
@@ -20,7 +20,7 @@ export default class OAuth2 implements OAuth {
         const uri = apiData.baseUri + apiData.path;
         const parameters = [];
         if (option && option.scope) {
-            parameters.push(this.scopeToString(option.scope));
+            parameters.push(OAuth2.scopeToString(option.scope));
         }
 
         return {
