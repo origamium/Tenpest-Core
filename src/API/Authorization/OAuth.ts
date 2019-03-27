@@ -24,9 +24,8 @@ export default interface IOAuth {
     requestToken(apiData: IApiData, authInfo: IAuthInfo, verifier: string, option?: optionObject)
         : ICombinedParameterData;
 
-    // TODO: code だったり token だったりしているのなんとかしよう
     // optional: step 3
-    refreshToken?(apiData: IApiData, authInfo: IAuthInfo, code: IToken)
+    refreshToken?(apiData: IApiData, authInfo: IAuthInfo, token: IToken)
         : ICombinedParameterData;
 
     // required: autohorized data
