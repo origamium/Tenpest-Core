@@ -8,7 +8,9 @@
     "build": "webpack --mode=production",
     "tsc": "tsc",
     "test": "jest --coverage",
-    "test-watch": "jest --watchAll"
+    "test-watch": "jest --watchAll",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "ONOUE Origami",
   "license": "MIT",
@@ -16,7 +18,8 @@
     "axios": "^0.18.0",
     "oauth-sign": "^0.9.0",
     "opn": "^5.4.0",
-    "query-string": "^6.3.0"
+    "query-string": "^6.3.0",
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
@@ -33,5 +36,6 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
-  }
+  },
+  "snyk": true
 }
