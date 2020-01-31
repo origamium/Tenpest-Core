@@ -1,33 +1,31 @@
 module.exports = {
-    "env": {
+    env: {
         "browser": true,
         "es6": true
     },
-    "extends": [
+    extends: [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
         "plugin:prettier/recommended",
-        "prettier/@typescript-eslint"
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+    globals: {
+        Atomics: "readonly",
+        SharedArrayBuffer: "readonly"
     },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true
         },
-        "ecmaVersion": 2018,
-        "project": "./tsconfig.json",
-        "sourceType": "module"
+        ecmaVersion: 2018,
+        project: "./tsconfig.json",
+        sourceType: "module"
     },
-    "plugins": [
+    plugins: [
         "@typescript-eslint",
-        "react-hooks"
     ],
-    "rules": {
+    rules: {
         "prettier/prettier": "error",
         "ordered-imports": 0,
         "object-literal-sort-keys": 0,
